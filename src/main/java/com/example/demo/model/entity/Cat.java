@@ -13,4 +13,6 @@ public class Cat {
 	private String healthStatus; // 貓咪身體狀況(特別疾病、受傷狀況)
 	private String description; // 詳細描述
 	private Boolean is_available; // 是否可被領養(false=0,true=1)
+	
+	private String text;
 }
