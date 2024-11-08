@@ -17,7 +17,7 @@
 		<div class="pure-form" style="padding: 15px;">
 			<fieldset>
 				<legend>頁面功能</legend>
-				<a href="/catadd" class="button-secondary pure-button">新增領養貓咪</a>
+				<a href="/cat_add" class="button-secondary pure-button">新增領養貓咪</a>
 			</fieldset>
 			<fieldset>
 				<legend>貓咪列表</legend>
@@ -36,7 +36,7 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<td><a href="" class="button-secondary pure-button">修改</a></td>
+							<td><a href="/cat_update" class="button-secondary pure-button">修改</a></td>
 						</tr>
 				</table>
 			</fieldset>

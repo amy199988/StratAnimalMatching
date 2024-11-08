@@ -18,7 +18,17 @@
 			<fieldset>
 				<legend>領養表單</legend>
 				<table class="pure-table pure-table-bordered">
-					<tr><td>貓咪照片</td></tr>
+					<tr>
+					<td>
+					<p>Image URL: ${imageUrl}</p>
+					<c:if test="${not empty imageUrl}">
+			        	<img src="${imageUrl}" alt="Uploaded Image" style="max-width: 50%;">
+				    </c:if>
+				    <c:if test="${empty imageUrl}">
+				        <p>Failed to upload image. Please try again.</p>
+				    </c:if>
+					</td>
+					</tr>
 					<tr><td>貓咪名稱：小八</td></tr>
 					<tr><td>貓咪花紋：八字瀏海</td></tr>
 					<tr><td>貓咪年齡：5歲</td></tr>

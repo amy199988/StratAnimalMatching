@@ -31,9 +31,9 @@ public class controller {
 		return "lovemom";
 	}
 	
-	@GetMapping("/catadd")
+	@GetMapping("/cat_add")
 	public String catadd() {
-		return "catadd";
+		return "cat_add";
 	}
 	
 	@GetMapping("/lovehome")
@@ -41,8 +41,13 @@ public class controller {
 		return "lovehome";
 	}
 	
-	@GetMapping("/catlist")
+	@GetMapping("/cat_list")
 	public String catlist() {
-		return "catlist";
+		return "cat_list";
+	}
+	
+	@GetMapping("/cat_update")
+	public String catupdate() {
+		return "cat_update";
 	}
 }

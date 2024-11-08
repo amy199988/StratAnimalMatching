@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Love MoM</title>
+		<title>LoveMom</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/base-min.css">
 		<link rel="stylesheet" href="/css/buttons.css">
@@ -18,7 +18,7 @@
 				<a href="/" class="button-secondary pure-button">會員管理</a>
 				<a href="/" class="button-secondary pure-button">修改會員資料</a>
 				<a href="/" class="button-secondary pure-button">修改密碼</a>
-				<a href="/catlist" class="button-secondary pure-button">貓咪清單管理</a>
+				<a href="/cat_list" class="button-secondary pure-button">貓咪清單管理</a>
 				<a href="/" class="button-secondary pure-button">申請領養清單管理</a>
 				<a href="/" class="button-secondary pure-button">通報清單管理</a>
 				<a href="/" class="button-secondary pure-button">中途之家管理</a>
