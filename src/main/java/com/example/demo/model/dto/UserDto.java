@@ -1,9 +1,13 @@
 package com.example.demo.model.dto;
 
 import java.sql.Date;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDto {
 	private Integer userId; // 會員編號
 	private String username; // 會員名稱

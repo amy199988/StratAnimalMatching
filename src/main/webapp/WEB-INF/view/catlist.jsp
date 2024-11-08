@@ -16,19 +16,28 @@
 		<%@ include file="/WEB-INF/view/menu.jspf" %>
 		<div class="pure-form" style="padding: 15px;">
 			<fieldset>
-				<legend>領養表單</legend>
+				<legend>頁面功能</legend>
+				<a href="/catadd" class="button-secondary pure-button">新增領養貓咪</a>
+			</fieldset>
+			<fieldset>
+				<legend>貓咪列表</legend>
 				<table class="pure-table pure-table-bordered">
-					<tr><td>貓咪照片</td></tr>
-					<tr><td>貓咪名稱：小八</td></tr>
-					<tr><td>貓咪花紋：八字瀏海</td></tr>
-					<tr><td>貓咪年齡：5歲</td></tr>
-					<tr><td>特殊狀況：無</td></tr>
-					<tr><td>詳細描述：性格開朗、樂觀，並且非常健談。</td></tr>
-					<tr>
-						<td>
-							<a href="/adoptionrequest" class="button-secondary pure-button">領養</button>
-						</td>
-					</tr>
+					<thead>
+						<tr>
+							<th>ID</th><th>名稱</th><th>花紋</th><th>年齡</th><th>健康狀況</th>
+							<th>描述</th><th>狀態</th><th>修改</th>
+						</tr>
+					</thead>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><a href="" class="button-secondary pure-button">修改</a></td>
+						</tr>
 				</table>
 			</fieldset>
 		</div>

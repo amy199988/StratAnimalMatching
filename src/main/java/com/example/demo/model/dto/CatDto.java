@@ -1,15 +1,13 @@
-package com.example.demo.model.entity;
+package com.example.demo.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// 代表 cats 資料表的紀錄
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cat {
+public class CatDto {
 	private Integer catId; // 貓咪編號
 	private String catname; // 貓咪名稱
 	private String breed; // 貓咪花紋

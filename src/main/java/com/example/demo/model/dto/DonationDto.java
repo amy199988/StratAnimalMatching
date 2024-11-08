@@ -1,16 +1,14 @@
-package com.example.demo.model.entity;
+package com.example.demo.model.dto;
 
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//代表 donations 資料表的紀錄
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Donation {
+public class DonationDto {
 	private Integer donationsId; // 捐贈清單編號
 	private Integer donorId; // 捐贈者編號
 	private String donationType; // 捐贈類型

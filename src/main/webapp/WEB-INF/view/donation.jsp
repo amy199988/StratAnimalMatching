@@ -19,8 +19,8 @@
 				<fieldset>
 					<legend>捐贈表單</legend>
 					<label for="radio_type" class="pure-radio">捐贈類型</label>
-					<input type="radio" id="radio_type" name="optionsradio" value="option1" checked="" /> 錢
-					<input type="radio" id="radio_type" name="optionsradio" value="option2" /> 物品
+					<input type="radio" id="money" name="optionsradio" value="option_money" /> 錢
+					<input type="radio" id="items" name="optionsradio" value="option_items" /> 物品
 					<p />
 					捐贈數量：<input type="text" name="" placeholder="請輸入 ..." required /><p />
 					捐贈描述：<input type="text" name="" required /><p />

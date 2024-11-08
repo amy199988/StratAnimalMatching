@@ -1,16 +1,14 @@
-package com.example.demo.model.entity;
+package com.example.demo.model.dto;
 
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// 代表 adoption_requests 資料表的紀錄
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdoptionRequest {
+public class AdoptionRequestDto {
 	private Integer requestNumber; // 領養表單編號
 	private Integer applicantId; // 申請領養者編號
 	private Integer adoptedcatId; // 被領養貓咪編號

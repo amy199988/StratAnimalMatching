@@ -1,15 +1,13 @@
-package com.example.demo.model.entity;
+package com.example.demo.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// 代表 lovehomes 資料表的紀錄
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Lovehome {
+public class LovehomeDto {
 	private Integer lovehomeId; // 中途之家編號
 	private String lovehomename; // 中途之家名稱
 	private String lovehomeAddress; // 中途之家地址

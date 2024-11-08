@@ -1,16 +1,14 @@
-package com.example.demo.model.entity;
+package com.example.demo.model.dto;
 
 import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// 代表 reported_lists 資料表的紀錄
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReportList {
+public class ReportListDto {
 	private Integer reportnumber; // 通報表單編號
 	private Integer reportedId; // 通報人編號
 	private String location; // 通報地點

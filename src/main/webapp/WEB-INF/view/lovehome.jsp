@@ -16,19 +16,13 @@
 		<%@ include file="/WEB-INF/view/menu.jspf" %>
 		<div class="pure-form" style="padding: 15px;">
 			<fieldset>
-				<legend>領養表單</legend>
+				<legend>合作中途之家列表</legend>
 				<table class="pure-table pure-table-bordered">
-					<tr><td>貓咪照片</td></tr>
-					<tr><td>貓咪名稱：小八</td></tr>
-					<tr><td>貓咪花紋：八字瀏海</td></tr>
-					<tr><td>貓咪年齡：5歲</td></tr>
-					<tr><td>特殊狀況：無</td></tr>
-					<tr><td>詳細描述：性格開朗、樂觀，並且非常健談。</td></tr>
-					<tr>
-						<td>
-							<a href="/adoptionrequest" class="button-secondary pure-button">領養</button>
-						</td>
-					</tr>
+					<tr><td>中途之家照片</td></tr>
+					<tr><td>中途之家名稱</td></tr>
+					<tr><td>中途之家地址</td></tr>
+					<tr><td>聯絡方式</td></tr>
+					<tr><td>中途之家描述</td></tr>
 				</table>
 			</fieldset>
 		</div>

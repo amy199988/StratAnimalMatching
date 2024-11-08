@@ -1,11 +1,15 @@
 package com.example.demo.model.entity;
 
 import java.sql.Date;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 // 代表 users 資料表的紀錄
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 	private Integer userId; // 會員編號
 	private String username; // 會員名稱
