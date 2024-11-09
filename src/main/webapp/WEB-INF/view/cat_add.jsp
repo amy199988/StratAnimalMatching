@@ -18,16 +18,16 @@
 			<form class="pure-form" method="post" action="/cat_add" enctype="multipart/form-data">
 				<fieldset>
 					<legend>領養貓咪 新增</legend>
-					貓咪名稱：<input type="text" name="" value="" required /><p />
-					貓咪花紋：<input type="text" name="" value="" required /><p />
-					貓咪年齡：<input type="text" name="" value="" required /><p />
-					特殊狀況：<input type="text" name="" value="" required /><p />
-					詳細描述：<input type="text" name="" value="" required /><p />
-					<label for="is_apply" class="pure-radio">目前狀態：</label>
-					<input type="radio" name="apply" value="apply_yes" /> 可申請領養
-					<input type="radio" name="apply" value="apply_no" checked="" /> 不可申請領養
-					<p />
-					<input type="file" name="file" accept="image/*" required>
+					貓咪名稱：<input type="text" name="catname" required /><p />
+					貓咪花紋：<input type="text" name="breed" required /><p />
+					貓咪年齡：<input type="text" name="age" required /><p />
+					特殊狀況：<input type="text" name="healthStatus" required /><p />
+					詳細描述：<input type="text" name="description" required /><p />
+					<label class="pure-radio">目前狀態：
+					<input type="radio" name="isapply" value="apply_yes" /> 可申請領養
+					<input type="radio" name="isapply" value="apply_no" checked="" /> 不可申請領養
+					</label><p />
+					<input type="file" name="file" accept="image/*" required><p />
 					<button type="submit" class="button-secondary pure-button">新增</button>
 					<a href="/cat_list" class="button-error pure-button">取消</a>
 				</fieldset>

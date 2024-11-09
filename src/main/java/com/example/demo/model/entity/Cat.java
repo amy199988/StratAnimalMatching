@@ -24,10 +24,10 @@ public class Cat {
 	@Column(name = "cat_id")
 	private Integer catId; // 貓咪編號
 	
-	@Column(name = "cat_name")
+	@Column(name = "cat_name", columnDefinition = "varchar(50)")
 	private String catname; // 貓咪名稱
 	
-	@Column(name = "breed")
+	@Column(name = "breed", columnDefinition = "varchar(50)")
 	private String breed; // 貓咪花紋
 	
 	@Column(name = "age")
@@ -36,12 +36,12 @@ public class Cat {
 	@Column(name = "health_status")
 	private String healthStatus; // 貓咪身體狀況(特別疾病、受傷狀況)
 	
-	@Column(name = "description")
+	@Column(name = "description", columnDefinition = "text")
 	private String description; // 詳細描述
 	
 	@Column(name = "catphoto_url")
 	private String catphoto_url; // 貓咪照片上傳網址
 	
-	@Column(name = "is_apply")
-	private Boolean is_apply; // 是否可申請領養(false=0,true=1)
+	@Column(name = "is_apply", columnDefinition = "tinyint default 0")
+	private Boolean isapply; // 是否可申請領養(false=0,true=1)
 }

@@ -13,14 +13,14 @@ public class CatJAPTest {
 	@Autowired
 	private CatRepository catRepository;
 	
-	@Test
+	/*@Test
 	public void testCatadd() {
 		Cat cat = new Cat(null,"小八","八字瀏海",5,"無","性格開朗、樂觀，並且非常健談。","...",false);
 		cat = catRepository.save(cat);
 		System.out.println("測試新增：" + cat );
-	}
+	}*/
 	
-	/*@Test
+	@Test
 	public void testFindAllCats() {
 		System.out.println("測試查詢全部：" + catRepository.findAll());
 	}
@@ -33,9 +33,16 @@ public class CatJAPTest {
 	
 	@Test
 	public void testUpdateCat() {
-		Cat updatecat = new Cat(1,"小八","八字瀏海",5,"無","性格開朗、樂觀，並且非常健談。",true);
+		Cat updatecat = new Cat(1,"小八","八字瀏海",5,"無","性格開朗、樂觀，並且非常健談。","...",true);
 		updatecat = catRepository.save(updatecat);
 		System.out.println("測試更新：" + updatecat);
+	}
+	
+	/*@Test
+	public void testDeleteCatById() {
+		int catId = 2;
+		catRepository.deleteById(catId);
+		System.out.println("測試刪除：" + catId);
 	}*/
 	
 }

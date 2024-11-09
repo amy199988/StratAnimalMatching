@@ -14,5 +14,5 @@ public class CatDto {
 	private Integer age; // 貓咪年齡
 	private String healthStatus; // 貓咪身體狀況(特別疾病、受傷狀況)
 	private String description; // 詳細描述
-	private Boolean is_apply; // 是否可申請領養(false=0,true=1)
+	private Boolean isapply; // 是否可申請領養(false=0,true=1)
 }

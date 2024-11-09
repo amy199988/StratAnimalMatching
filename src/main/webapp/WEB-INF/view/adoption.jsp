@@ -29,11 +29,18 @@
 				    </c:if>
 					</td>
 					</tr>
-					<tr><td>貓咪名稱：小八</td></tr>
-					<tr><td>貓咪花紋：八字瀏海</td></tr>
-					<tr><td>貓咪年齡：5歲</td></tr>
-					<tr><td>特殊狀況：無</td></tr>
-					<tr><td>詳細描述：性格開朗、樂觀，並且非常健談。</td></tr>
+					<c:if test="${not empty catDtos}">
+						<c:forEach var="catDto" items="${catDtos}">
+							<tr><td>貓咪名稱：${ catDto.catname }</td></tr>
+							<tr><td>貓咪花紋：${ catDto.breed }</td></tr>
+							<tr><td>貓咪年齡：${ catDto.age }歲</td></tr>
+							<tr><td>特殊狀況：${ catDto.healthStatus }</td></tr>
+							<tr><td>詳細描述：${ catDto.description }</td></tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty catDtos}">
+				        <p>No visible cat information available.</p>
+				    </c:if>
 					<tr>
 						<td>
 							<a href="/adoptionrequest" class="button-secondary pure-button">領養</button>

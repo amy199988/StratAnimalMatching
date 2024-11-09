@@ -6,11 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class controller {
 	
-	@GetMapping("/adoption")
-	public String adoption() {
-		return "adoption";
-	}
-	
 	@GetMapping("/adoptionrequest")
 	public String adoptioncat() {
 		return "adoptionrequest";
@@ -39,11 +34,6 @@ public class controller {
 	@GetMapping("/lovehome")
 	public String lovehome() {
 		return "lovehome";
-	}
-	
-	@GetMapping("/cat_list")
-	public String catlist() {
-		return "cat_list";
 	}
 	
 	@GetMapping("/cat_update")
