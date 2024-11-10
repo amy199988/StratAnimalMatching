@@ -15,7 +15,7 @@
 		<!-- menu bar include -->
 		<%@ include file="/WEB-INF/view/menu.jspf" %>
 		<div class="pure-form" style="padding: 15px;">
-			<form class="pure-form" method="post" action="/cat_add" enctype="multipart/form-data">
+			<form class="pure-form" method="post" action="/cat/add" enctype="multipart/form-data">
 				<fieldset>
 					<legend>領養貓咪 新增</legend>
 					貓咪名稱：<input type="text" name="catname" required /><p />
@@ -24,10 +24,10 @@
 					特殊狀況：<input type="text" name="healthStatus" required /><p />
 					詳細描述：<input type="text" name="description" required /><p />
 					<label class="pure-radio">目前狀態：
-					<input type="radio" name="isapply" value="apply_yes" /> 可申請領養
-					<input type="radio" name="isapply" value="apply_no" checked="" /> 不可申請領養
+					<input type="radio" name="isapply" value="true" /> 可申請領養
+					<input type="radio" name="isapply" value="false" checked="" /> 不可申請領養
 					</label><p />
-					<input type="file" name="file" accept="image/*" required><p />
+					<input type="file" name="photo" accept="image/*" required><p />
 					<button type="submit" class="button-secondary pure-button">新增</button>
 					<a href="/cat_list" class="button-error pure-button">取消</a>
 				</fieldset>

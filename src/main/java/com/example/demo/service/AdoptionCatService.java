@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.mapper.ObjectMapper;
 import com.example.demo.model.dto.CatDto;
@@ -22,18 +23,19 @@ public class AdoptionCatService {
 	@Autowired
 	private ObjectMapper objectMapper;
 	
+	@Autowired
+	private ImgurService imgurService;
+	
 	// 新增領養貓咪
-	public Cat appendCat(String catname, String breed, Integer age, 
-						  String healthstatus, String description, 
-						  String photoUrl, Boolean isapply) {
-		Cat cat = new Cat();
-		cat.setCatname(catname);
-		cat.setBreed(breed);
-		cat.setAge(age);
-		cat.setHealthStatus(healthstatus);
-		cat.setDescription(description);
+	public Cat appendCat(Cat cat, MultipartFile photofFile) {
+		if (photofFile == null || photofFile.isEmpty()) {
+			System.out.println("photoFile資料為空或null");
+	    }
+		
+		String photoUrl = imgurService.uploadImage(photofFile);
+		
 		cat.setCatphoto_url(photoUrl);
-		cat.setIsapply(isapply);
+		System.out.println("Uploaded Image URL: " + photoUrl);
 		
 		catRepository.save(cat);
 		return cat;
@@ -75,20 +77,10 @@ public class AdoptionCatService {
 	}
 	
 	// 修改貓咪資訊
-	public void updateCat(Integer catId,String catname, String breed, Integer age, 
-			  			  String healthstatus, String description, 
-			  			  String photoUrl, Boolean isapply) {
-		Cat cat = new Cat();
-		cat.setCatId(catId);
-		cat.setCatname(catname);
-		cat.setBreed(breed);
-		cat.setAge(age);
-		cat.setHealthStatus(healthstatus);
-		cat.setDescription(description);
-		cat.setCatphoto_url(photoUrl);
-		cat.setIsapply(isapply);
-		
+	public Cat updateCat(Cat cat, MultipartFile photofFile) {
+		cat.setCatphoto_url(imgurService.uploadImage(photofFile));
 		catRepository.save(cat);
+		return cat;
 	}
 	
 	// 刪除貓咪資訊 By CatId

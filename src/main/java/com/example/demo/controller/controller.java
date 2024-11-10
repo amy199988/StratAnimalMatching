@@ -26,11 +26,6 @@ public class controller {
 		return "lovemom";
 	}
 	
-	@GetMapping("/cat_add")
-	public String catadd() {
-		return "cat_add";
-	}
-	
 	@GetMapping("/lovehome")
 	public String lovehome() {
 		return "lovehome";

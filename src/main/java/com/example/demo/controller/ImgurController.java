@@ -12,7 +12,7 @@ import com.example.demo.service.ImgurService;
 @Controller
 public class ImgurController {
 	
-	@Autowired
+	/*@Autowired
     private ImgurService imgurService;
 
     // 上傳圖片，並將圖片 URL 傳遞給 JSP 顯示
@@ -21,5 +21,5 @@ public class ImgurController {
         String imageUrl = imgurService.uploadImage(file);
         model.addAttribute("imageUrl", imageUrl);
         return "adoption";
-    }
+    }*/
 }

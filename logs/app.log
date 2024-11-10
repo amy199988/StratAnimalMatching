@@ -3361,3 +3361,201 @@ Caused by: org.hibernate.HibernateException: Unable to determine Dialect without
 	... 30 common frames omitted
 
 >>>>>>> 20241110
+2024-11-10T17:11:42.371+08:00  INFO 7352 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Starting StrayAnimalMatchingApplication using Java 17.0.12 with PID 7352 (D:\WoekSpace\StrayAnimalMatching\target\classes started by user in D:\WoekSpace\StrayAnimalMatching)
+2024-11-10T17:11:42.372+08:00  INFO 7352 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-11-10T17:11:42.786+08:00  INFO 7352 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T17:11:42.789+08:00  INFO 7352 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-11-10T17:11:42.812+08:00  INFO 7352 --- [StrayAnimalMatching] [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.CatRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-11-10T17:11:42.812+08:00  INFO 7352 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 JDBC repository interfaces.
+2024-11-10T17:11:42.820+08:00  INFO 7352 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T17:11:42.821+08:00  INFO 7352 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-10T17:11:42.839+08:00  INFO 7352 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+2024-11-10T17:11:43.178+08:00  INFO 7352 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2024-11-10T17:11:43.189+08:00  INFO 7352 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-10T17:11:43.189+08:00  INFO 7352 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-10T17:11:43.347+08:00  INFO 7352 --- [StrayAnimalMatching] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-10T17:11:43.351+08:00  INFO 7352 --- [StrayAnimalMatching] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-10T17:11:43.352+08:00  INFO 7352 --- [StrayAnimalMatching] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 948 ms
+2024-11-10T17:11:43.471+08:00  INFO 7352 --- [StrayAnimalMatching] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-10T17:11:43.529+08:00  INFO 7352 --- [StrayAnimalMatching] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-10T17:11:43.557+08:00  INFO 7352 --- [StrayAnimalMatching] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-10T17:11:43.786+08:00  INFO 7352 --- [StrayAnimalMatching] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-10T17:11:43.814+08:00  INFO 7352 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-10T17:11:43.922+08:00  INFO 7352 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@553ce348
+2024-11-10T17:11:43.924+08:00  INFO 7352 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-10T17:11:44.501+08:00  INFO 7352 --- [StrayAnimalMatching] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-10T17:11:44.550+08:00  INFO 7352 --- [StrayAnimalMatching] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-10T17:11:44.841+08:00  WARN 7352 --- [StrayAnimalMatching] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-10T17:11:44.855+08:00  INFO 7352 --- [StrayAnimalMatching] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-10T17:11:45.151+08:00  INFO 7352 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2024-11-10T17:11:45.158+08:00  INFO 7352 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Started StrayAnimalMatchingApplication in 3.072 seconds (process running for 3.462)
+2024-11-10T17:11:49.620+08:00  INFO 7352 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-10T17:11:49.620+08:00  INFO 7352 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-10T17:11:49.622+08:00  INFO 7352 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-10T17:42:55.116+08:00  INFO 7352 --- [StrayAnimalMatching] [RMI TCP Connection(39)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-10T17:42:55.151+08:00  INFO 7352 --- [StrayAnimalMatching] [RMI TCP Connection(39)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-10T17:42:55.155+08:00  INFO 7352 --- [StrayAnimalMatching] [RMI TCP Connection(39)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-10T17:42:55.157+08:00  INFO 7352 --- [StrayAnimalMatching] [RMI TCP Connection(39)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-10T17:42:56.637+08:00  INFO 9320 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Starting StrayAnimalMatchingApplication using Java 17.0.12 with PID 9320 (D:\WoekSpace\StrayAnimalMatching\target\classes started by user in D:\WoekSpace\StrayAnimalMatching)
+2024-11-10T17:42:56.640+08:00  INFO 9320 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-11-10T17:42:57.049+08:00  INFO 9320 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T17:42:57.049+08:00  INFO 9320 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-11-10T17:42:57.070+08:00  INFO 9320 --- [StrayAnimalMatching] [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.CatRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-11-10T17:42:57.070+08:00  INFO 9320 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 0 JDBC repository interfaces.
+2024-11-10T17:42:57.077+08:00  INFO 9320 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T17:42:57.078+08:00  INFO 9320 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-10T17:42:57.097+08:00  INFO 9320 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 1 JPA repository interface.
+2024-11-10T17:42:57.390+08:00  INFO 9320 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2024-11-10T17:42:57.403+08:00  INFO 9320 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-10T17:42:57.403+08:00  INFO 9320 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-10T17:42:57.531+08:00  INFO 9320 --- [StrayAnimalMatching] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-10T17:42:57.536+08:00  INFO 9320 --- [StrayAnimalMatching] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-10T17:42:57.536+08:00  INFO 9320 --- [StrayAnimalMatching] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 852 ms
+2024-11-10T17:42:57.620+08:00  INFO 9320 --- [StrayAnimalMatching] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-10T17:42:57.646+08:00  INFO 9320 --- [StrayAnimalMatching] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-10T17:42:57.670+08:00  INFO 9320 --- [StrayAnimalMatching] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-10T17:42:57.846+08:00  INFO 9320 --- [StrayAnimalMatching] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-10T17:42:57.864+08:00  INFO 9320 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-10T17:42:57.954+08:00  INFO 9320 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@258a8584
+2024-11-10T17:42:57.955+08:00  INFO 9320 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-10T17:42:58.452+08:00  INFO 9320 --- [StrayAnimalMatching] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-10T17:42:58.498+08:00  INFO 9320 --- [StrayAnimalMatching] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-10T17:42:58.697+08:00  WARN 9320 --- [StrayAnimalMatching] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-10T17:42:58.711+08:00  INFO 9320 --- [StrayAnimalMatching] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-10T17:42:58.966+08:00  INFO 9320 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2024-11-10T17:42:58.972+08:00  INFO 9320 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Started StrayAnimalMatchingApplication in 2.576 seconds (process running for 2.947)
+2024-11-10T17:43:04.010+08:00  INFO 9320 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-10T17:43:04.010+08:00  INFO 9320 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-10T17:43:04.011+08:00  INFO 9320 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-10T18:40:50.937+08:00  INFO 9320 --- [StrayAnimalMatching] [RMI TCP Connection(68)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-10T18:40:50.973+08:00  INFO 9320 --- [StrayAnimalMatching] [RMI TCP Connection(68)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-10T18:40:50.975+08:00  INFO 9320 --- [StrayAnimalMatching] [RMI TCP Connection(68)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-10T18:40:50.977+08:00  INFO 9320 --- [StrayAnimalMatching] [RMI TCP Connection(68)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-10T18:40:52.445+08:00  INFO 15672 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Starting StrayAnimalMatchingApplication using Java 17.0.12 with PID 15672 (D:\WoekSpace\StrayAnimalMatching\target\classes started by user in D:\WoekSpace\StrayAnimalMatching)
+2024-11-10T18:40:52.447+08:00  INFO 15672 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-11-10T18:40:52.839+08:00  INFO 15672 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T18:40:52.841+08:00  INFO 15672 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-11-10T18:40:52.862+08:00  INFO 15672 --- [StrayAnimalMatching] [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.CatRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-11-10T18:40:52.863+08:00  INFO 15672 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 0 JDBC repository interfaces.
+2024-11-10T18:40:52.873+08:00  INFO 15672 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T18:40:52.873+08:00  INFO 15672 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-10T18:40:52.897+08:00  INFO 15672 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 1 JPA repository interface.
+2024-11-10T18:40:53.190+08:00  INFO 15672 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2024-11-10T18:40:53.200+08:00  INFO 15672 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-10T18:40:53.200+08:00  INFO 15672 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-10T18:40:53.325+08:00  INFO 15672 --- [StrayAnimalMatching] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-10T18:40:53.329+08:00  INFO 15672 --- [StrayAnimalMatching] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-10T18:40:53.329+08:00  INFO 15672 --- [StrayAnimalMatching] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 854 ms
+2024-11-10T18:40:53.424+08:00  INFO 15672 --- [StrayAnimalMatching] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-10T18:40:53.452+08:00  INFO 15672 --- [StrayAnimalMatching] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-10T18:40:53.472+08:00  INFO 15672 --- [StrayAnimalMatching] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-10T18:40:53.651+08:00  INFO 15672 --- [StrayAnimalMatching] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-10T18:40:53.671+08:00  INFO 15672 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-10T18:40:53.761+08:00  INFO 15672 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6abb7b7d
+2024-11-10T18:40:53.762+08:00  INFO 15672 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-10T18:40:54.266+08:00  INFO 15672 --- [StrayAnimalMatching] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-10T18:40:54.317+08:00  INFO 15672 --- [StrayAnimalMatching] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-10T18:40:54.522+08:00  WARN 15672 --- [StrayAnimalMatching] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-10T18:40:54.536+08:00  INFO 15672 --- [StrayAnimalMatching] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-10T18:40:54.792+08:00  INFO 15672 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2024-11-10T18:40:54.800+08:00  INFO 15672 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Started StrayAnimalMatchingApplication in 2.589 seconds (process running for 2.958)
+2024-11-10T18:40:59.347+08:00  INFO 15672 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-10T18:40:59.347+08:00  INFO 15672 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-10T18:40:59.348+08:00  INFO 15672 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-10T18:46:23.550+08:00  INFO 15672 --- [StrayAnimalMatching] [RMI TCP Connection(14)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-11-10T18:46:23.627+08:00  INFO 15672 --- [StrayAnimalMatching] [RMI TCP Connection(14)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-10T18:46:23.631+08:00  INFO 15672 --- [StrayAnimalMatching] [RMI TCP Connection(14)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-10T18:46:23.638+08:00  INFO 15672 --- [StrayAnimalMatching] [RMI TCP Connection(14)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-10T18:46:25.493+08:00  INFO 19208 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Starting StrayAnimalMatchingApplication using Java 17.0.12 with PID 19208 (D:\WoekSpace\StrayAnimalMatching\target\classes started by user in D:\WoekSpace\StrayAnimalMatching)
+2024-11-10T18:46:25.495+08:00  INFO 19208 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-11-10T18:46:25.960+08:00  INFO 19208 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T18:46:25.962+08:00  INFO 19208 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-11-10T18:46:25.990+08:00  INFO 19208 --- [StrayAnimalMatching] [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.CatRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-11-10T18:46:25.990+08:00  INFO 19208 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 0 JDBC repository interfaces.
+2024-11-10T18:46:25.998+08:00  INFO 19208 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T18:46:25.999+08:00  INFO 19208 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-10T18:46:26.018+08:00  INFO 19208 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 1 JPA repository interface.
+2024-11-10T18:46:26.359+08:00  INFO 19208 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2024-11-10T18:46:26.372+08:00  INFO 19208 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-10T18:46:26.372+08:00  INFO 19208 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-10T18:46:26.524+08:00  INFO 19208 --- [StrayAnimalMatching] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-10T18:46:26.533+08:00  INFO 19208 --- [StrayAnimalMatching] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-10T18:46:26.533+08:00  INFO 19208 --- [StrayAnimalMatching] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 999 ms
+2024-11-10T18:46:26.638+08:00  INFO 19208 --- [StrayAnimalMatching] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-10T18:46:26.678+08:00  INFO 19208 --- [StrayAnimalMatching] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-10T18:46:26.700+08:00  INFO 19208 --- [StrayAnimalMatching] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-10T18:46:26.916+08:00  INFO 19208 --- [StrayAnimalMatching] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-10T18:46:26.940+08:00  INFO 19208 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-10T18:46:27.062+08:00  INFO 19208 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31e7afde
+2024-11-10T18:46:27.063+08:00  INFO 19208 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-10T18:46:27.660+08:00  INFO 19208 --- [StrayAnimalMatching] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-10T18:46:27.715+08:00  INFO 19208 --- [StrayAnimalMatching] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-10T18:46:27.995+08:00  WARN 19208 --- [StrayAnimalMatching] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-10T18:46:28.010+08:00  INFO 19208 --- [StrayAnimalMatching] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-10T18:46:28.303+08:00  INFO 19208 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2024-11-10T18:46:28.309+08:00  INFO 19208 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Started StrayAnimalMatchingApplication in 3.114 seconds (process running for 3.784)
+2024-11-10T18:46:33.071+08:00  INFO 19208 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-10T18:46:33.071+08:00  INFO 19208 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-10T18:46:33.072+08:00  INFO 19208 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-11-10T19:01:37.476+08:00  INFO 18888 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Starting StrayAnimalMatchingApplication using Java 17.0.12 with PID 18888 (D:\WoekSpace\StrayAnimalMatching\target\classes started by user in D:\WoekSpace\StrayAnimalMatching)
+2024-11-10T19:01:37.478+08:00  INFO 18888 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-11-10T19:01:37.941+08:00  INFO 18888 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T19:01:37.942+08:00  INFO 18888 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-11-10T19:01:37.964+08:00  INFO 18888 --- [StrayAnimalMatching] [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.CatRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-11-10T19:01:37.965+08:00  INFO 18888 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 JDBC repository interfaces.
+2024-11-10T19:01:37.975+08:00  INFO 18888 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T19:01:37.976+08:00  INFO 18888 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-10T19:01:37.997+08:00  INFO 18888 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 1 JPA repository interface.
+2024-11-10T19:01:38.340+08:00  INFO 18888 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2024-11-10T19:01:38.353+08:00  INFO 18888 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-10T19:01:38.353+08:00  INFO 18888 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-10T19:01:38.488+08:00  INFO 18888 --- [StrayAnimalMatching] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-10T19:01:38.493+08:00  INFO 18888 --- [StrayAnimalMatching] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-10T19:01:38.494+08:00  INFO 18888 --- [StrayAnimalMatching] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 982 ms
+2024-11-10T19:01:38.598+08:00  INFO 18888 --- [StrayAnimalMatching] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-10T19:01:38.638+08:00  INFO 18888 --- [StrayAnimalMatching] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-10T19:01:38.669+08:00  INFO 18888 --- [StrayAnimalMatching] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-10T19:01:38.888+08:00  INFO 18888 --- [StrayAnimalMatching] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-10T19:01:38.911+08:00  INFO 18888 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-10T19:01:39.025+08:00  INFO 18888 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5be7b749
+2024-11-10T19:01:39.026+08:00  INFO 18888 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-10T19:01:39.633+08:00  INFO 18888 --- [StrayAnimalMatching] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-10T19:01:39.684+08:00  INFO 18888 --- [StrayAnimalMatching] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-10T19:01:39.985+08:00  WARN 18888 --- [StrayAnimalMatching] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-10T19:01:39.999+08:00  INFO 18888 --- [StrayAnimalMatching] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-10T19:01:40.321+08:00  INFO 18888 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2024-11-10T19:01:40.328+08:00  INFO 18888 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Started StrayAnimalMatchingApplication in 3.147 seconds (process running for 3.665)
+2024-11-10T19:01:47.553+08:00  INFO 18888 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-10T19:01:47.554+08:00  INFO 18888 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-10T19:01:47.559+08:00  INFO 18888 --- [StrayAnimalMatching] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2024-11-10T19:13:51.377+08:00  INFO 18764 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Starting StrayAnimalMatchingApplication using Java 17.0.12 with PID 18764 (D:\WoekSpace\StrayAnimalMatching\target\classes started by user in D:\WoekSpace\StrayAnimalMatching)
+2024-11-10T19:13:51.378+08:00  INFO 18764 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-11-10T19:13:51.839+08:00  INFO 18764 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T19:13:51.840+08:00  INFO 18764 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-11-10T19:13:51.865+08:00  INFO 18764 --- [StrayAnimalMatching] [main] .RepositoryConfigurationExtensionSupport : Spring Data JDBC - Could not safely identify store assignment for repository candidate interface com.example.demo.repository.CatRepository; If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+2024-11-10T19:13:51.866+08:00  INFO 18764 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 JDBC repository interfaces.
+2024-11-10T19:13:51.876+08:00  INFO 18764 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-10T19:13:51.877+08:00  INFO 18764 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-10T19:13:51.897+08:00  INFO 18764 --- [StrayAnimalMatching] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 1 JPA repository interface.
+2024-11-10T19:13:52.239+08:00  INFO 18764 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2024-11-10T19:13:52.253+08:00  INFO 18764 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-10T19:13:52.253+08:00  INFO 18764 --- [StrayAnimalMatching] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-10T19:13:52.386+08:00  INFO 18764 --- [StrayAnimalMatching] [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-11-10T19:13:52.391+08:00  INFO 18764 --- [StrayAnimalMatching] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-10T19:13:52.391+08:00  INFO 18764 --- [StrayAnimalMatching] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 978 ms
+2024-11-10T19:13:52.497+08:00  INFO 18764 --- [StrayAnimalMatching] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-10T19:13:52.535+08:00  INFO 18764 --- [StrayAnimalMatching] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-10T19:13:52.566+08:00  INFO 18764 --- [StrayAnimalMatching] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-10T19:13:52.779+08:00  INFO 18764 --- [StrayAnimalMatching] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-10T19:13:52.802+08:00  INFO 18764 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-10T19:13:52.919+08:00  INFO 18764 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@126675fd
+2024-11-10T19:13:52.922+08:00  INFO 18764 --- [StrayAnimalMatching] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-10T19:13:53.532+08:00  INFO 18764 --- [StrayAnimalMatching] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-10T19:13:53.585+08:00  INFO 18764 --- [StrayAnimalMatching] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-10T19:13:53.879+08:00  WARN 18764 --- [StrayAnimalMatching] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-10T19:13:53.892+08:00  INFO 18764 --- [StrayAnimalMatching] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-11-10T19:13:54.187+08:00  INFO 18764 --- [StrayAnimalMatching] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2024-11-10T19:13:54.194+08:00  INFO 18764 --- [StrayAnimalMatching] [main] c.e.demo.StrayAnimalMatchingApplication  : Started StrayAnimalMatchingApplication in 3.112 seconds (process running for 3.607)
+2024-11-10T19:14:09.365+08:00  INFO 18764 --- [StrayAnimalMatching] [http-nio-8081-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-10T19:14:09.365+08:00  INFO 18764 --- [StrayAnimalMatching] [http-nio-8081-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-10T19:14:09.366+08:00  INFO 18764 --- [StrayAnimalMatching] [http-nio-8081-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
