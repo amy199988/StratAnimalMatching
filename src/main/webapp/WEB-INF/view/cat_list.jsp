@@ -44,12 +44,9 @@
 							<td>照片Url沒有資料</td>
 							</c:if>
 							<td>${ catDto.isapply }</td>
-							<td><a href="/cat_update" class="button-secondary pure-button">修改</a></td>
+							<td><a href="/cat/update?catId=${catDto.catId}" class="button-secondary pure-button">修改</a></td>
 						</tr>
 						</c:forEach>
-					</c:if>
-					<c:if test="${empty catDtos}">
-					<td colspan="8">貓咪沒有資料</td>
 					</c:if>
 				</table>
 			</fieldset>

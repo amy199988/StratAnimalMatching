@@ -17,36 +17,33 @@
 		<div class="pure-form" style="padding: 15px;">
 			<fieldset>
 				<legend>領養表單</legend>
-				<table class="pure-table pure-table-bordered">
-					<tr>
-					<td>
-					<p>Image URL: ${imageUrl}</p>
-					<c:if test="${not empty imageUrl}">
-			        	<img src="${imageUrl}" alt="Uploaded Image" style="max-width: 50%;">
-				    </c:if>
-				    <c:if test="${empty imageUrl}">
-				        <p>Failed to upload image. Please try again.</p>
-				    </c:if>
-					</td>
-					</tr>
-					<c:if test="${not empty catDtos}">
-						<c:forEach var="catDto" items="${catDtos}">
+				<c:forEach var="catDto" items="${catDtos}">
+					<div style="float: left; margin-right: 40px; margin-bottom: 40px; width: 260px;">
+					<table class="pure-table pure-table-bordered">
+						<c:if test="${not empty catDtos}">
+							<tr><td>
+							<c:if test="${ not empty catDto.catphoto_url }">
+						       	<img src="${catDto.catphoto_url}" alt="Catphoto" width="200">
+						    </c:if>
+						    <c:if test="${empty catDto.catphoto_url}">
+						        <p>Failed to upload image. Please try again.</p>
+						    </c:if>
+							</td></tr>
 							<tr><td>貓咪名稱：${ catDto.catname }</td></tr>
 							<tr><td>貓咪花紋：${ catDto.breed }</td></tr>
 							<tr><td>貓咪年齡：${ catDto.age }歲</td></tr>
 							<tr><td>特殊狀況：${ catDto.healthStatus }</td></tr>
 							<tr><td>詳細描述：${ catDto.description }</td></tr>
-						</c:forEach>
-					</c:if>
-					<c:if test="${empty catDtos}">
-				        <p>No visible cat information available.</p>
-				    </c:if>
-					<tr>
-						<td>
+						</c:if>
+						<c:if test="${empty catDtos}">
+					        <p>No visible cat information available.</p>
+					    </c:if>
+						<tr><td>
 							<a href="/adoptionrequest" class="button-secondary pure-button">領養</button>
-						</td>
-					</tr>
-				</table>
+						</td></tr>
+					</table>
+					</div>
+				</c:forEach>
 			</fieldset>
 		</div>
 	</body>

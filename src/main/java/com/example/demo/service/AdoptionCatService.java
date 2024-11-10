@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,16 +53,16 @@ public class AdoptionCatService {
 	}
 	
 	// 查詢全部可領養貓咪資訊
-		public List<CatDto> FindAllAdoptionCat() {
-			List<CatDto> catDtos = new ArrayList<>();
-			List<Cat> cats = catRepository.findAllByIsapplyTrue();
-			for(Cat cat : cats) {
-				CatDto catDto = new CatDto();
-			 	catDto = objectMapper.toCatDto(cat);
-				catDtos.add(catDto);
-			}
-			return catDtos;
+	public List<CatDto> FindAllAdoptionCat() {
+		List<CatDto> catDtos = new ArrayList<>();
+		List<Cat> cats = catRepository.findAllByIsapplyTrue();
+		for(Cat cat : cats) {
+			CatDto catDto = new CatDto();
+			 catDto = objectMapper.toCatDto(cat);
+			catDtos.add(catDto);
 		}
+		return catDtos;
+	}
 	
 	// 查詢貓咪資訊 By CatId
 	public CatDto FindCatById(Integer catId) {
@@ -78,9 +77,14 @@ public class AdoptionCatService {
 	
 	// 修改貓咪資訊
 	public Cat updateCat(Cat cat, MultipartFile photofFile) {
-		cat.setCatphoto_url(imgurService.uploadImage(photofFile));
-		catRepository.save(cat);
-		return cat;
+		if(photofFile != null) {
+			cat.setCatphoto_url(imgurService.uploadImage(photofFile));
+			catRepository.save(cat);
+			return cat;
+		}else {
+			catRepository.save(cat);
+			return cat;
+		}
 	}
 	
 	// 刪除貓咪資訊 By CatId

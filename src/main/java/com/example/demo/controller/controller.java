@@ -30,9 +30,4 @@ public class controller {
 	public String lovehome() {
 		return "lovehome";
 	}
-	
-	@GetMapping("/cat_update")
-	public String catupdate() {
-		return "cat_update";
-	}
 }
