@@ -30,4 +30,9 @@ public class controller {
 	public String lovehome() {
 		return "lovehome";
 	}
+	
+	@GetMapping("/sign_up")
+	public String sign_up() {
+		return "sign_up";
+	}
 }

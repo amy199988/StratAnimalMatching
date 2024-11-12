@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.Impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,11 @@ import com.example.demo.mapper.ObjectMapper;
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.entity.Cat;
 import com.example.demo.repository.CatRepository;
+import com.example.demo.service.AdoptionCat;
 import com.example.demo.util.Imgur;
 
 @Service
-public class AdoptionCatService {
+public class AdoptionCatServiceImpl implements AdoptionCat{
 	
 	@Autowired
 	private CatRepository catRepository;

@@ -44,4 +44,7 @@ public class Cat {
 	
 	@Column(name = "is_apply", columnDefinition = "tinyint default 0")
 	private Boolean isapply; // 是否可申請領養(false=0,true=1)
+	
+	@Column(name = "")
+	private String location; // 所在中途之家
 }

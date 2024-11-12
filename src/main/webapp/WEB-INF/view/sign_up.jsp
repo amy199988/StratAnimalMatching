@@ -26,16 +26,35 @@
 					生日: <input type="date" name="birthdate" placeholder="生日"  title="出生年月日" required /><p />
 					E-mail:<input type="text" name="email" placeholder="E-mail" required/><p />
 					地址:<input type="text" name="address" placeholder="地址" required/><p />
-					帳號認證:
-					申請會員:<select name="role">
+					申請會員:
+					<select name="role" id="roleSelect" onchange="handleRoleChange()">
 						<option value="ROLE_USER">普通帳號申請</option>
-						<option value="ROLE_loveMOM">愛媽帳號申請</option>
-					  </select>
-					
+						<option value="ROLE_LOVEMOM">愛媽帳號申請</option>
+					</select>
 					<p />
+					<div id="extraFields" style="display:none;">
+			            <label for="extra">額外欄位:</label>
+			            <input type="text" name="extra" id="extra">
+			        </div>
 					<button type="submit" class="button-secondary pure-button">註冊</button>
 				</fieldset>
 			</form>
 		</div>
+		<script>
+	        // 當選擇的角色改變時觸發的事件
+	        function handleRoleChange() {
+	            // 獲取選中的角色
+	            var role = document.getElementById("roleSelect").value;
+	            console.log("選中的角色:", role);
+	
+	            // 在這裡根據選擇的角色做相應的處理
+	            // 例如：顯示不同的表單或更新某些UI元素
+	            if (role === "ROLE_LOVEMOM") {
+	                document.getElementById("extraFields").style.display = "block";  // 顯示額外的表單欄位
+	            } else {
+	                document.getElementById("extraFields").style.display = "none";   // 隱藏額外的表單欄位
+	            }
+	        }
+	    </script>
 	</body>
 </html>

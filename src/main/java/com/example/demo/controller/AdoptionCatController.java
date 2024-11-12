@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.entity.Cat;
-import com.example.demo.service.AdoptionCatService;
+import com.example.demo.service.Impl.AdoptionCatServiceImpl;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 public class AdoptionCatController {
 	
 	@Autowired
-	private AdoptionCatService adoptionCatService;
+	private AdoptionCatServiceImpl adoptionCatService;
 
 	
 	@GetMapping("/adoption")
