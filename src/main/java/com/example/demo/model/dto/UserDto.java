@@ -15,7 +15,6 @@ public class UserDto {
 	private Integer phone; // 電話
 	private Date birthdate; // 生日
 	private String email; // 電子郵件
-	private String address; // 地址
 	private Boolean active; // 帳號認證
 	private String role; // 帳號權限(普通、愛媽、管理員)
 }
