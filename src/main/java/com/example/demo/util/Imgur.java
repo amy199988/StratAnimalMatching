@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.util;
 
 import java.util.Base64;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class ImgurService {
+public class Imgur {
 	
 	@Value("${imgur.client-id}")
 	private String clientId;

@@ -25,7 +25,7 @@
 					<thead>
 						<tr>
 							<th>ID</th><th>名稱</th><th>花紋</th><th>年齡</th><th>健康狀況</th>
-							<th>描述</th><th>照片</th><th>狀態</th><th>修改</th>
+							<th>描述</th><th>照片</th><th>狀態</th><th>修改</th><th>刪除</th>
 						</tr>
 					</thead>
 					<c:if test="${not empty catDtos}">
@@ -38,13 +38,14 @@
 							<td>${ catDto.healthStatus }</td>
 							<td>${ catDto.description }</td>
 							<c:if test="${not empty catDto.catphoto_url}">
-							<td>${ catDto.catphoto_url }</td>
+							<td>有</td>
 							</c:if>
 							<c:if test="${empty catDto.catphoto_url}">
 							<td>照片Url沒有資料</td>
 							</c:if>
 							<td>${ catDto.isapply }</td>
 							<td><a href="/cat/update?catId=${catDto.catId}" class="button-secondary pure-button">修改</a></td>
+							<td><a href="/cat/delete?catId=${catDto.catId}" class="button-error pure-button">刪除</a></td>
 						</tr>
 						</c:forEach>
 					</c:if>

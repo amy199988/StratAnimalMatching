@@ -3,15 +3,18 @@ package com.example.demo.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.exception.AdoptionNotFoundException;
 import com.example.demo.mapper.ObjectMapper;
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.entity.Cat;
 import com.example.demo.repository.CatRepository;
+import com.example.demo.util.Imgur;
 
 @Service
 public class AdoptionCatService {
@@ -23,25 +26,23 @@ public class AdoptionCatService {
 	private ObjectMapper objectMapper;
 	
 	@Autowired
-	private ImgurService imgurService;
+	private Imgur imgur;
 	
 	// 新增領養貓咪
-	public Cat appendCat(Cat cat, MultipartFile photofFile) {
-		if (photofFile == null || photofFile.isEmpty()) {
-			System.out.println("photoFile資料為空或null");
+	public Cat addCat(Cat cat, MultipartFile photoFile) {
+		// 判斷照片資料是否存在
+		if (photoFile == null || photoFile.isEmpty()) {
+			throw new AdoptionNotFoundException("找不到照片資料:photoFile" + photoFile);
 	    }
 		
-		String photoUrl = imgurService.uploadImage(photofFile);
-		
-		cat.setCatphoto_url(photoUrl);
-		System.out.println("Uploaded Image URL: " + photoUrl);
-		
+		cat.setCatphoto_url(imgur.uploadImage(photoFile));
 		catRepository.save(cat);
 		return cat;
 	}
 	
 	// 查詢全部貓咪資訊
-	public List<CatDto> FindAllCat() {
+	public List<CatDto> findAllCats() {
+		/*
 		List<CatDto> catDtos = new ArrayList<>();
 		List<Cat> cats = catRepository.findAll();
 		for(Cat cat : cats) {
@@ -50,10 +51,16 @@ public class AdoptionCatService {
 			catDtos.add(catDto);
 		}
 		return catDtos;
+		*/
+		return catRepository.findAll()
+				.stream()
+				.map(objectMapper::toCatDto)
+				.collect(Collectors.toList());
 	}
 	
 	// 查詢全部可領養貓咪資訊
-	public List<CatDto> FindAllAdoptionCat() {
+	public List<CatDto> findAllAdoptionCats() {
+		/*
 		List<CatDto> catDtos = new ArrayList<>();
 		List<Cat> cats = catRepository.findAllByIsapplyTrue();
 		for(Cat cat : cats) {
@@ -62,10 +69,16 @@ public class AdoptionCatService {
 			catDtos.add(catDto);
 		}
 		return catDtos;
+		*/
+		return catRepository.findAllByIsapplyTrue()
+				.stream()
+				.map(objectMapper::toCatDto)
+				.collect(Collectors.toList());
 	}
 	
 	// 查詢貓咪資訊 By CatId
-	public CatDto FindCatById(Integer catId) {
+	public CatDto getCatById(Integer catId) {
+		/*
 		Optional<Cat> cat = catRepository.findById(catId);
 		if(cat == null) {
 			return null;
@@ -73,22 +86,40 @@ public class AdoptionCatService {
 		CatDto catDto = new CatDto();
 		catDto = objectMapper.toCatDto(cat.get());
 		return catDto;
+		*/
+		// 判斷該貓咪是否存在 ?
+		Cat cat = catRepository.findById(catId)
+				.orElseThrow(() -> new AdoptionNotFoundException("找不到貓咪:catId" + catId));
+		return objectMapper.toCatDto(cat);
 	}
 	
 	// 修改貓咪資訊
-	public Cat updateCat(Cat cat, MultipartFile photofFile) {
-		if(photofFile != null) {
-			cat.setCatphoto_url(imgurService.uploadImage(photofFile));
-			catRepository.save(cat);
-			return cat;
-		}else {
+	public Cat updateCat(Cat cat, MultipartFile photoFile) {
+		if(photoFile == null || photoFile.isEmpty()) {
 			catRepository.save(cat);
 			return cat;
 		}
+		cat.setCatphoto_url(imgur.uploadImage(photoFile));	
+		catRepository.save(cat);
+		return cat;
 	}
 	
-	// 刪除貓咪資訊 By CatId
-	public void DeleteCatById(Integer catId) {
+	// 修改貓咪資訊除外PhotoUrl
+	public Cat updateCatWithoutPhoto(Cat cat) {
+		Cat updateCat = catRepository.findById(cat.getCatId())
+				.orElseThrow(() -> new AdoptionNotFoundException("找不到貓咪:catId" + cat.getCatId()));
+		updateCat.setCatname(cat.getCatname());
+		updateCat.setBreed(cat.getBreed());
+		updateCat.setAge(cat.getAge());
+		updateCat.setHealthStatus(cat.getHealthStatus());
+		updateCat.setDescription(cat.getDescription());
+		updateCat.setIsapply(cat.getIsapply());
+		catRepository.save(updateCat);
+		return updateCat;
+	}
+	
+	// 刪除貓咪資訊 ByCatId
+	public void deleteCatById(Integer catId) {
 		catRepository.deleteById(catId);
 	}
 	

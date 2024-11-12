@@ -15,7 +15,6 @@ import com.example.demo.model.entity.Cat;
 import com.example.demo.service.AdoptionCatService;
 
 import jakarta.servlet.http.HttpSession;
-import jakarta.websocket.server.PathParam;
 
 @Controller
 public class AdoptionCatController {
@@ -29,7 +28,7 @@ public class AdoptionCatController {
 		if (session == null) {
             System.out.println("Session is null");
         }
-		List<CatDto> catDtos = adoptionCatService.FindAllAdoptionCat();
+		List<CatDto> catDtos = adoptionCatService.findAllAdoptionCats();
 		session.setAttribute("catDtos", catDtos);
 		return "adoption";
 	}
@@ -39,7 +38,7 @@ public class AdoptionCatController {
 		if (session == null) {
             System.out.println("Session is null");
         }
-		List<CatDto> catDtos = adoptionCatService.FindAllCat();
+		List<CatDto> catDtos = adoptionCatService.findAllCats();
 		session.setAttribute("catDtos", catDtos);
 		return "cat_list";
 	}
@@ -51,26 +50,45 @@ public class AdoptionCatController {
 	
 	@PostMapping("/cat/add")
 	public String appendCat(Cat cat, @RequestParam("photo") MultipartFile photoFile, 
-							HttpSession session) {
-		if (session == null) {
-            System.out.println("Session is null");
+							Model model) {
+		if (model == null) {
+            System.out.println("Model is null");
         }
-		cat = adoptionCatService.appendCat(cat,photoFile);
-		session.setAttribute("cat", cat);
+		cat = adoptionCatService.addCat(cat,photoFile);
+		List<CatDto> catDtos = adoptionCatService.findAllCats();
+		model.addAttribute("catDtos", catDtos);
 		return "cat_list";
 	}
 	
 	@GetMapping("/cat/update")
-	public String catupdate(@RequestParam("catId") Integer catId, Model model) {
-		CatDto catDto = adoptionCatService.FindCatById(catId);
+	public String updateCat(@RequestParam("catId") Integer catId, Model model) {
+		CatDto catDto = adoptionCatService.getCatById(catId);
 		model.addAttribute("catDto", catDto);
 		return "cat_update";
 	}
 	
 	@PostMapping("/cat/update")
-	public String updateCat(Cat cat, @RequestParam("photo") MultipartFile photoFile) {
+	public String updateCat(@RequestParam("catId") Integer catId, Cat cat, 
+			@RequestParam("photo") MultipartFile photoFile, Model model) {
+		if(photoFile == null || photoFile.isEmpty())
+		{
+			cat = adoptionCatService.updateCatWithoutPhoto(cat);
+			model.addAttribute("cat", cat);
+			List<CatDto> catDtos = adoptionCatService.findAllCats();
+			model.addAttribute("catDtos", catDtos);
+			return "cat_list";
+		}
 		cat = adoptionCatService.updateCat(cat, photoFile);
+		List<CatDto> catDtos = adoptionCatService.findAllCats();
+		model.addAttribute("catDtos", catDtos);
 		return "cat_list";
 	}
 	
+	@GetMapping("/cat/delete")
+	public String deleteCat(@RequestParam("catId") Integer catId, Model model) {
+		adoptionCatService.deleteCatById(catId);
+		List<CatDto> catDtos = adoptionCatService.findAllCats();
+		model.addAttribute("catDtos", catDtos);
+		return "cat_list";
+	}
 }

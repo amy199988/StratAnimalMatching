@@ -29,7 +29,7 @@
 				<input type="radio" name="isapply" value="true" ${catDto.getIsapply() ? "checked" : ""} /> 可申請領養
 				<input type="radio" name="isapply" value="false" ${catDto.getIsapply() ? "" : "checked"} /> 不可申請領養
 				<p />
-				<input type="file" name="photo" accept="image/*" required><p />
+				<input type="file" name="photo" accept="image/*" /><p />
 				<button type="submit" class="button-secondary pure-button">確認</button>
 				<a href="/cat_list" class="button-error pure-button">取消</a>
 			</fieldset>

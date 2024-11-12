@@ -27,11 +27,10 @@
 					<input type="radio" name="isapply" value="true" /> 可申請領養
 					<input type="radio" name="isapply" value="false" checked="" /> 不可申請領養
 					</label><p />
-					<input type="file" name="photo" accept="image/*" required><p />
+					<input type="file" name="photo" accept="image/*" required /><p />
 					<button type="submit" class="button-secondary pure-button">新增</button>
 					<a href="/cat_list" class="button-error pure-button">取消</a>
 				</fieldset>
-			</form>
 		</div>
 	</body>
 </html>
