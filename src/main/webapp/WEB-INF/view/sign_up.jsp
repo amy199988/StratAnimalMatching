@@ -25,7 +25,6 @@
 					電話: <input type="text" name="phone" placeholder="電話"  required/><p />
 					生日: <input type="date" name="birthdate" placeholder="生日"  title="出生年月日" required /><p />
 					E-mail:<input type="text" name="email" placeholder="E-mail" required/><p />
-					地址:<input type="text" name="address" placeholder="地址" required/><p />
 					申請會員:
 					<select name="role" id="roleSelect" onchange="handleRoleChange()">
 						<option value="ROLE_USER">普通帳號申請</option>
