@@ -11,25 +11,20 @@ public interface UserService {
 	public List<UserDto> getAllUsers();
 	
 	//查詢單筆使用者
-	public UserDto getUserByAccount(Integer userId);
-	
+	public UserDto getUserByAccount(Integer account);
+		
 	//新增普通使用者
 	public void addUser(UserDto userDto); 
 	 
-	//新增愛媽使用者
-	public void addLoveHomeUser(LovehomeDto lovehomeDto); 
-	
 	//修改使用者
 	public void updateUser(Integer userId, UserDto userDto);
-	
-	//修改愛媽使用者
-	public void updateLoveHomeUser(Integer lovehomeId,LovehomeDto lovehomeDto);
 	
 	//刪除使用者
 	public void deleteUser(Integer userId);
 	
 	//修改密碼
 	public void updatePassword(Integer userId,String username, String oldPassword ,String newPassword);
+	
 	
 	
 }
