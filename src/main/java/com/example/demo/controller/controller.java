@@ -23,16 +23,21 @@ public class controller {
 	
 	@GetMapping("/lovemom")
 	public String lovemom() {
-		return "lovemom";
-	}
-	
-	@GetMapping("/lovehome")
-	public String lovehome() {
-		return "lovehome";
+		return "/User/lovemom";
 	}
 	
 	@GetMapping("/sign_up")
 	public String sign_up() {
-		return "sign_up";
+		return "/User/sign_up";
+	}
+	
+	@GetMapping("/manager")
+	public String manager() {
+		return "/Manager/manager";
+	}
+	
+	@GetMapping("/Allcat_list")
+	public String Allcat_list() {
+		return "/Manager/Allcat_list";
 	}
 }

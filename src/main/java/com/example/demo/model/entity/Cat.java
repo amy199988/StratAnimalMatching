@@ -1,10 +1,13 @@
 package com.example.demo.model.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -41,14 +44,15 @@ public class Cat {
 	private String description; // 詳細描述
 	
 	@Column(name = "catphoto_url")
-	private String catphoto_Url; // 貓咪照片上傳網址
+	private String catphoto_Url; // 貓咪照片網址
 	
 	@Column(name = "is_apply", columnDefinition = "tinyint default 0")
 	private Boolean isApply; // 是否可申請領養(false=0,true=1)
 	
-	@Column(name = "halfwayhouse")
-	private String halfwayHouse; // 所在中途之家
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name = "halfwayhouse")
+	private Lovehome lovehome; // 所在中途之家
 	
-	@OneToOne(mappedBy = "Cat")
+	@OneToOne(mappedBy = "cat", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
 	private AdoptionRequest adoptionRequest; // 貓咪所屬申請領養單號
 }

@@ -15,7 +15,7 @@
 		<!-- menu bar include -->
 		<%@ include file="/WEB-INF/view/menu.jspf" %>
 		<div class="pure-form" style="padding: 15px;">
-			<form class="pure-form" method="post" action="/user/add" >
+			<form class="pure-form" method="post" action="/user/add" enctype="multipart/form-data">
 				<fieldset>
 					<legend>註冊會員</legend>
 					使用者姓名: <input type="text" name="username" placeholder="使用者姓名"  title="全名" required/><p />
@@ -31,10 +31,16 @@
 						<option value="ROLE_LOVEMOM">愛媽帳號申請</option>
 					</select>
 					<p />
-					<div id="extraFields" style="display:none;">
-			            <label for="extra">額外欄位:</label>
-			            <input type="text" name="extra" id="extra">
-			        </div>
+					<div class="pure-form" id="lovemomFields" style="display:none;">
+						<legend>中途之家 新增</legend><p />
+						中途之家名稱：<input type="text" name="lovehomeName" required /><p />
+						中途之家城市：<input type="text" name="lovehomeCity" required /><p />
+						中途之家區域：<input type="text" name="lovehomeDistrict" required /><p />
+						詳細地址：<input type="text" name="lovehomeAddress" required /><p />
+						聯絡方式：<input type="text" name="contactInfo" required /><p />
+						可收容量：<input type="text" name="capacity" required /><p />
+						<input type="file" name="photo" accept="image/*" required /><p />
+					</div>
 					<button type="submit" class="button-secondary pure-button">註冊</button>
 				</fieldset>
 			</form>
@@ -49,9 +55,9 @@
 	            // 在這裡根據選擇的角色做相應的處理
 	            // 例如：顯示不同的表單或更新某些UI元素
 	            if (role === "ROLE_LOVEMOM") {
-	                document.getElementById("extraFields").style.display = "block";  // 顯示額外的表單欄位
+	                document.getElementById("lovemomFields").style.display = "block";  // 顯示額外的表單欄位
 	            } else {
-	                document.getElementById("extraFields").style.display = "none";   // 隱藏額外的表單欄位
+	                document.getElementById("lovemomFields").style.display = "none";   // 隱藏額外的表單欄位
 	            }
 	        }
 	    </script>

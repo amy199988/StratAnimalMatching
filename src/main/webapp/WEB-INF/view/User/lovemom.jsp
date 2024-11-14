@@ -21,7 +21,7 @@
 				<a href="/cat_list" class="button-secondary pure-button">貓咪清單管理</a>
 				<a href="/" class="button-secondary pure-button">申請領養清單管理</a>
 				<a href="/" class="button-secondary pure-button">通報清單管理</a>
-				<a href="/" class="button-secondary pure-button">中途之家管理</a>
+				<a href="/lovehome/setting" class="button-secondary pure-button">中途之家管理</a>
 			</fieldset>
 		</div>
 	</body>

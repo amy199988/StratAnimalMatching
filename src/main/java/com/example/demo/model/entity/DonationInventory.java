@@ -30,6 +30,6 @@ public class DonationInventory {
 	@Column(name = "description", columnDefinition = "text")
 	private String description; // 物資描述
 	
-	@Column(name = "current_quantity", columnDefinition = "int deafult 0")
+	@Column(name = "current_quantity", columnDefinition = "int default 0")
 	private Integer current; // 物資庫存數量
 }

@@ -44,15 +44,18 @@ public class Lovehome {
 	private String contactInfo; // 中途之家聯絡方式
 	
 	@Column(name = "capacity")
-	private Integer capacity; // 中途之家可收容容量
+	private Double capacity; // 中途之家可收容容量
 	
 	@Column(name = "current_occupancy")
-	private Integer currentOccupancy; // 中途之家目前佔用率
+	private Double currentOccupancy; // 中途之家目前佔用率
 	
-	@OneToMany(mappedBy = "lovehomes", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@Column(name = "lovehome_url")
+	private String lovehome_Url; // 中途之家照片網址
+	
+	@OneToMany(mappedBy = "lovehome", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private List<Cat> cats; // 中途之家所收容貓咪
 	
-	@OneToMany(mappedBy = "lovehomes", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "lovehome", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private List<ReportList> reportLists; // 中途之家收到的通報清單
 	
 }

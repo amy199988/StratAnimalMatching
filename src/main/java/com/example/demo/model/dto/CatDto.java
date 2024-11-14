@@ -1,6 +1,7 @@
 package com.example.demo.model.dto;
 
 import com.example.demo.model.entity.AdoptionRequest;
+import com.example.demo.model.entity.Lovehome;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,6 @@ public class CatDto {
 	private String description; // 詳細描述
 	private String catphoto_Url; // 貓咪照片上傳網址
 	private Boolean isApply; // 是否可申請領養(false=0,true=1)
-	private String halfwwayHouse; // 所在中途之家
+	private Lovehome lovehome; // 所在中途之家
 	private AdoptionRequest adoptionRequest; // 貓咪所屬申請領養單號
 }

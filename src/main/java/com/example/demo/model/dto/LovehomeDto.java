@@ -19,8 +19,9 @@ public class LovehomeDto {
 	private String lovehomeDistrict; // 中途之家區域
 	private String lovehomeAddress; // 中途之家地址
 	private String contactInfo; // 中途之家聯絡方式
-	private Integer capacity; // 中途之家可收容容量
-	private Integer currentOccupancy; // 中途之家目前佔用率
+	private Double capacity; // 中途之家可收容容量
+	private Double currentOccupancy; // 中途之家目前佔用率
+	private String lovehome_Url; // 中途之家照片網址
 	private List<Cat> cats; // 中途之家所收容貓咪
 	private List<ReportList> reportLists; // 中途之家收到的通報清單
 }

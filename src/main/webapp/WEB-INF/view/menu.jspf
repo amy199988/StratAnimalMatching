@@ -8,5 +8,6 @@
 	<a href="/login" class="pure-menu-heading pure-menu-link">登入會員</a>
 	<a href="/sign_up" class="pure-menu-heading pure-menu-link">註冊會員</a>
 	<a href="/lovemom" class="pure-menu-heading pure-menu-link">會員中心</a>
+	<a href="/manager" class="pure-menu-heading pure-menu-link">管理員頁面</a>
 	<a href="/" class="pure-menu-heading pure-menu-link">回到首頁</a>
   </div>

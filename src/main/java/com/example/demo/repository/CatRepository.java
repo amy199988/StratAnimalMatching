@@ -9,5 +9,5 @@ import com.example.demo.model.entity.Cat;
 
 @Repository
 public interface CatRepository extends JpaRepository<Cat, Integer>{
-	List<Cat> findAllByIsapplyTrue();
+	List<Cat> findAllByIsApplyTrue();
 }

@@ -25,7 +25,7 @@
 							<c:if test="${ not empty catDto.catphoto_Url }">
 						       	<img src="${catDto.catphoto_Url}" alt="Catphoto" width="200">
 						    </c:if>
-						    <c:if test="${empty catDto.catphoto_url}">
+						    <c:if test="${empty catDto.catphoto_Url}">
 						        <p>Failed to upload image. Please try again.</p>
 						    </c:if>
 							</td></tr>
@@ -34,6 +34,7 @@
 							<tr><td>貓咪年齡：${ catDto.age }歲</td></tr>
 							<tr><td>特殊狀況：${ catDto.healthStatus }</td></tr>
 							<tr><td>詳細描述：${ catDto.description }</td></tr>
+							<tr><td>屬於中途：${ catDto.lovehome.lovehomeName }</td></tr>
 						</c:if>
 						<c:if test="${empty catDtos}">
 					        <p>No visible cat information available.</p>

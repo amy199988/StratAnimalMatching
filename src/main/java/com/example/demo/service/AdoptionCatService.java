@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.entity.Cat;
 
-public interface AdoptionCat {
+public interface AdoptionCatService {
 	public Cat addCat(Cat cat, MultipartFile photoFile);
 	public List<CatDto> findAllCats();
 	public List<CatDto> findAllAdoptionCats();

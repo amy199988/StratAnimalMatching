@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.entity.Cat;
-import com.example.demo.service.Impl.AdoptionCatServiceImpl;
+import com.example.demo.service.AdoptionCatService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 public class AdoptionCatController {
 	
 	@Autowired
-	private AdoptionCatServiceImpl adoptionCatService;
+	private AdoptionCatService adoptionCatService;
 
 	
 	@GetMapping("/adoption")
@@ -30,7 +30,7 @@ public class AdoptionCatController {
         }
 		List<CatDto> catDtos = adoptionCatService.findAllAdoptionCats();
 		session.setAttribute("catDtos", catDtos);
-		return "adoption";
+		return "/AdoptionCat/adoption";
 	}
 	
 	@GetMapping("/cat_list")
@@ -40,12 +40,12 @@ public class AdoptionCatController {
         }
 		List<CatDto> catDtos = adoptionCatService.findAllCats();
 		session.setAttribute("catDtos", catDtos);
-		return "cat_list";
+		return "/AdoptionCat/cat_list";
 	}
 	
 	@GetMapping("/cat/add")
 	public String catadd() {
-		return "cat_add";
+		return "/AdoptionCat/cat_add";
 	}
 	
 	@PostMapping("/cat/add")
@@ -57,7 +57,7 @@ public class AdoptionCatController {
 		cat = adoptionCatService.addCat(cat,photoFile);
 		List<CatDto> catDtos = adoptionCatService.findAllCats();
 		model.addAttribute("catDtos", catDtos);
-		return "cat_list";
+		return "/AdoptionCat/cat_list";
 	}
 	
 	@GetMapping("/cat/update")
@@ -73,15 +73,14 @@ public class AdoptionCatController {
 		if(photoFile == null || photoFile.isEmpty())
 		{
 			cat = adoptionCatService.updateCatWithoutPhoto(cat);
-			model.addAttribute("cat", cat);
 			List<CatDto> catDtos = adoptionCatService.findAllCats();
 			model.addAttribute("catDtos", catDtos);
-			return "cat_list";
+			return "/AdoptionCat/cat_list";
 		}
 		cat = adoptionCatService.updateCat(cat, photoFile);
 		List<CatDto> catDtos = adoptionCatService.findAllCats();
 		model.addAttribute("catDtos", catDtos);
-		return "cat_list";
+		return "/AdoptionCat/cat_list";
 	}
 	
 	@GetMapping("/cat/delete")
@@ -89,6 +88,6 @@ public class AdoptionCatController {
 		adoptionCatService.deleteCatById(catId);
 		List<CatDto> catDtos = adoptionCatService.findAllCats();
 		model.addAttribute("catDtos", catDtos);
-		return "cat_list";
+		return "/AdoptionCat/cat_list";
 	}
 }
