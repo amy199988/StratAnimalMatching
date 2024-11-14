@@ -32,18 +32,18 @@
 						<c:forEach var="catDto" items="${catDtos}">
 						<tr>
 							<td>${ catDto.catId }</td>
-							<td>${ catDto.catname }</td>
+							<td>${ catDto.catName }</td>
 							<td>${ catDto.breed }</td>
 							<td>${ catDto.age }</td>
 							<td>${ catDto.healthStatus }</td>
 							<td>${ catDto.description }</td>
-							<c:if test="${not empty catDto.catphoto_url}">
+							<c:if test="${not empty catDto.catphoto_Url}">
 							<td>有</td>
 							</c:if>
-							<c:if test="${empty catDto.catphoto_url}">
+							<c:if test="${empty catDto.catphoto_Url}">
 							<td>照片Url沒有資料</td>
 							</c:if>
-							<td>${ catDto.isapply }</td>
+							<td>${ catDto.isApply }</td>
 							<td><a href="/cat/update?catId=${catDto.catId}" class="button-secondary pure-button">修改</a></td>
 							<td><a href="/cat/delete?catId=${catDto.catId}" class="button-error pure-button">刪除</a></td>
 						</tr>

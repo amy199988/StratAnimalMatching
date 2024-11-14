@@ -18,14 +18,14 @@
 			<form class="pure-form" method="post" action="/cat/add" enctype="multipart/form-data">
 				<fieldset>
 					<legend>領養貓咪 新增</legend>
-					貓咪名稱：<input type="text" name="catname" required /><p />
+					貓咪名稱：<input type="text" name="catName" required /><p />
 					貓咪花紋：<input type="text" name="breed" required /><p />
 					貓咪年齡：<input type="text" name="age" required /><p />
 					特殊狀況：<input type="text" name="healthStatus" required /><p />
 					詳細描述：<input type="text" name="description" required /><p />
 					<label class="pure-radio">目前狀態：
-					<input type="radio" name="isapply" value="true" /> 可申請領養
-					<input type="radio" name="isapply" value="false" checked="" /> 不可申請領養
+					<input type="radio" name="isApply" value="true" /> 可申請領養
+					<input type="radio" name="isApply" value="false" checked="" /> 不可申請領養
 					</label><p />
 					<input type="file" name="photo" accept="image/*" required /><p />
 					<button type="submit" class="button-secondary pure-button">新增</button>

@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import java.sql.Date;
 import java.util.List;
 
 import com.example.demo.model.dto.LovehomeDto;
@@ -28,7 +27,6 @@ public interface UserService {
 	
 	//刪除使用者
 	public void deleteUser(Integer userId);
-	
 	
 	//修改密碼
 	public void updatePassword(Integer userId,String username, String oldPassword ,String newPassword);

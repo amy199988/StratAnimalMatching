@@ -22,14 +22,14 @@
 					<table class="pure-table pure-table-bordered">
 						<c:if test="${not empty catDtos}">
 							<tr><td>
-							<c:if test="${ not empty catDto.catphoto_url }">
-						       	<img src="${catDto.catphoto_url}" alt="Catphoto" width="200">
+							<c:if test="${ not empty catDto.catphoto_Url }">
+						       	<img src="${catDto.catphoto_Url}" alt="Catphoto" width="200">
 						    </c:if>
 						    <c:if test="${empty catDto.catphoto_url}">
 						        <p>Failed to upload image. Please try again.</p>
 						    </c:if>
 							</td></tr>
-							<tr><td>貓咪名稱：${ catDto.catname }</td></tr>
+							<tr><td>貓咪名稱：${ catDto.catName }</td></tr>
 							<tr><td>貓咪花紋：${ catDto.breed }</td></tr>
 							<tr><td>貓咪年齡：${ catDto.age }歲</td></tr>
 							<tr><td>特殊狀況：${ catDto.healthStatus }</td></tr>

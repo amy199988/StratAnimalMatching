@@ -30,7 +30,7 @@ public class User {
 	private Integer userId; // 會員編號
 	
 	@Column(name = "user_name", columnDefinition = "varchar(50)")
-	private String username; // 會員名稱
+	private String userName; // 會員名稱
 	
 	@Column(name = "account", columnDefinition = "varchar(50)", nullable = false, unique = true)
 	private String account; // 會員帳號
@@ -60,11 +60,11 @@ public class User {
 	private String role; // 帳號權限(普通、愛媽、管理員)
 	
 	@OneToMany(mappedBy = "users", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	private List<AdoptionRequest> adoptionRequests; //會員所擁有的申請領養表單
+	private List<AdoptionRequest> adoptionRequests; // 會員所擁有的申請領養表單
 	
 	@OneToMany(mappedBy = "users", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	private List<Donation> donations; //會員所擁有的捐贈表單
+	private List<Donation> donations; // 會員所擁有的捐贈表單
 	
 	@OneToMany(mappedBy = "users", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	private List<ReportList> reportLists; //會員所擁有的通報救援表單
+	private List<ReportList> reportLists; // 會員所擁有的通報救援表單
 }

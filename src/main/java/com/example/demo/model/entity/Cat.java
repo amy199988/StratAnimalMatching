@@ -1,14 +1,11 @@
 package com.example.demo.model.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +26,7 @@ public class Cat {
 	private Integer catId; // 貓咪編號
 	
 	@Column(name = "cat_name", columnDefinition = "varchar(50)")
-	private String catname; // 貓咪名稱
+	private String catName; // 貓咪名稱
 	
 	@Column(name = "breed", columnDefinition = "varchar(50)")
 	private String breed; // 貓咪花紋
@@ -44,12 +41,14 @@ public class Cat {
 	private String description; // 詳細描述
 	
 	@Column(name = "catphoto_url")
-	private String catphoto_url; // 貓咪照片上傳網址
+	private String catphoto_Url; // 貓咪照片上傳網址
 	
 	@Column(name = "is_apply", columnDefinition = "tinyint default 0")
-	private Boolean isapply; // 是否可申請領養(false=0,true=1)
+	private Boolean isApply; // 是否可申請領養(false=0,true=1)
 	
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
-	@JoinColumn(name = "lovehome_id")
-	private Lovehome lovehome; // 所在中途之家
+	@Column(name = "halfwayhouse")
+	private String halfwayHouse; // 所在中途之家
+	
+	@OneToOne(mappedBy = "Cat")
+	private AdoptionRequest adoptionRequest; // 貓咪所屬申請領養單號
 }

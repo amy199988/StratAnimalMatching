@@ -29,13 +29,16 @@ public class Lovehome {
 	private Integer lovehomeId; // 中途之家編號
 	
 	@Column(name = "lovehome_name", columnDefinition = "varchar(50)")
-	private String lovehomename; // 中途之家名稱
+	private String lovehomeName; // 中途之家名稱
 	
 	@Column(name = "lovehome_city")
 	private String lovehomeCity; // 中途之家城市
 	
 	@Column(name = "lovehome_district")
 	private String lovehomeDistrict; //中途之家區域
+	
+	@Column(name = "lovehome_address")
+	private String lovehomeAddress; // 中途之家詳細地址
 	
 	@Column(name = "contact_info")
 	private String contactInfo; // 中途之家聯絡方式
@@ -47,6 +50,9 @@ public class Lovehome {
 	private Integer currentOccupancy; // 中途之家目前佔用率
 	
 	@OneToMany(mappedBy = "lovehomes", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	private List<Cat> cats; //中途之家所在貓咪
+	private List<Cat> cats; // 中途之家所收容貓咪
+	
+	@OneToMany(mappedBy = "lovehomes", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	private List<ReportList> reportLists; // 中途之家收到的通報清單
 	
 }

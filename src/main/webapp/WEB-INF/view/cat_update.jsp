@@ -15,7 +15,7 @@
 				<legend>領養貓咪 修改</legend>
 				編號：<input type="text" name="catId" value="${catDto.catId}" readonly />
 				<p />
-				名稱：<input type="text" name="catname" value="${catDto.catname}"/>
+				名稱：<input type="text" name="catname" value="${catDto.catName}"/>
 				<p />
 				花紋：<input type="text" name="breed" value="${catDto.breed}" />
 				<p />
@@ -26,8 +26,8 @@
 				描述：<input type="text" name="description" value="${catDto.description}" />
 				<p />
 				<label class="pure-radio">目前狀態</label>
-				<input type="radio" name="isapply" value="true" ${catDto.getIsapply() ? "checked" : ""} /> 可申請領養
-				<input type="radio" name="isapply" value="false" ${catDto.getIsapply() ? "" : "checked"} /> 不可申請領養
+				<input type="radio" name="isapply" value="true" ${catDto.getIsApply() ? "checked" : ""} /> 可申請領養
+				<input type="radio" name="isapply" value="false" ${catDto.getIsApply() ? "" : "checked"} /> 不可申請領養
 				<p />
 				<input type="file" name="photo" accept="image/*" /><p />
 				<button type="submit" class="button-secondary pure-button">確認</button>

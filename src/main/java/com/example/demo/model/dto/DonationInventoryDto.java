@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DonationInventoryDto {
 	private Integer inventoryId; // 物資編號
-	private String inventoryname; // 物資名稱
+	private String inventoryName; // 物資名稱
 	private String description; // 物資描述
 	private Integer current; // 物資庫存數量
 }

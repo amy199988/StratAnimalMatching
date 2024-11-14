@@ -36,7 +36,7 @@ public class AdoptionCatServiceImpl implements AdoptionCat{
 			throw new AdoptionNotFoundException("找不到照片資料:photoFile" + photoFile);
 	    }
 		
-		cat.setCatphoto_url(imgur.uploadImage(photoFile));
+		cat.setCatphoto_Url(imgur.uploadImage(photoFile));
 		catRepository.save(cat);
 		return cat;
 	}
@@ -100,7 +100,7 @@ public class AdoptionCatServiceImpl implements AdoptionCat{
 			catRepository.save(cat);
 			return cat;
 		}
-		cat.setCatphoto_url(imgur.uploadImage(photoFile));	
+		cat.setCatphoto_Url(imgur.uploadImage(photoFile));	
 		catRepository.save(cat);
 		return cat;
 	}
@@ -109,12 +109,12 @@ public class AdoptionCatServiceImpl implements AdoptionCat{
 	public Cat updateCatWithoutPhoto(Cat cat) {
 		Cat updateCat = catRepository.findById(cat.getCatId())
 				.orElseThrow(() -> new AdoptionNotFoundException("找不到貓咪:catId" + cat.getCatId()));
-		updateCat.setCatname(cat.getCatname());
+		updateCat.setCatName(cat.getCatName());
 		updateCat.setBreed(cat.getBreed());
 		updateCat.setAge(cat.getAge());
 		updateCat.setHealthStatus(cat.getHealthStatus());
 		updateCat.setDescription(cat.getDescription());
-		updateCat.setIsapply(cat.getIsapply());
+		updateCat.setIsApply(cat.getIsApply());
 		catRepository.save(updateCat);
 		return updateCat;
 	}

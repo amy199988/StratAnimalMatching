@@ -1,5 +1,7 @@
 package com.example.demo.model.dto;
 
+import com.example.demo.model.entity.AdoptionRequest;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,11 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CatDto {
 	private Integer catId; // 貓咪編號
-	private String catname; // 貓咪名稱
+	private String catName; // 貓咪名稱
 	private String breed; // 貓咪花紋
 	private Integer age; // 貓咪年齡
 	private String healthStatus; // 貓咪身體狀況(特別疾病、受傷狀況)
 	private String description; // 詳細描述
-	private String catphoto_url; // 貓咪照片上傳網址
-	private Boolean isapply; // 是否可申請領養(false=0,true=1)
+	private String catphoto_Url; // 貓咪照片上傳網址
+	private Boolean isApply; // 是否可申請領養(false=0,true=1)
+	private String halfwwayHouse; // 所在中途之家
+	private AdoptionRequest adoptionRequest; // 貓咪所屬申請領養單號
 }
