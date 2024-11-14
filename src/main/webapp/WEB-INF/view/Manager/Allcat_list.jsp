@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Adoption</title>
+		<title>Cat list</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/base-min.css">
 		<link rel="stylesheet" href="/css/buttons.css">
@@ -15,10 +15,6 @@
 		<!-- menu bar include -->
 		<%@ include file="/WEB-INF/view/menu.jspf" %>
 		<div class="pure-form" style="padding: 15px;">
-			<fieldset>
-				<legend>頁面功能</legend>
-				<a href="/cat/add" class="button-secondary pure-button">新增領養貓咪</a>
-			</fieldset>
 			<fieldset>
 				<legend>貓咪列表</legend>
 				<table class="pure-table pure-table-bordered">

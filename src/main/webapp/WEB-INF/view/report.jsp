@@ -19,14 +19,11 @@
 				<fieldset>
 					<legend>浪浪通報</legend>
 					通報地點：
-					<select>
-						<option>台北</option>
-						<option>台中</option>
-						<option>台南</option>
-						<option>高雄</option>
-					</select><p />
+					<input type="text" name="" placeholder="城市" required /><p />
+					<input type="text" name="" placeholder="區域" required /><p />
+					<input type="text" name="" placeholder="詳細地址" required /><p />
 					狀況描述：<input type="text" name="" placeholder="請輸入 ..." required /><p />
-					通報照片：<input type="text" name="" required /><p />
+					通報照片：<input type="file" name="photo" accept="image/*" required />
 					<button type="submit" class="button-secondary pure-button">通報</button>
 					<a href="/" class="button-error pure-button">取消</a>
 				</fieldset>

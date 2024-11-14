@@ -25,8 +25,6 @@
 				<p />
 				電子郵件：<input type="email" name="email" value="${UserDto.email}" />
 				<p />
-				地址：<input type="text" name="address" value="${UserDto.address}" />
-				<p />
 				帳號認證：<input type="text" name="active" value="${UserDto.active}" />
 				<p />
 				帳號權限：<input type="text" name="role" value="${UserDto.role}" readonly/>
