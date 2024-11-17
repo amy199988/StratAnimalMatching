@@ -7,14 +7,16 @@ import com.example.demo.model.dto.UserDto;
 
 public interface UserService {
 	
+
+	//新增普通使用者
+	public void addUser(UserDto userDto); 
+	
 	//查詢所有使用者
 	public List<UserDto> getAllUsers();
 	
 	//查詢單筆使用者
-	public UserDto getUserByAccount(Integer account);
-		
-	//新增普通使用者
-	public void addUser(UserDto userDto); 
+	public UserDto getUserById(Integer userId);
+	public UserDto getUserByAccount(String account);
 	 
 	//修改使用者
 	public void updateUser(Integer userId, UserDto userDto);

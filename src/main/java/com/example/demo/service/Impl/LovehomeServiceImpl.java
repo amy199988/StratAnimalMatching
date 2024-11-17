@@ -79,4 +79,31 @@ public class LovehomeServiceImpl implements LovehomeService {
 		lovehomeRepository.deleteById(lovehomeId);
 	}
 
+	@Override
+	public List<LovehomeDto> getlovehomeCity(String lovehomeCity) {
+		return lovehomeRepository.findByLovehomeCity(lovehomeCity)
+				.stream()
+				.map(objectMapper::toLovehomeDto)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<LovehomeDto> getlovehomeDistrict(String lovehomeCity, String lovehomeDistrict) {
+		return lovehomeRepository.findByLovehomeDistrict(lovehomeCity, lovehomeDistrict)
+				.stream()
+				.map(objectMapper::toLovehomeDto)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<LovehomeDto> searchLovehomeByName(String keyword) {
+		List<Lovehome> lovehome = lovehomeRepository.findByNameContaining(keyword);
+		if(lovehome.isEmpty()) {
+			throw new LovehomeNotFoundException("找不到中途:keyword" + keyword);
+		}
+		return lovehome.stream()
+				.map(objectMapper::toLovehomeDto)
+				.collect(Collectors.toList());
+	}
+
 }
