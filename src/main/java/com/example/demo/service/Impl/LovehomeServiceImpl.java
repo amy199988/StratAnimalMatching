@@ -86,17 +86,18 @@ public class LovehomeServiceImpl implements LovehomeService {
 				.map(objectMapper::toLovehomeDto)
 				.collect(Collectors.toList());
 	}
-
+/**
 	@Override
-	public List<LovehomeDto> getlovehomeDistrict(String lovehomeCity, String lovehomeDistrict) {
-		return lovehomeRepository.findByLovehomeDistrict(lovehomeCity, lovehomeDistrict)
+	public List<LovehomeDto> getlovehomeCityAndDistrict(String lovehomeCity, String lovehomeDistrict) {
+		return lovehomeRepository.findByLovehomeCityAndDistrict(lovehomeCity, lovehomeDistrict)
 				.stream()
 				.map(objectMapper::toLovehomeDto)
 				.collect(Collectors.toList());
 	}
+	
 
 	@Override
-	public List<LovehomeDto> searchLovehomeByName(String keyword) {
+	public List<LovehomeDto> findByNameContaining(String keyword) {
 		List<Lovehome> lovehome = lovehomeRepository.findByNameContaining(keyword);
 		if(lovehome.isEmpty()) {
 			throw new LovehomeNotFoundException("找不到中途:keyword" + keyword);
@@ -105,5 +106,5 @@ public class LovehomeServiceImpl implements LovehomeService {
 				.map(objectMapper::toLovehomeDto)
 				.collect(Collectors.toList());
 	}
-
+*/
 }

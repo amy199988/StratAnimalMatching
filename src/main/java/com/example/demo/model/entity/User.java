@@ -41,9 +41,6 @@ public class User {
 	@Column(name = "salt", nullable = false, unique = true)
 	private String salt; // 隨機鹽
 	
-	@Column(name = "IDcard", nullable = false, unique = true)
-	private String IDcard; // 身分證
-	
 	@Column(name = "phone")
 	private Integer phone; // 電話
 	

@@ -9,7 +9,7 @@ public interface UserService {
 	
 
 	//新增普通使用者
-	public void addUser(UserDto userDto); 
+	public void addUser(UserDto userDto,String password); 
 	
 	//查詢所有使用者
 	public List<UserDto> getAllUsers();

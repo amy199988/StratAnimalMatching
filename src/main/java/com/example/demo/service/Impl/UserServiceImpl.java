@@ -26,17 +26,21 @@ public class UserServiceImpl implements UserService {
 	private ObjectMapper objectMapper;
 
 	@Override
-	public void addUser(UserDto userDto) {
-		String salt = Hash.getSalt();
-		String passswordHash = Hash.getHash();
-		
+	public void addUser(UserDto userDto,String password) {
+/**		String salt = Hash.getSalt();
+		String passswordHash = Hash.getHash(password,salt);
+		Boolean active = false;
+
 		Optional <User> optUser = userRepository.findByAccount(userDto.getAccount());
 		if(optUser.isPresent()) {
 			throw new UserAlreadyExistsException("新增失敗"+userDto.getAccount()+"已存在");
 		}
-		
+		User user = objectMapper.toUserEntity(userDto);
+		userRepository.save(user);
+*/		
 	}
 
+	
 	@Override
 	public List<UserDto> getAllUsers() {
 		return userRepository.findAll()
@@ -54,9 +58,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto getUserByAccount(String account) {
-		User user = userRepository.findByAccount(account)
-				.orElseThrow(()-> new UserNotFoundException("無此使用者account：" + account));
-				return objectMapper.toUserDto(user);
+		User user = userRepository.findByAccount(account);
+			if (user == null) {
+				throw new UserNotFoundException("無此使用者account：" + account);
+				}
+		return objectMapper.toUserDto(user);
 		
 	}
 
@@ -88,6 +94,8 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 	
 	
 }

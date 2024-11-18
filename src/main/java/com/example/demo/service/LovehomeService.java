@@ -15,10 +15,11 @@ public interface LovehomeService {
 	public void deleteLovehomeById(Integer lovehomeId);
 
 	//查詢中途-依城市
-	public List<LovehomeDto> getlovehomeCity(String lovehomeCity);	
+	public List<LovehomeDto> getlovehomeCity(String lovehomeCity);
 	//查詢中途-依城市、區域
-	public List<LovehomeDto> getlovehomeDistrict(String lovehomeCity,String lovehomeDistrict);
+	//public List<LovehomeDto> getlovehomeCityAndDistrict(String lovehomeCity,String lovehomeDistrict);
+	
 	//查詢中途-依關鍵詞
-	public List<LovehomeDto> searchLovehomeByName(String keyword);
+	//public List<LovehomeDto> findByNameContaining(String keyword);
 
 }

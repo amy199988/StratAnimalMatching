@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface LovehomeRepository extends JpaRepository<Lovehome, Integer>{
 	List<Lovehome> findByLovehomeCity(String lovehomeCity);
-	List<Lovehome> findByLovehomeDistrict(String lovehomeCity,String lovehomeDistrict);
-	List<Lovehome> findByNameContaining(String keyword);
+	//List<Lovehome> findByLovehomeCityAndDistrict(String lovehomeCity,String lovehomeDistrict);
+	//List<Lovehome> findByNameContaining(String keyword);
 }
