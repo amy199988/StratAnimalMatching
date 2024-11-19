@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.exception.AdoptionNotFoundException;
-import com.example.demo.mapper.ObjectMapper;
+import com.example.demo.mapper.Mapper;
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.entity.Cat;
 import com.example.demo.repository.CatRepository;
@@ -28,7 +28,7 @@ public class AdoptionCatServiceImpl implements AdoptionCatService{
 	private LovehomeRepository lovehomeRepository;
 	
 	@Autowired
-	private ObjectMapper objectMapper;
+	private Mapper objectMapper;
 	
 	@Autowired
 	private Imgur imgur;

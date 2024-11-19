@@ -25,7 +25,7 @@ public interface UserService {
 	public void deleteUser(Integer userId);
 	
 	//修改密碼
-	public void updatePassword(Integer userId,String username, String oldPassword ,String newPassword);
+	public void updatePassword(String account, String oldPassword ,String newPassword);
 	
 	
 	

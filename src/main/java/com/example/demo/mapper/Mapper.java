@@ -22,7 +22,7 @@ import com.example.demo.model.entity.ReportList;
 import com.example.demo.model.entity.User;
 
 @Component
-public class ObjectMapper {
+public class Mapper {
 	
 	@Autowired
 	private ModelMapper modelMapper;

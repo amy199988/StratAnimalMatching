@@ -1,6 +1,7 @@
 package com.example.demo.service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.exception.PasswordInvalidException;
 import com.example.demo.exception.UserException;
@@ -10,7 +11,7 @@ import com.example.demo.model.entity.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.util.Hash;
 
-
+@Service
 public class CertServiceImpl {
 	
 	@Autowired
@@ -18,7 +19,7 @@ public class CertServiceImpl {
 	
 	public UserCert getCert(String account,String password) throws UserException {
 		//1.是否有此人
-		User user = userRepository.findByAccount(account);
+		User user = userRepository.getByAccount(account);
 		if(user == null) {
 			throw new UserNotFoundException("無此使用者account：" + account);
 		}

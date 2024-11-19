@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.demo.mapper.ObjectMapper;
+import com.example.demo.mapper.Mapper;
 import com.example.demo.model.dto.DonationDto;
 import com.example.demo.model.entity.Donation;
 import com.example.demo.repository.DonationRepository;
@@ -16,7 +16,7 @@ public class DonationServiceImpl implements DonationService {
 	private DonationRepository donationRepository;
 	
 	@Autowired
-	private ObjectMapper objectMapper;
+	private Mapper objectMapper;
 	
 	// 新增捐贈清單
 	@Override

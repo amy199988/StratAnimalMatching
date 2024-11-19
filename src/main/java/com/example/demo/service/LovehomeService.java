@@ -16,18 +16,12 @@ public interface LovehomeService {
 
 	//查詢中途-依城市
 	public List<LovehomeDto> getlovehomeCity(String lovehomeCity);
+	
 	//查詢中途-依城市、區域
-	//public List<LovehomeDto> getlovehomeCityAndDistrict(String lovehomeCity,String lovehomeDistrict);
+	public List<LovehomeDto> getlovehomeCityAndDistrict(String lovehomeCity,String lovehomeDistrict);
 	
 	//查詢中途-依關鍵詞
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	//public List<LovehomeDto> findByNameContaining(String keyword);
-=======
 	//public List<LovehomeDto> searchLovehomeByName(String keyword);
->>>>>>> Stashed changes
-=======
-	//public List<LovehomeDto> searchLovehomeByName(String keyword);
->>>>>>> Stashed changes
+
 
 }

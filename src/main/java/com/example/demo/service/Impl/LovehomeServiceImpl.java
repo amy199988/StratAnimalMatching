@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.exception.LovehomeNotFoundException;
-import com.example.demo.mapper.ObjectMapper;
+import com.example.demo.mapper.Mapper;
 import com.example.demo.model.dto.LovehomeDto;
 import com.example.demo.model.entity.Lovehome;
 import com.example.demo.repository.LovehomeRepository;
@@ -23,7 +23,7 @@ public class LovehomeServiceImpl implements LovehomeService {
 	private LovehomeRepository lovehomeRepository;
 	
 	@Autowired
-	private ObjectMapper objectMapper;
+	private Mapper objectMapper;
 	
 	@Autowired
 	private Imgur imgur;
@@ -91,34 +91,18 @@ public class LovehomeServiceImpl implements LovehomeService {
 				.map(objectMapper::toLovehomeDto)
 				.collect(Collectors.toList());
 	}
-/**
+
 	@Override
-<<<<<<< Updated upstream
 	public List<LovehomeDto> getlovehomeCityAndDistrict(String lovehomeCity, String lovehomeDistrict) {
-		return lovehomeRepository.findByLovehomeCityAndDistrict(lovehomeCity, lovehomeDistrict)
-=======
-	public List<LovehomeDto> getlovehomeDistrict(String lovehomeCity, String lovehomeDistrict) {
 		return lovehomeRepository.findByLovehomeCityAndLovehomeDistrict(lovehomeCity, lovehomeDistrict)
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 				.stream()
 				.map(objectMapper::toLovehomeDto)
 				.collect(Collectors.toList());
 	}
 	
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+/**
 	@Override
-	public List<LovehomeDto> findByNameContaining(String keyword) {
-=======
-=======
->>>>>>> Stashed changes
-	/*@Override
 	public List<LovehomeDto> searchLovehomeByName(String keyword) {
->>>>>>> Stashed changes
 		List<Lovehome> lovehome = lovehomeRepository.findByNameContaining(keyword);
 		if(lovehome.isEmpty()) {
 			throw new LovehomeNotFoundException("找不到中途:keyword" + keyword);
@@ -126,14 +110,8 @@ public class LovehomeServiceImpl implements LovehomeService {
 		return lovehome.stream()
 				.map(objectMapper::toLovehomeDto)
 				.collect(Collectors.toList());
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 	}
 */
-=======
-=======
->>>>>>> Stashed changes
-	}*/
 
->>>>>>> Stashed changes
+
 }
