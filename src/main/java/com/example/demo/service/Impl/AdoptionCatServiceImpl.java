@@ -42,7 +42,7 @@ public class AdoptionCatServiceImpl implements AdoptionCatService{
 	    }
 		
 		cat.setCatphoto_Url(imgur.uploadImage(photoFile));
-		cat.setLovehome(lovehomeRepository.getById(1));
+		cat.setLovehome(lovehomeRepository.findById(1).get());
 		catRepository.save(cat);
 		return cat;
 	}
@@ -106,9 +106,11 @@ public class AdoptionCatServiceImpl implements AdoptionCatService{
 	// 修改貓咪資訊
 	@Override
 	public Cat updateCat(Cat cat, MultipartFile photoFile) {
-		cat.setCatphoto_Url(imgur.uploadImage(photoFile));	
-		catRepository.save(cat);
-		return cat;
+		Cat updateCat = catRepository.findById(cat.getCatId())
+				.orElseThrow(() -> new AdoptionNotFoundException("找不到貓咪:catId" + cat.getCatId()));
+		updateCat.setCatphoto_Url(imgur.uploadImage(photoFile));	
+		catRepository.save(updateCat);
+		return updateCat;
 	}
 	
 	// 修改貓咪資訊除外PhotoUrl
@@ -129,6 +131,10 @@ public class AdoptionCatServiceImpl implements AdoptionCatService{
 	// 刪除貓咪資訊 ByCatId
 	@Override
 	public void deleteCatById(Integer catId) {
+		Optional<Cat> optCat = catRepository.findById(catId);
+		if (optCat.isEmpty()) {
+			
+		}
 		catRepository.deleteById(catId);
 	}
 	

@@ -20,6 +20,10 @@ public interface LovehomeService {
 	//public List<LovehomeDto> getlovehomeCityAndDistrict(String lovehomeCity,String lovehomeDistrict);
 	
 	//查詢中途-依關鍵詞
+<<<<<<< Updated upstream
 	//public List<LovehomeDto> findByNameContaining(String keyword);
+=======
+	//public List<LovehomeDto> searchLovehomeByName(String keyword);
+>>>>>>> Stashed changes
 
 }

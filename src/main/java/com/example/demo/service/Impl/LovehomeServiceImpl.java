@@ -1,6 +1,7 @@
 package com.example.demo.service.Impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,10 @@ public class LovehomeServiceImpl implements LovehomeService {
 
 	@Override
 	public void deleteLovehomeById(Integer lovehomeId) {
+		Optional<Lovehome> lovehome = lovehomeRepository.findById(lovehomeId);
+		if(lovehome.isEmpty()) {
+			throw new LovehomeNotFoundException("刪除失敗：" + lovehomeId + "不存在");
+		}
 		lovehomeRepository.deleteById(lovehomeId);
 	}
 
@@ -88,16 +93,26 @@ public class LovehomeServiceImpl implements LovehomeService {
 	}
 /**
 	@Override
+<<<<<<< Updated upstream
 	public List<LovehomeDto> getlovehomeCityAndDistrict(String lovehomeCity, String lovehomeDistrict) {
 		return lovehomeRepository.findByLovehomeCityAndDistrict(lovehomeCity, lovehomeDistrict)
+=======
+	public List<LovehomeDto> getlovehomeDistrict(String lovehomeCity, String lovehomeDistrict) {
+		return lovehomeRepository.findByLovehomeCityAndLovehomeDistrict(lovehomeCity, lovehomeDistrict)
+>>>>>>> Stashed changes
 				.stream()
 				.map(objectMapper::toLovehomeDto)
 				.collect(Collectors.toList());
 	}
 	
 
+<<<<<<< Updated upstream
 	@Override
 	public List<LovehomeDto> findByNameContaining(String keyword) {
+=======
+	/*@Override
+	public List<LovehomeDto> searchLovehomeByName(String keyword) {
+>>>>>>> Stashed changes
 		List<Lovehome> lovehome = lovehomeRepository.findByNameContaining(keyword);
 		if(lovehome.isEmpty()) {
 			throw new LovehomeNotFoundException("找不到中途:keyword" + keyword);
@@ -105,6 +120,11 @@ public class LovehomeServiceImpl implements LovehomeService {
 		return lovehome.stream()
 				.map(objectMapper::toLovehomeDto)
 				.collect(Collectors.toList());
+<<<<<<< Updated upstream
 	}
 */
+=======
+	}*/
+
+>>>>>>> Stashed changes
 }

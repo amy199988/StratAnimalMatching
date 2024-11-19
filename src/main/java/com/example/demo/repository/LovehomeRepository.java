@@ -10,6 +10,10 @@ import java.util.List;
 @Repository
 public interface LovehomeRepository extends JpaRepository<Lovehome, Integer>{
 	List<Lovehome> findByLovehomeCity(String lovehomeCity);
+<<<<<<< Updated upstream
 	//List<Lovehome> findByLovehomeCityAndDistrict(String lovehomeCity,String lovehomeDistrict);
+=======
+	List<Lovehome> findByLovehomeCityAndLovehomeDistrict(String lovehomeCity,String lovehomeDistrict);
+>>>>>>> Stashed changes
 	//List<Lovehome> findByNameContaining(String keyword);
 }

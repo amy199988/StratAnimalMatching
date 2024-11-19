@@ -16,16 +16,16 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import com.example.demo.util.Hash;
 
-
 public class UserServiceImpl implements UserService {
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private ObjectMapper objectMapper;
 
 	@Override
+<<<<<<< Updated upstream
 	public void addUser(UserDto userDto,String password) {
 /**		String salt = Hash.getSalt();
 		String passswordHash = Hash.getHash(password,salt);
@@ -38,15 +38,23 @@ public class UserServiceImpl implements UserService {
 		User user = objectMapper.toUserEntity(userDto);
 		userRepository.save(user);
 */		
+=======
+	public void addUser(UserDto userDto) {
+		String salt = Hash.getSalt();
+		//String passswordHash = Hash.getHash();
+
+		Optional<User> optUser = userRepository.findByAccount(userDto.getAccount());
+		if (optUser.isPresent()) {
+			throw new UserAlreadyExistsException("新增失敗" + userDto.getAccount() + "已存在");
+		}
+
+>>>>>>> Stashed changes
 	}
 
 	
 	@Override
 	public List<UserDto> getAllUsers() {
-		return userRepository.findAll()
-				.stream()
-				.map(objectMapper::toUserDto)
-				.collect(Collectors.toList());
+		return userRepository.findAll().stream().map(objectMapper::toUserDto).collect(Collectors.toList());
 	}
 
 	@Override
@@ -58,44 +66,54 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto getUserByAccount(String account) {
+<<<<<<< Updated upstream
 		User user = userRepository.findByAccount(account);
 			if (user == null) {
 				throw new UserNotFoundException("無此使用者account：" + account);
 				}
 		return objectMapper.toUserDto(user);
 		
+=======
+		User user = userRepository.findByAccount(account)
+				.orElseThrow(() -> new UserNotFoundException("無此使用者account：" + account));
+		return objectMapper.toUserDto(user);
+
+>>>>>>> Stashed changes
 	}
 
 	@Override
 	public void updateUser(Integer userId, UserDto userDto) {
 		Optional<User> optUser = userRepository.findById(userId);
-		if(optUser.isEmpty()) {
-			throw new UserNotFoundException("修改失敗:"+userId+"不存在");
+		if (optUser.isEmpty()) {
+			throw new UserNotFoundException("修改失敗:" + userId + "不存在");
 		}
-		
+
 		userDto.setUserId(userId);
 		User user = objectMapper.toUserEntity(userDto);
 		userRepository.save(user);
-		
+
 	}
 
 	@Override
 	public void deleteUser(Integer userId) {
 		Optional<User> optUser = userRepository.findById(userId);
-			if(optUser.isEmpty()) {
-				throw new UserNotFoundException("刪除失敗:"+userId+"不存在");
-			}
-			userRepository.deleteById(userId);
-		
+		if (optUser.isEmpty()) {
+			throw new UserNotFoundException("刪除失敗:" + userId + "不存在");
+		}
+		userRepository.deleteById(userId);
+
 	}
 
 	@Override
 	public void updatePassword(Integer userId, String username, String oldPassword, String newPassword) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+<<<<<<< Updated upstream
 
 	
 	
+=======
+>>>>>>> Stashed changes
 }
