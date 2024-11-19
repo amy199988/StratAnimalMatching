@@ -99,6 +99,9 @@ public class LovehomeServiceImpl implements LovehomeService {
 =======
 	public List<LovehomeDto> getlovehomeDistrict(String lovehomeCity, String lovehomeDistrict) {
 		return lovehomeRepository.findByLovehomeCityAndLovehomeDistrict(lovehomeCity, lovehomeDistrict)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 				.stream()
 				.map(objectMapper::toLovehomeDto)
@@ -107,9 +110,12 @@ public class LovehomeServiceImpl implements LovehomeService {
 	
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	@Override
 	public List<LovehomeDto> findByNameContaining(String keyword) {
 =======
+=======
+>>>>>>> Stashed changes
 	/*@Override
 	public List<LovehomeDto> searchLovehomeByName(String keyword) {
 >>>>>>> Stashed changes
@@ -121,9 +127,12 @@ public class LovehomeServiceImpl implements LovehomeService {
 				.map(objectMapper::toLovehomeDto)
 				.collect(Collectors.toList());
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	}
 */
 =======
+=======
+>>>>>>> Stashed changes
 	}*/
 
 >>>>>>> Stashed changes

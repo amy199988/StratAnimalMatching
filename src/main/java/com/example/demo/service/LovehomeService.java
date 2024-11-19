@@ -21,7 +21,11 @@ public interface LovehomeService {
 	
 	//查詢中途-依關鍵詞
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	//public List<LovehomeDto> findByNameContaining(String keyword);
+=======
+	//public List<LovehomeDto> searchLovehomeByName(String keyword);
+>>>>>>> Stashed changes
 =======
 	//public List<LovehomeDto> searchLovehomeByName(String keyword);
 >>>>>>> Stashed changes

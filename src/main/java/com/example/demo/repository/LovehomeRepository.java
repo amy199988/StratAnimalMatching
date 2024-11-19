@@ -11,7 +11,11 @@ import java.util.List;
 public interface LovehomeRepository extends JpaRepository<Lovehome, Integer>{
 	List<Lovehome> findByLovehomeCity(String lovehomeCity);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	//List<Lovehome> findByLovehomeCityAndDistrict(String lovehomeCity,String lovehomeDistrict);
+=======
+	List<Lovehome> findByLovehomeCityAndLovehomeDistrict(String lovehomeCity,String lovehomeDistrict);
+>>>>>>> Stashed changes
 =======
 	List<Lovehome> findByLovehomeCityAndLovehomeDistrict(String lovehomeCity,String lovehomeDistrict);
 >>>>>>> Stashed changes

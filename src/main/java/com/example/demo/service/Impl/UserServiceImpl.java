@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	public void addUser(UserDto userDto,String password) {
 /**		String salt = Hash.getSalt();
 		String passswordHash = Hash.getHash(password,salt);
@@ -38,6 +39,17 @@ public class UserServiceImpl implements UserService {
 		User user = objectMapper.toUserEntity(userDto);
 		userRepository.save(user);
 */		
+=======
+	public void addUser(UserDto userDto) {
+		String salt = Hash.getSalt();
+		//String passswordHash = Hash.getHash();
+
+		Optional<User> optUser = userRepository.findByAccount(userDto.getAccount());
+		if (optUser.isPresent()) {
+			throw new UserAlreadyExistsException("新增失敗" + userDto.getAccount() + "已存在");
+		}
+
+>>>>>>> Stashed changes
 =======
 	public void addUser(UserDto userDto) {
 		String salt = Hash.getSalt();
@@ -67,6 +79,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDto getUserByAccount(String account) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		User user = userRepository.findByAccount(account);
 			if (user == null) {
 				throw new UserNotFoundException("無此使用者account：" + account);
@@ -74,10 +87,15 @@ public class UserServiceImpl implements UserService {
 		return objectMapper.toUserDto(user);
 		
 =======
+=======
+>>>>>>> Stashed changes
 		User user = userRepository.findByAccount(account)
 				.orElseThrow(() -> new UserNotFoundException("無此使用者account：" + account));
 		return objectMapper.toUserDto(user);
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	}
 
@@ -111,9 +129,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 	
 	
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 }
