@@ -19,7 +19,7 @@ public interface UserService {
 	public UserDto getUserByAccount(String account);
 	 
 	//修改使用者
-	public void updateUser(Integer userId, UserDto userDto);
+	public void updateUser(String account,String userName,String phone);
 	
 	//刪除使用者
 	public void deleteUser(Integer userId);

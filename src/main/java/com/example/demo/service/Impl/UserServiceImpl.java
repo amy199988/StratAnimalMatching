@@ -79,17 +79,16 @@ public class UserServiceImpl implements UserService {
 				}
 		return mapper.toUserDto(user);	
 	}
-
 	@Override
-	public void updateUser(Integer userId, UserDto userDto) {
-		Optional<User> optUser = userRepository.findById(userId);
-		if (optUser.isEmpty()) {
-			throw new UserNotFoundException("修改失敗:" + userId + "不存在");
+	public void updateUser(String account,String userName,String phone) {
+		User user = new User();
+        if (userName.isEmpty()||phone.isEmpty()) {
+        	throw new  UserNotFoundException("不得為空");
 		}
-		userDto.setUserId(userId);
-		User user = mapper.toUserEntity(userDto);
-		userRepository.save(user);
-
+        	user.setUserName(userName);
+			user.setPhone(phone);
+			userRepository.save(user);
+		
 	}
 
 	@Override

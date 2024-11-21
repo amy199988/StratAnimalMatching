@@ -42,7 +42,7 @@ public class User {
 	private String salt; // 隨機鹽
 	
 	@Column(name = "phone")
-	private Integer phone; // 電話
+	private String phone; // 電話
 	
 	@Column(name = "birthdate")
 	private Date birthdate; // 生日

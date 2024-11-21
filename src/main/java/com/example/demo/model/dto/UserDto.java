@@ -18,7 +18,7 @@ public class UserDto {
 	private Integer userId; // 會員編號
 	private String userName; // 會員名稱
 	private String account; // 會員帳號
-	private Integer phone; // 電話
+	private String phone; // 電話
 	private Date birthdate; // 生日
 	private String email; // 電子郵件
 	private Boolean active; // 帳號認證

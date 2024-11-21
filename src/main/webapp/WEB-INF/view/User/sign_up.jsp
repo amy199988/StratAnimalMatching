@@ -21,7 +21,6 @@
 					使用者姓名: <input type="text" name="username" placeholder="使用者姓名"  title="全名" required/><p />
 					使用者帳號: <input type="text" name="account" placeholder="會員帳號"  title="只能使用字母、數字或底線" required/><p />
 					密碼: <input type="text" name="password" placeholder="密碼"  title="需大於八個字" required/><p />
-					身分證: <input type="text" name="idCard" placeholder="身分證字號"  required/><p />
 					電話: <input type="text" name="phone" placeholder="電話"  required/><p />
 					生日: <input type="date" name="birthdate" placeholder="生日"  title="出生年月日" required /><p />
 					E-mail:<input type="text" name="email" placeholder="E-mail" required/><p />
