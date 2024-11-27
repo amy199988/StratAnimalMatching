@@ -50,7 +50,7 @@ public class Cat {
 	private Boolean isApply; // 是否可申請領養(false=0,true=1)
 	
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinColumn(name = "halfwayhouse")
+	@JoinColumn(name = "halfwayhouse_id")
 	private Lovehome lovehome; // 所在中途之家
 	
 	@OneToOne(mappedBy = "cat", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})

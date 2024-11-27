@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -64,4 +66,8 @@ public class User {
 	
 	@OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private List<ReportList> reportLists; // 會員所擁有的通報救援表單
+	
+	@ManyToOne
+	@JoinColumn(name = "lovehome_id")
+	private Lovehome lovehome; // 會員所擁有的中途之家權限(普通會員為null)
 }
