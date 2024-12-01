@@ -1,13 +1,13 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
   <div class="pure-menu pure-menu-horizontal" style="background-color: #dddddd; height: 50px; align-content: center;">
   	<!-- menu -->
-  	<a href="/report" class="pure-menu-heading pure-menu-link">通報浪浪</a>
-	<a href="/adoption" class="pure-menu-heading pure-menu-link">領養浪浪</a>
-	<a href="/lovehome" class="pure-menu-heading pure-menu-link">合作中途之家</a>
+  	<a href="/user/report" class="pure-menu-heading pure-menu-link">通報浪浪</a>
+	<a href="/user/adoption" class="pure-menu-heading pure-menu-link">領養浪浪</a>
+	<a href="/common/lomehome_list" class="pure-menu-heading pure-menu-link">合作中途之家</a>
 	<a href="/donation" class="pure-menu-heading pure-menu-link">捐獻物資</a>
-	<a href="/login" class="pure-menu-heading pure-menu-link">登入會員</a>
-	<a href="/sign_up" class="pure-menu-heading pure-menu-link">註冊會員</a>
-	<a href="/lovemom" class="pure-menu-heading pure-menu-link">會員中心</a>
+	<a href="/auth/login" class="pure-menu-heading pure-menu-link">登入會員</a>
+	<a href="/auth /sign_up" class="pure-menu-heading pure-menu-link">註冊會員</a>
+	<a href="/user" class="pure-menu-heading pure-menu-link">會員中心</a>
 	<a href="/manager" class="pure-menu-heading pure-menu-link">管理員頁面</a>
 	<a href="/" class="pure-menu-heading pure-menu-link">回到首頁</a>
   </div>

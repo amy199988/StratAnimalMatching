@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReportListDto {
+public class ReportDto {
 	private Integer reportNumber; // 通報表單編號
 	private User user; // 通報人編號
 	private String reportCity; // 通報地點城市

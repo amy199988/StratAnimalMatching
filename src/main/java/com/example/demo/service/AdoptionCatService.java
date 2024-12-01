@@ -15,4 +15,8 @@ public interface AdoptionCatService {
 	public Cat updateCat(Cat cat, MultipartFile photoFile);
 	public Cat updateCatWithoutPhoto(Cat cat);
 	public void deleteCatById(Integer catId);
+	
+	public CatDto addCat(CatDto catDto, MultipartFile photoFile);
+	public CatDto updateCat(CatDto catDto, MultipartFile photoFile);
+	public CatDto updateCatWithoutPhoto(CatDto catDto);
 }

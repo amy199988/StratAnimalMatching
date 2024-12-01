@@ -58,13 +58,13 @@ public class User {
 	@Column(name = "role")
 	private String role; // 帳號權限(普通、愛媽、管理員)
 	
-	@OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<AdoptionRequest> adoptionRequests; // 會員所擁有的申請領養表單
 	
-	@OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Donation> donations; // 會員所擁有的捐贈表單
 	
-	@OneToMany(mappedBy = "user", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<ReportList> reportLists; // 會員所擁有的通報救援表單
 	
 	@ManyToOne

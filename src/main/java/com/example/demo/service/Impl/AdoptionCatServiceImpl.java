@@ -47,6 +47,20 @@ public class AdoptionCatServiceImpl implements AdoptionCatService{
 		return cat;
 	}
 	
+	@Override
+	public CatDto addCat(CatDto catDto, MultipartFile photoFile) {
+		Cat cat = objectMapper.toCatEntity(catDto);
+		// 判斷照片資料是否存在
+		if (photoFile == null || photoFile.isEmpty()) {
+			throw new AdoptionNotFoundException("找不到照片資料:photoFile" + photoFile);
+	    }
+		
+		cat.setCatphoto_Url(imgur.uploadImage(photoFile));
+		cat.setLovehome(lovehomeRepository.findById(1).get());
+		catRepository.save(cat);
+		return objectMapper.toCatDto(cat);
+	}
+	
 	// 查詢全部貓咪資訊
 	@Override
 	public List<CatDto> findAllCats() {
@@ -126,7 +140,7 @@ public class AdoptionCatServiceImpl implements AdoptionCatService{
 		updateCat.setIsApply(cat.getIsApply());
 		catRepository.save(updateCat);
 		return updateCat;
-	}
+	}	
 	
 	// 刪除貓咪資訊 ByCatId
 	@Override
@@ -138,4 +152,31 @@ public class AdoptionCatServiceImpl implements AdoptionCatService{
 		catRepository.deleteById(catId);
 	}
 	
+	
+	// 修改貓咪資訊
+	@Override
+	public CatDto updateCat(CatDto catDto, MultipartFile photoFile) {
+		Cat cat = objectMapper.toCatEntity(catDto);
+		Cat updateCat = catRepository.findById(cat.getCatId())
+				.orElseThrow(() -> new AdoptionNotFoundException("找不到貓咪:catId" + cat.getCatId()));
+		updateCat.setCatphoto_Url(imgur.uploadImage(photoFile));	
+		catRepository.save(updateCat);
+		return objectMapper.toCatDto(updateCat);
+	}
+	
+	// 修改貓咪資訊除外PhotoUrl
+	@Override
+	public CatDto updateCatWithoutPhoto(CatDto catDto) {
+		Cat cat = objectMapper.toCatEntity(catDto);
+		Cat updateCat = catRepository.findById(cat.getCatId())
+				.orElseThrow(() -> new AdoptionNotFoundException("找不到貓咪:catId" + cat.getCatId()));
+		updateCat.setCatName(cat.getCatName());
+		updateCat.setBreed(cat.getBreed());
+		updateCat.setAge(cat.getAge());
+		updateCat.setHealthStatus(cat.getHealthStatus());
+		updateCat.setDescription(cat.getDescription());
+		updateCat.setIsApply(cat.getIsApply());
+		catRepository.save(updateCat);
+		return objectMapper.toCatDto(updateCat);
+	}	
 }

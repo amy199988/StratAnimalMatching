@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.example.demo.model.dto.LovehomeDto;
+import com.example.demo.model.dto.ReportDto;
 import com.example.demo.model.dto.UserDto;
 
 public interface UserService {
@@ -19,7 +20,7 @@ public interface UserService {
 	public UserDto getUserByAccount(String account);
 	 
 	//修改使用者
-	public void updateUser(String account,String userName,String phone);
+	public UserDto updateUser(UserDto userDto);
 	
 	//刪除使用者
 	public void deleteUser(Integer userId);
@@ -27,6 +28,7 @@ public interface UserService {
 	//修改密碼
 	public void updatePassword(String account, String oldPassword ,String newPassword);
 	
-	
+	// 查詢會員的通報清單
+	public List<ReportDto> getUserReportList(Integer userId);
 	
 }

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.example.demo.exception.PasswordInvalidException;
 import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.mapper.Mapper;
+import com.example.demo.model.dto.ReportDto;
 import com.example.demo.model.dto.UserDto;
+import com.example.demo.model.entity.ReportList;
 import com.example.demo.model.entity.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
@@ -30,18 +32,18 @@ public class UserServiceImpl implements UserService {
 	private Mapper mapper;
 
 
-	@Override
+	@Override  //註冊、新增
 	public void addUser(UserDto userDto, String password) {
 		User account = userRepository.getByAccount(userDto.getAccount());
 		if (account != null) {
 			throw new UserNotFoundException("新增失敗"+ userDto.getAccount()+"已存在");
 			}
+		User user = objectMapper.convertValue(userDto,User.class);
 		
 		String salt = Hash.getSalt();
 		String passswordHash = Hash.getHash(password,salt);
 		Boolean active = false;
 		
-		User user = objectMapper.convertValue(userDto,User.class);
         user.setSalt(salt);
 		user.setPasswordHash(passswordHash);
 		user.setActive(active);
@@ -59,59 +61,56 @@ public class UserServiceImpl implements UserService {
 	}
 		
 
-	@Override
+	@Override //查詢所有使用者
 	public List<UserDto> getAllUsers() {
 		return userRepository.findAll().stream().map(mapper::toUserDto).collect(Collectors.toList());
 	}
 
-	@Override
+	@Override //查詢單一使用者(依ID)
 	public UserDto getUserById(Integer userId) {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new UserNotFoundException("無此使用者userId：" + userId));
 		return mapper.toUserDto(user);
 	}
 
-	@Override
+	@Override //查詢單一使用者(依帳號)
 	public UserDto getUserByAccount(String account) {
-		User user = userRepository.getByAccount(account);
-			if (user == null) {
-				throw new UserNotFoundException("無此使用者account：" + account);
-				}
-		return mapper.toUserDto(user);	
-	}
-	@Override
-	public void updateUser(String account,String userName,String phone) {
-		User user = new User();
-        if (userName.isEmpty()||phone.isEmpty()) {
-        	throw new  UserNotFoundException("不得為空");
-		}
-        	user.setUserName(userName);
-			user.setPhone(phone);
-			userRepository.save(user);
-		
-	}
-
-	@Override
-	public void deleteUser(Integer userId) {
-		Optional<User> optUser = userRepository.findById(userId);
+		Optional<User> optUser = userRepository.findByAccount(account);
 		if (optUser.isEmpty()) {
-			throw new UserNotFoundException("刪除失敗:" + userId + "不存在");
-		}
-		userRepository.deleteById(userId);
-
+			throw new UserNotFoundException("無此使用者account：" + account);
+			}
+		return mapper.toUserDto(optUser.get());
+	}
+	
+	@Override //更新使用者資料
+	public UserDto updateUser(UserDto userDto) {
+		return userRepository.findById(userDto.getUserId())
+				.map(user ->{
+					mapper.toUserEntity(userDto);
+					User updateUser = userRepository.save(user);
+					return mapper.toUserDto(updateUser);
+				})
+				.orElseThrow(() -> new RuntimeException("查無資料"));
 	}
 
-	@Override
+	@Override  //刪除資料
+	public void deleteUser(Integer userId) {
+		userRepository.deleteById(userId);
+	}
+
+	@Override //更新密碼
 	public void updatePassword(String account, String oldPassword, String newPassword) {
 		User user = userRepository.getByAccount(account);
-		if(user == null) {
-			throw new UserNotFoundException("修改失敗:未找到使用者"+ account);
-		}
+		
 		//比對修改之前的password是否正確
 		String oldPasswordHash = Hash.getHash(oldPassword, user.getSalt());
 		if(!oldPasswordHash.equals(user.getPasswordHash())) {
 			throw new PasswordInvalidException("原密碼輸入錯誤");
 		}
+		if (newPassword.isEmpty()) {
+        	throw new  PasswordInvalidException("不得為空");
+		}
+		
 		//產生新密碼的Hash
 		String newPasswordHash = Hash.getHash(newPassword, user.getSalt());
 		//密碼Hash修改
@@ -119,4 +118,13 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 	
 	}
+	
+	// 查詢的通報清單
+	public List<ReportDto> getUserReportList(Integer userId){
+		User user = userRepository.findById(userId).orElseThrow(()-> new UserNotFoundException() );
+		List<ReportList> reportLists = user.getReportLists();
+		return reportLists.stream().map(mapper::toReportListDto).collect(Collectors.toList());
+		
+	}
+	
 	}

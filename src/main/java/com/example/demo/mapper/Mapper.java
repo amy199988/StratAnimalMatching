@@ -10,7 +10,7 @@ import com.example.demo.model.dto.DonationDto;
 import com.example.demo.model.dto.DonationInventoryDto;
 import com.example.demo.model.dto.LovehomeDto;
 import com.example.demo.model.dto.NoticeDto;
-import com.example.demo.model.dto.ReportListDto;
+import com.example.demo.model.dto.ReportDto;
 import com.example.demo.model.dto.UserDto;
 import com.example.demo.model.entity.AdoptionRequest;
 import com.example.demo.model.entity.Cat;
@@ -83,11 +83,11 @@ public class Mapper {
 		return modelMapper.map(noticeDto, Notice.class);
 	}
 	
-	public ReportListDto toReportListDto(ReportList reportList) {
-		return modelMapper.map(reportList, ReportListDto.class);
+	public ReportDto toReportListDto(ReportList reportList) {
+		return modelMapper.map(reportList, ReportDto.class);
 	}
 	
-	public ReportList toReportListEntity(ReportListDto reportListDto) {
+	public ReportList toReportListEntity(ReportDto reportListDto) {
 		return modelMapper.map(reportListDto, ReportList.class);
 	}
 }

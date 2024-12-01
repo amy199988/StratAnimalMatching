@@ -53,13 +53,13 @@ public class Lovehome {
 	@Column(name = "lovehome_url")
 	private String lovehome_Url; // 中途之家照片網址
 	
-	@OneToMany(mappedBy = "lovehome", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "lovehome", cascade = CascadeType.ALL)
 	private List<Cat> cats; // 中途之家所收容貓咪
 	
-	@OneToMany(mappedBy = "lovehome", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "lovehome", cascade = CascadeType.ALL)
 	private List<ReportList> reportLists; // 中途之家收到的通報清單
 	
-	@OneToMany(mappedBy = "lovehome", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "lovehome", cascade = CascadeType.ALL)
 	private List<User> users; // 中途之家所屬愛媽會員列表
 	
 }
