@@ -3,11 +3,6 @@ package com.example.demo.model.dto;
 import java.sql.Date;
 import java.util.List;
 
-import com.example.demo.model.entity.AdoptionRequest;
-import com.example.demo.model.entity.Donation;
-import com.example.demo.model.entity.Lovehome;
-import com.example.demo.model.entity.ReportList;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

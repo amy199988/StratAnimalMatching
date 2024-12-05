@@ -2,9 +2,6 @@ package com.example.demo.model.dto;
 
 import java.util.List;
 
-import com.example.demo.model.entity.Cat;
-import com.example.demo.model.entity.ReportList;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
