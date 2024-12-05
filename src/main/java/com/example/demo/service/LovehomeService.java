@@ -5,16 +5,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.dto.LovehomeDto;
-import com.example.demo.model.dto.ReportDto;
-import com.example.demo.model.entity.Lovehome;
+import com.example.demo.model.dto.ReportListDto;
 
 public interface LovehomeService {
 	
-	public Lovehome addLovehome(Lovehome lovehome, MultipartFile photoFile);
 	public List<LovehomeDto> findAllLovehomes();
 	public LovehomeDto getLovehomeById(Integer lovehomeId);
-	public Lovehome updateLovehome(Lovehome lovehome, MultipartFile photoFile);
-	public Lovehome updateLovehomeWithoutPhoto(Lovehome lovehome);
 	public void deleteLovehomeById(Integer lovehomeId);
 	
 	public LovehomeDto updateLovehome(LovehomeDto lovehomeDto, MultipartFile photoFile);
@@ -28,11 +24,8 @@ public interface LovehomeService {
 	
 	
 	public List<CatDto> getLovehomecatList(Integer lovehomeId);
-	public List<ReportDto> getLovehomeReportList(Integer lovehomeId);
+	public List<ReportListDto> getLovehomeReportList(Integer lovehomeId);
 	
-	
-	//查詢中途-依關鍵詞
-	//public List<LovehomeDto> searchLovehomeByName(String keyword);
-
-
+	//更新目前占用率
+	public LovehomeDto updateCurrentOccupancy(Integer lovehomeId);
 }

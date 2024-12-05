@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.dto.LovehomeDto;
-import com.example.demo.model.dto.ReportDto;
+import com.example.demo.model.dto.ReportListDto;
 import com.example.demo.model.dto.UserDto;
 import com.example.demo.response.ApiResponse;
 import com.example.demo.service.AdoptionCatService;
@@ -112,8 +112,8 @@ public class ManagerController {
 	
 	// 查詢所有通報列表
 	@GetMapping("/all_report")
-	public ResponseEntity<ApiResponse<List<ReportDto>>> findAllReports() {
-		List<ReportDto> reportDtos = reportService.getAllReport();
+	public ResponseEntity<ApiResponse<List<ReportListDto>>> findAllReports() {
+		List<ReportListDto> reportDtos = reportService.getAllReport();
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", reportDtos));
 	}
 	
@@ -182,14 +182,14 @@ public class ManagerController {
 	
 	//修改通報資料
 	@GetMapping("/update_report/{reportNumber}")
-	public ResponseEntity<ApiResponse<ReportDto>> updateReport(@PathVariable Integer reportNumber) {
-		ReportDto reportDto = reportService.getReportByNumber(reportNumber);
+	public ResponseEntity<ApiResponse<ReportListDto>> updateReport(@PathVariable Integer reportNumber) {
+		ReportListDto reportDto = reportService.getReportByNumber(reportNumber);
 		return ResponseEntity.ok(ApiResponse.success("單筆查詢成功",reportDto));
 	}
 	
 	@PutMapping("/update_report/{reportNumber}")
-	public ResponseEntity<ApiResponse<ReportDto>> updateReport(@RequestBody ReportDto reportDto) {
-		ReportDto updateReportDto = reportService.updateReport(reportDto);
+	public ResponseEntity<ApiResponse<ReportListDto>> updateReport(@RequestBody ReportListDto reportDto) {
+		ReportListDto updateReportDto = reportService.updateReport(reportDto);
 		return ResponseEntity.ok(ApiResponse.success("更新成功",updateReportDto));
 	}	
 	

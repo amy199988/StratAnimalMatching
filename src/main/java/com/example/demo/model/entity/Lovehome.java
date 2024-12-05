@@ -50,7 +50,7 @@ public class Lovehome {
 	@Column(name = "current_occupancy")
 	private Double currentOccupancy; // 中途之家目前佔用率
 	
-	@Column(name = "lovehome_url")
+	@Column(name = "lovehome_url", columnDefinition = "LONGTEXT")
 	private String lovehome_Url; // 中途之家照片網址
 	
 	@OneToMany(mappedBy = "lovehome", cascade = CascadeType.ALL)

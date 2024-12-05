@@ -13,5 +13,4 @@ public interface LovehomeRepository extends JpaRepository<Lovehome, Integer>{
 
 	List<Lovehome> findByLovehomeCityAndLovehomeDistrict(String lovehomeCity,String lovehomeDistrict);
 
-	//List<Lovehome> findByNameContaining(String keyword);
 }

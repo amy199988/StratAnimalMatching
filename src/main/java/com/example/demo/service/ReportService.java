@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.model.dto.ReportDto;
+import com.example.demo.model.dto.ReportListDto;
 
 public interface ReportService {
 	//新增
-	public ReportDto addReport(ReportDto reportDto);
+	public ReportListDto addReport(ReportListDto reportDto);
 	//查詢全部
-	public List<ReportDto> getAllReport();
+	public List<ReportListDto> getAllReport();
 	//查詢單個
-	public ReportDto getReportByNumber(Integer reportNumber);
+	public ReportListDto getReportByNumber(Integer reportNumber);
 	//更新
-	public ReportDto updateReport(ReportDto reportDto);
+	public ReportListDto updateReport(ReportListDto reportDto);
 	
 	//刪除
 	public void deleteReport(Integer reportNumber);

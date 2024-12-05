@@ -22,6 +22,6 @@ public class LovehomeDto {
 	private Double capacity; // 中途之家可收容容量
 	private Double currentOccupancy; // 中途之家目前佔用率
 	private String lovehome_Url; // 中途之家照片網址
-	private List<Cat> cats; // 中途之家所收容貓咪
-	private List<ReportList> reportLists; // 中途之家收到的通報清單
+	private List<CatDto> catDtos; // 中途之家所收容貓咪
+	private List<ReportListDto> reportListDtos; // 中途之家收到的通報清單
 }
