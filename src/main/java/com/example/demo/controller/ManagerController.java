@@ -145,13 +145,8 @@ public class ManagerController {
 	}
 	
 	@PostMapping("/update_lovehome/{lovehomeId}")
-	public ResponseEntity<ApiResponse<LovehomeDto>> updateLovehome(@PathVariable Integer lovehomeId,@RequestBody LovehomeDto lovehomeDto,
-			@RequestParam("photo") MultipartFile photoFile) {
-		if (photoFile == null || photoFile.isEmpty()) {
-			lovehomeDto = lovehomeService.updateLovehomeWithoutPhoto(lovehomeDto);
-			return ResponseEntity.ok(ApiResponse.success("更新成功",lovehomeDto));
-		}
-		lovehomeDto = lovehomeService.updateLovehome(lovehomeDto, photoFile);
+	public ResponseEntity<ApiResponse<LovehomeDto>> updateLovehome(@PathVariable Integer lovehomeId,@RequestBody LovehomeDto lovehomeDto) {
+		lovehomeDto = lovehomeService.updateLovehome(lovehomeDto);
 		return ResponseEntity.ok(ApiResponse.success("更新成功",lovehomeDto));
 	}
 	
@@ -163,13 +158,8 @@ public class ManagerController {
 	}
 	
 	@PostMapping("/update_cat/{catId}")
-	public ResponseEntity<ApiResponse<CatDto>> updateCat(@PathVariable Integer catId, CatDto catDto,
-			@RequestParam("photo") MultipartFile photoFile) {
-		if (photoFile == null || photoFile.isEmpty()) {
-			catDto = adoptionCatService.updateCatWithoutPhoto(catDto);
-			return ResponseEntity.ok(ApiResponse.success("更新成功",catDto));
-		}
-		catDto = adoptionCatService.updateCat(catDto, photoFile);
+	public ResponseEntity<ApiResponse<CatDto>> updateCat(@PathVariable Integer catId, CatDto catDto) {
+		catDto = adoptionCatService.updateCat(catDto);
 		return ResponseEntity.ok(ApiResponse.success("更新成功",catDto));
 	}	
 	

@@ -43,8 +43,8 @@ public class Cat {
 	@Column(name = "description", columnDefinition = "text")
 	private String description; // 詳細描述
 	
-	@Column(name = "catphoto_url")
-	private String catphoto_Url; // 貓咪照片網址
+	@Column(name = "catImage_Base64",  columnDefinition = "LONGTEXT")
+	private String catImage_Base64; // 貓咪照片網址
 	
 	@Column(name = "is_apply", columnDefinition = "tinyint default 0")
 	private Boolean isApply; // 是否可申請領養(false=0,true=1)

@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.exception.AdoptionNotFoundException;
 import com.example.demo.mapper.Mapper;
@@ -15,7 +14,6 @@ import com.example.demo.model.entity.Cat;
 import com.example.demo.repository.CatRepository;
 import com.example.demo.repository.LovehomeRepository;
 import com.example.demo.service.AdoptionCatService;
-import com.example.demo.util.Imgur;
 
 @Service
 public class AdoptionCatServiceImpl implements AdoptionCatService {
@@ -29,20 +27,11 @@ public class AdoptionCatServiceImpl implements AdoptionCatService {
 	@Autowired
 	private Mapper objectMapper;
 
-	@Autowired
-	private Imgur imgur;
-
 	// 新增領養貓咪
 	@Override
-	public CatDto addCat(CatDto catDto, MultipartFile photoFile) {
+	public CatDto addCat(CatDto catDto, Integer lovehomeId) {
 		Cat cat = objectMapper.toCatEntity(catDto);
-		// 判斷照片資料是否存在
-		if (photoFile == null || photoFile.isEmpty()) {
-			throw new AdoptionNotFoundException("找不到照片資料:photoFile" + photoFile);
-		}
-
-		cat.setCatphoto_Url(imgur.uploadImage(photoFile));
-		cat.setLovehome(lovehomeRepository.findById(1).get());
+		cat.setLovehome(lovehomeRepository.findById(lovehomeId).get());
 		catRepository.save(cat);
 		return objectMapper.toCatDto(cat);
 	}
@@ -56,7 +45,16 @@ public class AdoptionCatServiceImpl implements AdoptionCatService {
 	// 查詢全部可領養貓咪資訊
 	@Override
 	public List<CatDto> findAllAdoptionCats() {
-		return catRepository.findAllByIsApplyTrue().stream().map(objectMapper::toCatDto).collect(Collectors.toList());
+		return catRepository.findAllByIsApplyTrue()
+				.stream()
+				.map(cat -> {
+					CatDto catDto = objectMapper.toCatDto(cat);
+					if (cat.getLovehome() != null) {
+	                    catDto.setLovehomeName(cat.getLovehome().getLovehomeName());
+	                }
+	                return catDto;
+				})
+				.collect(Collectors.toList());
 	}
 
 	// 查詢貓咪資訊 By CatId
@@ -69,29 +67,13 @@ public class AdoptionCatServiceImpl implements AdoptionCatService {
 
 	// 修改貓咪資訊
 	@Override
-	public CatDto updateCat(CatDto catDto, MultipartFile photoFile) {
-		Cat cat = objectMapper.toCatEntity(catDto);
-		Cat updateCat = catRepository.findById(cat.getCatId())
-				.orElseThrow(() -> new AdoptionNotFoundException("找不到貓咪:catId" + cat.getCatId()));
-		updateCat.setCatphoto_Url(imgur.uploadImage(photoFile));
-		catRepository.save(updateCat);
-		return objectMapper.toCatDto(updateCat);
-	}
-
-	// 修改貓咪資訊除外PhotoUrl
-	@Override
-	public CatDto updateCatWithoutPhoto(CatDto catDto) {
-		Cat cat = objectMapper.toCatEntity(catDto);
-		Cat updateCat = catRepository.findById(cat.getCatId())
-				.orElseThrow(() -> new AdoptionNotFoundException("找不到貓咪:catId" + cat.getCatId()));
-		updateCat.setCatName(cat.getCatName());
-		updateCat.setBreed(cat.getBreed());
-		updateCat.setAge(cat.getAge());
-		updateCat.setHealthStatus(cat.getHealthStatus());
-		updateCat.setDescription(cat.getDescription());
-		updateCat.setIsApply(cat.getIsApply());
-		catRepository.save(updateCat);
-		return objectMapper.toCatDto(updateCat);
+	public CatDto updateCat(CatDto catDto) {
+		Integer catId = catDto.getCatId();
+		Cat cat = catRepository.findById(catId).orElseThrow(() -> new AdoptionNotFoundException("找不到貓咪:catId" + catId));
+		Cat updatecat = objectMapper.toCatEntity(catDto);
+		updatecat.setLovehome(cat.getLovehome());
+		catRepository.save(updatecat);
+		return objectMapper.toCatDto(updatecat);
 	}
 
 	// 刪除貓咪資訊 ByCatId

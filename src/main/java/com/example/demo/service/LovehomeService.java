@@ -13,8 +13,7 @@ public interface LovehomeService {
 	public LovehomeDto getLovehomeById(Integer lovehomeId);
 	public void deleteLovehomeById(Integer lovehomeId);
 	
-	public LovehomeDto updateLovehome(LovehomeDto lovehomeDto, MultipartFile photoFile);
-	public LovehomeDto updateLovehomeWithoutPhoto(LovehomeDto lovehomeDto);
+	public LovehomeDto updateLovehome(LovehomeDto lovehomeDto);
 
 	//查詢中途-依城市
 	public List<LovehomeDto> getlovehomeCity(String lovehomeCity);

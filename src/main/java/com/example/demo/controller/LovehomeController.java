@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.dto.AdoptionRequestDto;
 import com.example.demo.model.dto.CatDto;
@@ -59,7 +57,7 @@ public class LovehomeController {
 
 	@Autowired
 	private LovehomeService lovehomeService;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -77,29 +75,25 @@ public class LovehomeController {
 	public ResponseEntity<ApiResponse<UserDto>> lovehomeSetting(HttpSession session) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		UserDto userDto = userService.getUserById(userCert.getUserId());
-		return ResponseEntity.ok(ApiResponse.success("單筆查詢成功：", userDto));
+		return ResponseEntity.ok(ApiResponse.success("單筆查詢成功", userDto));
 	}
 
 	// 更新中途資料
 	@PutMapping("/update")
 	public ResponseEntity<ApiResponse<LovehomeDto>> updateLovehome(HttpSession session,
-			@RequestBody LovehomeDto upLovehomeDto, @RequestParam("photo") MultipartFile upPhotoFile) {
+			@RequestBody LovehomeDto upLovehomeDto) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		LovehomeDto lovehomeDto = userCert.getLovehomeDto();
-		if (upPhotoFile == null || upPhotoFile.isEmpty()) {
-			lovehomeDto = lovehomeService.updateLovehomeWithoutPhoto(upLovehomeDto);
-			return ResponseEntity.ok(ApiResponse.success("更新成功：", lovehomeDto));
-		}
-		lovehomeDto = lovehomeService.updateLovehome(upLovehomeDto, upPhotoFile);
-		return ResponseEntity.ok(ApiResponse.success("更新成功：", lovehomeDto));
+		lovehomeDto = lovehomeService.updateLovehome(upLovehomeDto);
+		return ResponseEntity.ok(ApiResponse.success("更新成功", lovehomeDto));
 	}
 
 	// 新增貓咪
 	@PostMapping("/cat_list")
-	public ResponseEntity<ApiResponse<CatDto>> appendCat(@RequestBody CatDto catDto,
-			@RequestParam("photo") MultipartFile photoFile, HttpSession session) {
-		CatDto addCatDto = adoptionCatService.addCat(catDto, photoFile);
-		return ResponseEntity.ok(ApiResponse.success("新增成功：", addCatDto));
+	public ResponseEntity<ApiResponse<CatDto>> appendCat(@RequestBody CatDto catDto, HttpSession session) {
+		UserCert userCert = (UserCert) session.getAttribute("userCert");
+		CatDto addCatDto = adoptionCatService.addCat(catDto, userCert.getLovehomeDto().getLovehomeId());
+		return ResponseEntity.ok(ApiResponse.success("新增成功", addCatDto));
 	}
 
 	// 查看中途所擁有貓咪
@@ -108,26 +102,21 @@ public class LovehomeController {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		LovehomeDto lovehomeDto = userCert.getLovehomeDto();
 		List<CatDto> catDtos = lovehomeService.getLovehomecatList(lovehomeDto.getLovehomeId());
-		return ResponseEntity.ok(ApiResponse.success("獲取所有貓咪：", catDtos));
+		return ResponseEntity.ok(ApiResponse.success("獲取所有貓咪", catDtos));
 	}
 
 	// 更新貓咪
 	@PutMapping("/cat_list/{catId}")
-	public ResponseEntity<ApiResponse<CatDto>> updateCat(@PathVariable Integer catId, CatDto catDto,
-			@RequestParam("photo") MultipartFile photoFile) {
-		if (photoFile == null || photoFile.isEmpty()) {
-			catDto = adoptionCatService.updateCatWithoutPhoto(catDto);
-			return ResponseEntity.ok(ApiResponse.success("更新成功：", catDto));
-		}
-		catDto = adoptionCatService.updateCat(catDto, photoFile);
-		return ResponseEntity.ok(ApiResponse.success("更新成功：", catDto));
+	public ResponseEntity<ApiResponse<CatDto>> updateCat(@PathVariable Integer catId,@RequestBody CatDto catDto) {
+		catDto = adoptionCatService.updateCat(catDto);
+		return ResponseEntity.ok(ApiResponse.success("更新成功", catDto));
 	}
 
 	// 刪除貓咪
 	@DeleteMapping("/cat_list/{catId}")
 	public ResponseEntity<ApiResponse<Void>> deleteCat(@PathVariable Integer catId) {
 		adoptionCatService.deleteCatById(catId);
-		return ResponseEntity.ok(ApiResponse.success("刪除成功：", null));
+		return ResponseEntity.ok(ApiResponse.success("刪除成功", null));
 	}
 
 	// 查看收到的通報列表
@@ -136,21 +125,21 @@ public class LovehomeController {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		LovehomeDto lovehomeDto = userCert.getLovehomeDto();
 		List<ReportListDto> reportListDtos = lovehomeService.getLovehomeReportList(lovehomeDto.getLovehomeId());
-		return ResponseEntity.ok(ApiResponse.success("獲取上傳的通報救援：", reportListDtos));
+		return ResponseEntity.ok(ApiResponse.success("獲取上傳的通報救援", reportListDtos));
 	}
 
 	// 查看個別通報資料
 	@GetMapping("/report/{reportNumber}")
 	public ResponseEntity<ApiResponse<ReportListDto>> getReport(@PathVariable Integer reportNumber) {
 		ReportListDto reportDto = reportService.getReportByNumber(reportNumber);
-		return ResponseEntity.ok(ApiResponse.success("單筆查詢成功：", reportDto));
+		return ResponseEntity.ok(ApiResponse.success("單筆查詢成功", reportDto));
 	}
 
 	// 修改個別通報資料送出
 	@PutMapping("/report/{reportNumber}")
 	public ResponseEntity<ApiResponse<ReportListDto>> updateReport(@RequestBody ReportListDto reportDto) {
 		ReportListDto updateReportDto = reportService.updateReport(reportDto);
-		return ResponseEntity.ok(ApiResponse.success("修改成功：", updateReportDto));
+		return ResponseEntity.ok(ApiResponse.success("修改成功", updateReportDto));
 	}
 
 	// 查看申請領養的表單
@@ -172,7 +161,8 @@ public class LovehomeController {
 
 	// 修改個別領養清單送出
 	@PutMapping("/request/{requestNumber}")
-	public ResponseEntity<ApiResponse<AdoptionRequestDto>> updateRequest(@RequestBody AdoptionRequestDto adoptionRequestDto) {
+	public ResponseEntity<ApiResponse<AdoptionRequestDto>> updateRequest(
+			@RequestBody AdoptionRequestDto adoptionRequestDto) {
 		AdoptionRequestDto upadoptionRequestDto = adoptionRequestService.updateAdoptionRequest(adoptionRequestDto);
 		return ResponseEntity.ok(ApiResponse.success("修改成功", upadoptionRequestDto));
 	}

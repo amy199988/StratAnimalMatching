@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -50,8 +49,8 @@ public class Lovehome {
 	@Column(name = "current_occupancy")
 	private Double currentOccupancy; // 中途之家目前佔用率
 	
-	@Column(name = "lovehome_url", columnDefinition = "LONGTEXT")
-	private String lovehome_Url; // 中途之家照片網址
+	@Column(name = "lovehomeImage_Base64", columnDefinition = "LONGTEXT")
+	private String lovehomeImage_Base64; // 中途之家照片網址
 	
 	@OneToMany(mappedBy = "lovehome", cascade = CascadeType.ALL)
 	private List<Cat> cats; // 中途之家所收容貓咪

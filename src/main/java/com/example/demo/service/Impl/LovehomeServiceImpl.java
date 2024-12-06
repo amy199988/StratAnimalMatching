@@ -2,13 +2,10 @@ package com.example.demo.service.Impl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.exception.LovehomeNotFoundException;
 import com.example.demo.exception.UserNotFoundException;
@@ -21,7 +18,6 @@ import com.example.demo.model.entity.Lovehome;
 import com.example.demo.model.entity.ReportList;
 import com.example.demo.repository.LovehomeRepository;
 import com.example.demo.service.LovehomeService;
-import com.example.demo.util.Imgur;
 
 @Service
 public class LovehomeServiceImpl implements LovehomeService {
@@ -31,9 +27,6 @@ public class LovehomeServiceImpl implements LovehomeService {
 
 	@Autowired
 	private Mapper objectMapper;
-
-	@Autowired
-	private Imgur imgur;
 
 	@Override
 	public List<LovehomeDto> findAllLovehomes() {
@@ -60,26 +53,10 @@ public class LovehomeServiceImpl implements LovehomeService {
 	}
 
 	@Override
-	public LovehomeDto updateLovehome(LovehomeDto lovehomeDto, MultipartFile photoFile) {
+	public LovehomeDto updateLovehome(LovehomeDto lovehomeDto) {
 		Lovehome lovehome = objectMapper.toLovehomeEntity(lovehomeDto);
-		lovehome.setLovehome_Url(imgur.uploadImage(photoFile));
 		lovehomeRepository.save(lovehome);
 		return objectMapper.toLovehomeDto(lovehome);
-	}
-
-	@Override
-	public LovehomeDto updateLovehomeWithoutPhoto(LovehomeDto lovehomeDto) {
-		Lovehome lovehome = objectMapper.toLovehomeEntity(lovehomeDto);
-		Lovehome updatelovehome = lovehomeRepository.findById(lovehome.getLovehomeId())
-				.orElseThrow(() -> new LovehomeNotFoundException("找不到中途:lovehomeId" + lovehome.getLovehomeId()));
-		updatelovehome.setLovehomeName(lovehome.getLovehomeName());
-		updatelovehome.setLovehomeCity(lovehome.getLovehomeCity());
-		updatelovehome.setLovehomeDistrict(lovehome.getLovehomeDistrict());
-		updatelovehome.setLovehomeAddress(lovehome.getLovehomeAddress());
-		updatelovehome.setContactInfo(lovehome.getContactInfo());
-		updatelovehome.setCapacity(lovehome.getCapacity());
-		lovehomeRepository.save(updatelovehome);
-		return objectMapper.toLovehomeDto(updatelovehome);
 	}
 
 	@Override
