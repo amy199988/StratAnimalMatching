@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.dto.AdoptionRequestDto;
@@ -85,10 +86,15 @@ public class UserController {
 	
 	//修改密碼
 	@PostMapping("/password")
-	public ResponseEntity<ApiResponse<String>> updatePassword(String account, String oldPassword, String newPassword){
-		userService.updatePassword(account, oldPassword, newPassword);
+	public ResponseEntity<ApiResponse<String>> updatePassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword,
+    HttpSession session){
+		UserCert userCert = (UserCert)session.getAttribute("userCert");
+		UserDto userDto = userService.getUserById(userCert.getUserId());
+		Integer userId = userCert.getUserId();
+		userService.updatePassword(userId, oldPassword, newPassword);
 		return ResponseEntity.ok(ApiResponse.success("更新成功",null));
 	} 
+	
 	
 }
 	

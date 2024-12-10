@@ -108,8 +108,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override // 更新密碼
-	public void updatePassword(String account, String oldPassword, String newPassword) {
-		User user = userRepository.getByAccount(account);
+	public void updatePassword(Integer userId, String oldPassword, String newPassword) {
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new UserNotFoundException("無此使用者userId：" + userId));
 
 		// 比對修改之前的password是否正確
 		String oldPasswordHash = Hash.getHash(oldPassword, user.getSalt());

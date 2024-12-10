@@ -25,7 +25,7 @@ public interface UserService {
 	public void deleteUser(Integer userId);
 	
 	//修改密碼
-	public void updatePassword(String account, String oldPassword ,String newPassword);
+	public void updatePassword(Integer userId, String oldPassword ,String newPassword);
 	
 	// 查詢會員的通報清單
 	public List<ReportListDto> getUserReportList(Integer userId);
