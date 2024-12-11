@@ -16,5 +16,6 @@ public class CatDto {
 	private String description; // 詳細描述
 	private String catImage_Base64; // 貓咪照片Base64
 	private Boolean isApply; // 是否可申請領養(false=0,true=1)
+	private Integer lovehomeId; // 所屬中途ID
 	private String lovehomeName; // 所屬中途名字
 }

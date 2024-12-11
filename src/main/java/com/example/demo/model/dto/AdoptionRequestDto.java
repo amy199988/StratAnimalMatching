@@ -2,8 +2,6 @@ package com.example.demo.model.dto;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AdoptionRequestDto {
 	private Integer requestNumber; // 領養表單編號
-	@JsonIgnoreProperties({"adoptionRequestsdDtos"})
 	private UserDto userDto; // 申請領養者編號
 	private CatDto catDto; // 被領養貓咪編號
 	private Date requstDate; // 申請日期

@@ -12,7 +12,9 @@ import com.example.demo.exception.RequestNotFoundException;
 import com.example.demo.mapper.Mapper;
 import com.example.demo.model.dto.AdoptionRequestDto;
 import com.example.demo.model.entity.AdoptionRequest;
+import com.example.demo.repository.CatRepository;
 import com.example.demo.repository.RequestRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.AdoptionRequestService;
 
 @Service
@@ -22,26 +24,29 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService{
 	private RequestRepository requestRepository;
 	
 	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private CatRepository catRepository;
+	
+	@Autowired
 	private Mapper mapper;
 	
 	@Override
 	public AdoptionRequestDto addAdoptionRequest(AdoptionRequestDto adoptionRequestDto) {
 		AdoptionRequest adoptionRequest = mapper.toAdoptionRequestEntity(adoptionRequestDto);
-		adoptionRequest.setCat(mapper.toCatEntity(adoptionRequestDto.getCatDto()));
-		adoptionRequest.setUser(mapper.toUserEntity(adoptionRequestDto.getUserDto()));
+		adoptionRequest.setCat(catRepository.findById(adoptionRequestDto.getCatDto().getCatId()).get());
+		adoptionRequest.setUser(userRepository.findById(adoptionRequestDto.getUserDto().getUserId()).get());
 		requestRepository.save(adoptionRequest);
 		return mapper.toAdoptionRequestDto(adoptionRequest);
 	}
 
 	@Override
 	public AdoptionRequestDto updateAdoptionRequest(AdoptionRequestDto adoptionRequestDto) {
-		return requestRepository.findById(adoptionRequestDto.getRequestNumber())
-				.map(adoptionrequest -> {
-					mapper.toAdoptionRequestEntity(adoptionRequestDto);
-					AdoptionRequest upAdoptionRequest = requestRepository.save(adoptionrequest);
-					return mapper.toAdoptionRequestDto(upAdoptionRequest);
-				})
-				.orElseThrow(() -> new RequestNotFoundException("查無資料"));
+		AdoptionRequest updateAdoptionRequest = requestRepository.findById(adoptionRequestDto.getRequestNumber()).get();
+		updateAdoptionRequest.setRequestStatus(adoptionRequestDto.getRequestStatus());
+		requestRepository.save(updateAdoptionRequest);
+		return mapper.toAdoptionRequestDto(updateAdoptionRequest);
 	}
 
 	@Override

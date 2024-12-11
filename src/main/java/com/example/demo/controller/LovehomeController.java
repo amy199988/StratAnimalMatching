@@ -104,6 +104,13 @@ public class LovehomeController {
 		List<CatDto> catDtos = lovehomeService.getLovehomecatList(lovehomeDto.getLovehomeId());
 		return ResponseEntity.ok(ApiResponse.success("獲取所有貓咪", catDtos));
 	}
+	
+	// 查詢個別貓咪
+	@GetMapping("/cat_list/{catId}")
+	public ResponseEntity<ApiResponse<CatDto>> getCatById(@PathVariable Integer catId) {
+		CatDto catDto = adoptionCatService.getCatById(catId);
+		return ResponseEntity.ok(ApiResponse.success("查詢成功", catDto));
+	}
 
 	// 更新貓咪
 	@PutMapping("/cat_list/{catId}")
@@ -161,9 +168,15 @@ public class LovehomeController {
 
 	// 修改個別領養清單送出
 	@PutMapping("/request/{requestNumber}")
-	public ResponseEntity<ApiResponse<AdoptionRequestDto>> updateRequest(
-			@RequestBody AdoptionRequestDto adoptionRequestDto) {
+	public ResponseEntity<ApiResponse<AdoptionRequestDto>> updateRequest(@PathVariable Integer requestNumber, @RequestBody AdoptionRequestDto adoptionRequestDto) {
 		AdoptionRequestDto upadoptionRequestDto = adoptionRequestService.updateAdoptionRequest(adoptionRequestDto);
 		return ResponseEntity.ok(ApiResponse.success("修改成功", upadoptionRequestDto));
+	}
+	
+	// 刪除個別領養清單
+	@DeleteMapping("/request/{requestNumber}")
+	public ResponseEntity<ApiResponse<AdoptionRequestDto>> deleteRequest(@PathVariable Integer requestNumber) {
+		adoptionRequestService.deleteRequestByNumber(requestNumber);
+		return ResponseEntity.ok(ApiResponse.success("刪除成功",null));
 	}
 }

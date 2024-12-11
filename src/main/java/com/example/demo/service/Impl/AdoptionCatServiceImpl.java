@@ -50,6 +50,7 @@ public class AdoptionCatServiceImpl implements AdoptionCatService {
 				.map(cat -> {
 					CatDto catDto = objectMapper.toCatDto(cat);
 					if (cat.getLovehome() != null) {
+						catDto.setLovehomeId(cat.getLovehome().getLovehomeId());
 	                    catDto.setLovehomeName(cat.getLovehome().getLovehomeName());
 	                }
 	                return catDto;

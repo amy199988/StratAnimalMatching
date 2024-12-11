@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,12 +73,13 @@ public class CommonController {
 	}
 
 	// 申請領養
-	@PostMapping("/adoption_request")
+	@PostMapping("/adoption_request/{catId}")
 	public ResponseEntity<ApiResponse<AdoptionRequestDto>> UserAdoptionRequest(HttpSession session,
-			@RequestBody AdoptionRequestDto adoptionRequestDto) {
+			@PathVariable Integer catId, @RequestBody AdoptionRequestDto adoptionRequestDto) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		UserDto userDto = userService.getUserById(userCert.getUserId());
 		adoptionRequestDto.setUserDto(userDto);
+		adoptionRequestDto.setCatDto(adoptionCatService.getCatById(catId));
 		AdoptionRequestDto addAdoptionRequestDto = adoptionRequestService.addAdoptionRequest(adoptionRequestDto);
 		return ResponseEntity.ok(ApiResponse.success("申請成功", addAdoptionRequestDto));
 	}

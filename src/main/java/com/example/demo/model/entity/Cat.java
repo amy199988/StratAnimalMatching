@@ -1,5 +1,7 @@
 package com.example.demo.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,10 +51,11 @@ public class Cat {
 	@Column(name = "is_apply", columnDefinition = "tinyint default 0")
 	private Boolean isApply; // 是否可申請領養(false=0,true=1)
 	
-	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REFRESH})
 	@JoinColumn(name = "lovehome_id")
 	private Lovehome lovehome; // 所在中途之家
 	
-	@OneToOne(mappedBy = "cat", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
+	@OneToOne(mappedBy = "cat", cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@JsonBackReference
 	private AdoptionRequest adoptionRequest; // 貓咪所屬申請領養單號
 }

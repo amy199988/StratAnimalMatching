@@ -79,8 +79,9 @@ public class UserController {
 	
 	//查看領養申請追蹤
 	@GetMapping("/request")
-	public ResponseEntity<ApiResponse<List<AdoptionRequestDto>>> getUserAdoptionList(@PathVariable Integer userId) {
-		List<AdoptionRequestDto> adoptionRequestDtos = adoptionRequestService.getRequestsByuserId(userId);
+	public ResponseEntity<ApiResponse<List<AdoptionRequestDto>>> getUserAdoptionList(HttpSession session) {
+		UserCert userCert = (UserCert)session.getAttribute("userCert");
+		List<AdoptionRequestDto> adoptionRequestDtos = adoptionRequestService.getRequestsByuserId(userCert.getUserId());
 		return ResponseEntity.ok(ApiResponse.success("查詢成功",adoptionRequestDtos));
 	}
 	
@@ -89,7 +90,6 @@ public class UserController {
 	public ResponseEntity<ApiResponse<String>> updatePassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword,
     HttpSession session){
 		UserCert userCert = (UserCert)session.getAttribute("userCert");
-		UserDto userDto = userService.getUserById(userCert.getUserId());
 		Integer userId = userCert.getUserId();
 		userService.updatePassword(userId, oldPassword, newPassword);
 		return ResponseEntity.ok(ApiResponse.success("更新成功",null));
