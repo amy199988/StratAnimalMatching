@@ -1,8 +1,6 @@
 package com.example.demo.mapper;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.spi.MatchingStrategy;
-import org.modelmapper.config.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -46,7 +44,19 @@ public class Mapper {
 	}
 	
 	public AdoptionRequestDto toAdoptionRequestDto(AdoptionRequest adoptionRequest) {
-		return modelMapper.map(adoptionRequest, AdoptionRequestDto.class);
+		AdoptionRequestDto dto = modelMapper.map(adoptionRequest, AdoptionRequestDto.class);
+		
+		if (adoptionRequest.getUser() != null) {
+	        UserDto userDto = toUserDto(adoptionRequest.getUser());
+	        dto.setUserDto(userDto);
+	    }
+
+	    if (adoptionRequest.getCat() != null) {
+	        CatDto catDto = toCatDto(adoptionRequest.getCat());
+	        dto.setCatDto(catDto);
+	    }
+
+	    return dto;
 	}
 	
 	public AdoptionRequest toAdoptionRequestEntity(AdoptionRequestDto adoptionRequestDto) {

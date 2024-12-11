@@ -2,9 +2,6 @@ package com.example.demo.model.dto;
 
 import java.sql.Timestamp;
 
-import com.example.demo.model.entity.Lovehome;
-import com.example.demo.model.entity.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReportListDto {
 	private Integer reportNumber; // 通報表單編號
-	private User user; // 通報人編號
+	private UserDto userDto; // 通報人編號
+	private Integer lovehomeId; // 選擇通報中途之家編號
 	private String reportCity; // 通報地點城市
 	private String reportDistrict; // 通報地點區域
 	private String reportAddress; // 通報地點詳細地址

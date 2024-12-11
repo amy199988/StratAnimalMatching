@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.dto.LovehomeDto;
@@ -25,30 +23,27 @@ import com.example.demo.service.LovehomeService;
 import com.example.demo.service.ReportService;
 import com.example.demo.service.UserService;
 
-import jakarta.servlet.http.HttpSession;
-
 /*
  * WEB API
  * --------------------------
  * 管理員使用
  * Servlet-Patf: /manager
  * --------------------------
- * GET   /manager                       管理員服務頁面
- * GET   /manager/all_user              查看所有會員列表
- * GET   /manager/all_lovehome          查看所有中途會員列表
- * GET   /manager/all_cat               查看所有貓咪列表
- * GET   /manager/all_report            查看所有通報列表
- * GET   /manager/update_user/{userId}  修改會員資料頁面
- * PUT   /manager/update_user/{userId}  修改會員資料送出
- * DELETE /manager/delete_user/{userId} 刪除會員
- * GET   /manager/update_lovehome/{lovehomeId}  修改中途資料頁面
- * PUT   /manager/update_lovehome/{lovehomeId}  修改中途資料送出
- * GET   /manager/update_cat/{catId}            修改貓咪資料頁面
- * PUT   /manager/update_cat/{catId}            修改貓咪資料送出
- * DELETE /manager/delete_cat/{catId}           刪除貓咪資料
- * GET   /manager/update_report/{reportNumber}  修改通報資料頁面
- * PUT   /manager/update_report/{reportNumber}  修改通報資料送出
- * DELETE /manager/delete_report/{reportNumber} 刪除通報資料
+ * GET    /manager                               管理員服務頁面
+ * GET    /manager/all_lovehome                  查看所有中途會員列表
+ * GET    /manager/all_cat                       查看所有貓咪列表
+ * GET    /manager/all_report                    查看所有通報列表
+ * GET    /manager/update_user/{userId}          修改會員資料頁面
+ * PUT    /manager/update_user/{userId}          修改會員資料送出
+ * DELETE /manager/delete_user/{userId}          刪除會員
+ * GET    /manager/update_lovehome/{lovehomeId}  修改中途資料頁面
+ * PUT    /manager/update_lovehome/{lovehomeId}  修改中途資料送出
+ * GET    /manager/update_cat/{catId}            修改貓咪資料頁面
+ * PUT    /manager/update_cat/{catId}            修改貓咪資料送出
+ * DELETE /manager/delete_cat/{catId}            刪除貓咪資料
+ * GET    /manager/update_report/{reportNumber}  修改通報資料頁面
+ * PUT    /manager/update_report/{reportNumber}  修改通報資料送出
+ * DELETE /manager/delete_report/{reportNumber}  刪除通報資料
  * 
  *
  * GET   /manager/all_donation         查看所有捐贈
@@ -72,25 +67,9 @@ public class ManagerController {
 	
 	@Autowired
 	private ReportService reportService;
-
-/*
-	// 管理員頁面
-	@GetMapping
-	public String manager() {
-		return "/Manager/manager";
-	}
-
-	// 貓咪管理頁面
-	@GetMapping("/Allcat_list")
-	public String Allcat_list() {
-		return "/Manager/Allcat_list";
-	}
-
-	// 查看所有捐贈名單
-*/
 	
 	// 查詢所有使用者
-	@GetMapping("/all_user")
+	@GetMapping
 	public ResponseEntity<ApiResponse<List<UserDto>>> findAllUsers() {
 		List<UserDto> userDtos = userService.getAllUsers();
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", userDtos));

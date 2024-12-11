@@ -14,10 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.dto.AdoptionRequestDto;
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.dto.LovehomeDto;
+import com.example.demo.model.dto.UserCert;
+import com.example.demo.model.dto.UserDto;
 import com.example.demo.response.ApiResponse;
 import com.example.demo.service.AdoptionCatService;
 import com.example.demo.service.AdoptionRequestService;
 import com.example.demo.service.LovehomeService;
+import com.example.demo.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 /*
  * WEB API
@@ -25,9 +30,8 @@ import com.example.demo.service.LovehomeService;
  * 一般大眾皆可使用，不需要登入的
  * Servlet-Patf: /common
  * --------------------------
- * GET  /common/cat_list                 查看所有貓咪
- * GET  /common/cat_alladoption          查看所有可領養貓咪
- * POST /common/adoption_request/{catId} 領養貓咪清單送出
+ * GET  /common/adoption                 查看所有可領養貓咪
+ * POST /common/adoption_request         領養貓咪清單送出
  * GET  /common/lovehome_list            查看所有中途之家
  * 
  * 
@@ -46,19 +50,15 @@ public class CommonController {
 
 	@Autowired
 	private LovehomeService lovehomeService;
-	
+
 	@Autowired
 	private AdoptionRequestService adoptionRequestService;
-
-	// 查看所有貓咪
-	@GetMapping("/cat_list")
-	public ResponseEntity<ApiResponse<List<CatDto>>> catlist() {
-		List<CatDto> catDtos = adoptionCatService.findAllCats();
-		return ResponseEntity.ok(ApiResponse.success("查詢成功", catDtos));
-	}
+	
+	@Autowired
+	private UserService userService;
 
 	// 查詢所有可領養貓咪
-	@GetMapping("/cat_alladoption")
+	@GetMapping("/adoption")
 	public ResponseEntity<ApiResponse<List<CatDto>>> allAdoption() {
 		List<CatDto> catDtos = adoptionCatService.findAllAdoptionCats();
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", catDtos));
@@ -72,9 +72,12 @@ public class CommonController {
 	}
 
 	// 申請領養
-	@PostMapping("/adoption_request/{catId}")
-	public ResponseEntity<ApiResponse<AdoptionRequestDto>> UserAdoptionRequest(
+	@PostMapping("/adoption_request")
+	public ResponseEntity<ApiResponse<AdoptionRequestDto>> UserAdoptionRequest(HttpSession session,
 			@RequestBody AdoptionRequestDto adoptionRequestDto) {
+		UserCert userCert = (UserCert) session.getAttribute("userCert");
+		UserDto userDto = userService.getUserById(userCert.getUserId());
+		adoptionRequestDto.setUserDto(userDto);
 		AdoptionRequestDto addAdoptionRequestDto = adoptionRequestService.addAdoptionRequest(adoptionRequestDto);
 		return ResponseEntity.ok(ApiResponse.success("申請成功", addAdoptionRequestDto));
 	}

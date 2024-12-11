@@ -27,6 +27,8 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService{
 	@Override
 	public AdoptionRequestDto addAdoptionRequest(AdoptionRequestDto adoptionRequestDto) {
 		AdoptionRequest adoptionRequest = mapper.toAdoptionRequestEntity(adoptionRequestDto);
+		adoptionRequest.setCat(mapper.toCatEntity(adoptionRequestDto.getCatDto()));
+		adoptionRequest.setUser(mapper.toUserEntity(adoptionRequestDto.getUserDto()));
 		requestRepository.save(adoptionRequest);
 		return mapper.toAdoptionRequestDto(adoptionRequest);
 	}
@@ -61,7 +63,8 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService{
 
 	@Override
 	public List<AdoptionRequestDto> getRequestsBylovehomeId(Integer lovehomeId) {
-		return requestRepository.findByCatLovehomeLovehomeId(lovehomeId).stream().map(mapper::toAdoptionRequestDto).collect(Collectors.toList());
+		List<AdoptionRequestDto> adoptionRequestDtos = requestRepository.findByCatLovehomeLovehomeId(lovehomeId).stream().map(mapper::toAdoptionRequestDto).collect(Collectors.toList());
+		return adoptionRequestDtos;
 	}
 
 	@Override

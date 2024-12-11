@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import java.util.List;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.dto.LovehomeDto;

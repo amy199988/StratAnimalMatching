@@ -13,8 +13,6 @@ public interface ReportService {
 	public ReportListDto getReportByNumber(Integer reportNumber);
 	//更新
 	public ReportListDto updateReport(ReportListDto reportDto);
-	
 	//刪除
 	public void deleteReport(Integer reportNumber);
-	
 }

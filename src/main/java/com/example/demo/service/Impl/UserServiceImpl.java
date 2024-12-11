@@ -134,7 +134,6 @@ public class UserServiceImpl implements UserService {
 		User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException());
 		List<ReportList> reportLists = user.getReportLists();
 		return reportLists.stream().map(mapper::toReportListDto).collect(Collectors.toList());
-
 	}
 
 }
