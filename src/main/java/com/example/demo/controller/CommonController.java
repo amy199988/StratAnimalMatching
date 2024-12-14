@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.dto.AdoptionRequestDto;
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.dto.LovehomeDto;
+import com.example.demo.model.dto.ReportListDto;
 import com.example.demo.model.dto.UserCert;
 import com.example.demo.model.dto.UserDto;
 import com.example.demo.response.ApiResponse;
 import com.example.demo.service.AdoptionCatService;
 import com.example.demo.service.AdoptionRequestService;
 import com.example.demo.service.LovehomeService;
+import com.example.demo.service.ReportService;
 import com.example.demo.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -31,10 +33,10 @@ import jakarta.servlet.http.HttpSession;
  * 一般大眾皆可使用，不需要登入的
  * Servlet-Patf: /common
  * --------------------------
- * GET  /common/adoption                 查看所有可領養貓咪
- * POST /common/adoption_request         領養貓咪清單送出
- * GET  /common/lovehome_list            查看所有中途之家
- * 
+ * POST /common/report						通報救援清單送出
+ * GET  /common/adoption                	查看所有可領養貓咪
+ * POST /common/adoption_request/{catId}    領養貓咪清單送出
+ * GET  /common/lovehome_list           	查看所有中途之家
  * 
  * GET /donation         捐贈表單
  * POST/donation         新增捐贈
@@ -54,9 +56,12 @@ public class CommonController {
 
 	@Autowired
 	private AdoptionRequestService adoptionRequestService;
-	
+
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ReportService reportService;
 
 	// 查詢所有可領養貓咪
 	@GetMapping("/adoption")
@@ -82,6 +87,18 @@ public class CommonController {
 		adoptionRequestDto.setCatDto(adoptionCatService.getCatById(catId));
 		AdoptionRequestDto addAdoptionRequestDto = adoptionRequestService.addAdoptionRequest(adoptionRequestDto);
 		return ResponseEntity.ok(ApiResponse.success("申請成功", addAdoptionRequestDto));
+	}
+
+	// 通報救援
+	@PostMapping("/report/{lovehomeId}")
+	public ResponseEntity<ApiResponse<ReportListDto>> appendReport(HttpSession session,
+			@PathVariable Integer lovehomeId, @RequestBody ReportListDto reportListDto) {
+		UserCert userCert = (UserCert) session.getAttribute("userCert");
+		UserDto userDto = userService.getUserById(userCert.getUserId());
+		reportListDto.setUserDto(userDto);
+		reportListDto.setLovehomeId(lovehomeId);
+		ReportListDto addReportListDto = reportService.addReport(reportListDto);
+		return ResponseEntity.ok(ApiResponse.success("通報成功",addReportListDto));
 	}
 
 }

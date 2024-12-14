@@ -15,4 +15,8 @@ public interface ReportService {
 	public ReportListDto updateReport(ReportListDto reportDto);
 	//刪除
 	public void deleteReport(Integer reportNumber);
+	//根據使用者ID查詢
+	public List<ReportListDto> getReportByUserId(Integer userId);
+	//根據中途之家ID查詢
+	public List<ReportListDto> getReportByLovehomeId(Integer lovehomeId);
 }

@@ -12,10 +12,8 @@ import com.example.demo.exception.UserAlreadyExistsException;
 import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.mapper.Mapper;
 import com.example.demo.model.dto.LovehomeDto;
-import com.example.demo.model.dto.ReportListDto;
 import com.example.demo.model.dto.UserDto;
 import com.example.demo.model.entity.Lovehome;
-import com.example.demo.model.entity.ReportList;
 import com.example.demo.model.entity.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.LovehomeService;
@@ -128,12 +126,4 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 
 	}
-
-	// 查詢的通報清單
-	public List<ReportListDto> getUserReportList(Integer userId) {
-		User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException());
-		List<ReportList> reportLists = user.getReportLists();
-		return reportLists.stream().map(mapper::toReportListDto).collect(Collectors.toList());
-	}
-
 }

@@ -23,82 +23,89 @@ import com.example.demo.model.entity.User;
 
 @Component
 public class Mapper {
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	public UserDto toUserDto(User user) {
 		return modelMapper.map(user, UserDto.class);
 	}
-	
+
 	public User toUserEntity(UserDto userDto) {
 		return modelMapper.map(userDto, User.class);
 	}
-	
+
 	public CatDto toCatDto(Cat cat) {
 		return modelMapper.map(cat, CatDto.class);
 	}
-	
+
 	public Cat toCatEntity(CatDto catDto) {
 		return modelMapper.map(catDto, Cat.class);
 	}
-	
+
 	public AdoptionRequestDto toAdoptionRequestDto(AdoptionRequest adoptionRequest) {
 		AdoptionRequestDto dto = modelMapper.map(adoptionRequest, AdoptionRequestDto.class);
-		
+
 		if (adoptionRequest.getUser() != null) {
-	        UserDto userDto = toUserDto(adoptionRequest.getUser());
-	        dto.setUserDto(userDto);
-	    }
+			UserDto userDto = toUserDto(adoptionRequest.getUser());
+			dto.setUserDto(userDto);
+		}
 
-	    if (adoptionRequest.getCat() != null) {
-	        CatDto catDto = toCatDto(adoptionRequest.getCat());
-	        dto.setCatDto(catDto);
-	    }
+		if (adoptionRequest.getCat() != null) {
+			CatDto catDto = toCatDto(adoptionRequest.getCat());
+			dto.setCatDto(catDto);
+		}
 
-	    return dto;
+		return dto;
 	}
-	
+
 	public AdoptionRequest toAdoptionRequestEntity(AdoptionRequestDto adoptionRequestDto) {
 		return modelMapper.map(adoptionRequestDto, AdoptionRequest.class);
 	}
-	
+
 	public DonationDto toDonationDto(Donation donation) {
 		return modelMapper.map(donation, DonationDto.class);
 	}
-	
+
 	public Donation toDonationEntity(DonationDto donationDto) {
 		return modelMapper.map(donationDto, Donation.class);
 	}
-	
+
 	public DonationInventoryDto toDonationInventoryDto(DonationInventory donationInventory) {
 		return modelMapper.map(donationInventory, DonationInventoryDto.class);
 	}
-	
+
 	public DonationInventory toDonationInventoryEntity(DonationInventoryDto donationInventoryDto) {
 		return modelMapper.map(donationInventoryDto, DonationInventory.class);
 	}
-	
+
 	public LovehomeDto toLovehomeDto(Lovehome lovehome) {
 		return modelMapper.map(lovehome, LovehomeDto.class);
 	}
-	
+
 	public Lovehome toLovehomeEntity(LovehomeDto lovehomeDto) {
 		return modelMapper.map(lovehomeDto, Lovehome.class);
 	}
-	
+
 	public NoticeDto toNoticeDto(Notice notice) {
 		return modelMapper.map(notice, NoticeDto.class);
 	}
-	
+
 	public Notice toNoticeEntity(NoticeDto noticeDto) {
 		return modelMapper.map(noticeDto, Notice.class);
 	}
-	
+
 	public ReportListDto toReportListDto(ReportList reportList) {
-		return modelMapper.map(reportList, ReportListDto.class);
+		ReportListDto dto = modelMapper.map(reportList, ReportListDto.class);
+
+		if (reportList.getUser() != null) {
+			UserDto userDto = toUserDto(reportList.getUser());
+			dto.setUserDto(userDto);
+		}
+
+		return dto;
 	}
-	
+
 	public ReportList toReportListEntity(ReportListDto reportListDto) {
 		return modelMapper.map(reportListDto, ReportList.class);
 	}

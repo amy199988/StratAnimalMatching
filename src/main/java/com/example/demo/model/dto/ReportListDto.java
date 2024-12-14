@@ -16,7 +16,7 @@ public class ReportListDto {
 	private String reportCity; // 通報地點城市
 	private String reportDistrict; // 通報地點區域
 	private String reportAddress; // 通報地點詳細地址
-	private String photoUrl; // 通報相片網址
+	private String photoBase64; // 通報相片網址
 	private String description; // 通報描述
 	private Timestamp reportDate; // 通報日期
 	private String reportStatus; // 通報狀態(待辦、進行中、完成)

@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.model.dto.ReportListDto;
 import com.example.demo.model.dto.UserDto;
 
 public interface UserService {
@@ -26,8 +25,5 @@ public interface UserService {
 	
 	//修改密碼
 	public void updatePassword(Integer userId, String oldPassword ,String newPassword);
-	
-	// 查詢會員的通報清單
-	public List<ReportListDto> getUserReportList(Integer userId);
 	
 }

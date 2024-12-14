@@ -45,7 +45,7 @@ public class Cat {
 	@Column(name = "description", columnDefinition = "text")
 	private String description; // 詳細描述
 	
-	@Column(name = "catImage_Base64",  columnDefinition = "LONGTEXT")
+	@Column(name = "catImage_Base64", columnDefinition = "LONGTEXT")
 	private String catImage_Base64; // 貓咪照片網址
 	
 	@Column(name = "is_apply", columnDefinition = "tinyint default 0")

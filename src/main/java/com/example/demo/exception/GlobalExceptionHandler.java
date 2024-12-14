@@ -29,6 +29,11 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>("未找到貓咪" + ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(ReportNotFoundException.class)
+	public ResponseEntity<String> handleReportNotFoundException(ReportNotFoundException ex, WebRequest request) {
+		return new ResponseEntity<>("未找到通報表單" + ex.getMessage(), HttpStatus.NOT_FOUND);
+	}
+	
 	@ExceptionHandler(LovehomeNotFoundException.class)
 	public ResponseEntity<String> handleLovehomeNotFoundException(LovehomeNotFoundException ex, WebRequest request) {
 		return new ResponseEntity<>("未找到中途之家" + ex.getMessage(), HttpStatus.NOT_FOUND);

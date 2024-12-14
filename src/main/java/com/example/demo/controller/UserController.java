@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +19,7 @@ import com.example.demo.model.dto.UserCert;
 import com.example.demo.model.dto.UserDto;
 import com.example.demo.response.ApiResponse;
 import com.example.demo.service.AdoptionRequestService;
+import com.example.demo.service.ReportService;
 import com.example.demo.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -52,6 +52,9 @@ public class UserController {
 	@Autowired
 	private AdoptionRequestService adoptionRequestService;
 	
+	@Autowired
+	private ReportService reportService;
+	
 	//查看會員資訊
 	@GetMapping
 	public ResponseEntity<ApiResponse<UserDto>> userSetting(HttpSession session) {
@@ -73,7 +76,7 @@ public class UserController {
 	@GetMapping("/report")
 	public ResponseEntity<ApiResponse<List<ReportListDto>>> getUserReportList(HttpSession session) {
 		UserCert userCert = (UserCert)session.getAttribute("userCert");
-		List<ReportListDto> reportDtos = userService.getUserReportList(userCert.getUserId());
+		List<ReportListDto> reportDtos = reportService.getReportByUserId(userCert.getUserId());
 		return ResponseEntity.ok(ApiResponse.success("查詢成功",reportDtos));
 	}
 	

@@ -73,12 +73,12 @@ public class AdoptionRequestServiceImpl implements AdoptionRequestService{
 	}
 
 	@Override
-	public void deleteRequestByNumber(Integer requestDtoNumber) {
-		Optional<AdoptionRequest> optAdoptionRequest = requestRepository.findById(requestDtoNumber);
+	public void deleteRequestByNumber(Integer requestNumber) {
+		Optional<AdoptionRequest> optAdoptionRequest = requestRepository.findById(requestNumber);
 		if (optAdoptionRequest.isEmpty()) {
-			throw new RequestNotFoundException("無此領養清單:" + requestDtoNumber);
+			throw new RequestNotFoundException("無此領養清單:" + requestNumber);
 		}
-		requestRepository.deleteById(requestDtoNumber);
+		requestRepository.deleteById(requestNumber);
 	}
 
 }

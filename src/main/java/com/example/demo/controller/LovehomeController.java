@@ -104,7 +104,7 @@ public class LovehomeController {
 		List<CatDto> catDtos = lovehomeService.getLovehomecatList(lovehomeDto.getLovehomeId());
 		return ResponseEntity.ok(ApiResponse.success("獲取所有貓咪", catDtos));
 	}
-	
+
 	// 查詢個別貓咪
 	@GetMapping("/cat_list/{catId}")
 	public ResponseEntity<ApiResponse<CatDto>> getCatById(@PathVariable Integer catId) {
@@ -114,7 +114,7 @@ public class LovehomeController {
 
 	// 更新貓咪
 	@PutMapping("/cat_list/{catId}")
-	public ResponseEntity<ApiResponse<CatDto>> updateCat(@PathVariable Integer catId,@RequestBody CatDto catDto) {
+	public ResponseEntity<ApiResponse<CatDto>> updateCat(@PathVariable Integer catId, @RequestBody CatDto catDto) {
 		catDto = adoptionCatService.updateCat(catDto);
 		return ResponseEntity.ok(ApiResponse.success("更新成功", catDto));
 	}
@@ -131,8 +131,8 @@ public class LovehomeController {
 	public ResponseEntity<ApiResponse<List<ReportListDto>>> getLovehomeReportList(HttpSession session) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		LovehomeDto lovehomeDto = userCert.getLovehomeDto();
-		List<ReportListDto> reportListDtos = lovehomeService.getLovehomeReportList(lovehomeDto.getLovehomeId());
-		return ResponseEntity.ok(ApiResponse.success("獲取上傳的通報救援", reportListDtos));
+		List<ReportListDto> reportListDtos = reportService.getReportByLovehomeId(lovehomeDto.getLovehomeId());
+		return ResponseEntity.ok(ApiResponse.success("獲取通報救援列表", reportListDtos));
 	}
 
 	// 查看個別通報資料
@@ -144,9 +144,17 @@ public class LovehomeController {
 
 	// 修改個別通報資料送出
 	@PutMapping("/report/{reportNumber}")
-	public ResponseEntity<ApiResponse<ReportListDto>> updateReport(@RequestBody ReportListDto reportDto) {
+	public ResponseEntity<ApiResponse<ReportListDto>> updateReport(@PathVariable Integer reportNumber,
+			@RequestBody ReportListDto reportDto) {
 		ReportListDto updateReportDto = reportService.updateReport(reportDto);
 		return ResponseEntity.ok(ApiResponse.success("修改成功", updateReportDto));
+	}
+
+	// 刪除個別領養清單
+	@DeleteMapping("/report/{reportNumber}")
+	public ResponseEntity<ApiResponse<AdoptionRequestDto>> deleteReport(@PathVariable Integer reportNumber) {
+		reportService.deleteReport(reportNumber);
+		return ResponseEntity.ok(ApiResponse.success("刪除成功", null));
 	}
 
 	// 查看申請領養的表單
@@ -168,15 +176,16 @@ public class LovehomeController {
 
 	// 修改個別領養清單送出
 	@PutMapping("/request/{requestNumber}")
-	public ResponseEntity<ApiResponse<AdoptionRequestDto>> updateRequest(@PathVariable Integer requestNumber, @RequestBody AdoptionRequestDto adoptionRequestDto) {
+	public ResponseEntity<ApiResponse<AdoptionRequestDto>> updateRequest(@PathVariable Integer requestNumber,
+			@RequestBody AdoptionRequestDto adoptionRequestDto) {
 		AdoptionRequestDto upadoptionRequestDto = adoptionRequestService.updateAdoptionRequest(adoptionRequestDto);
 		return ResponseEntity.ok(ApiResponse.success("修改成功", upadoptionRequestDto));
 	}
-	
+
 	// 刪除個別領養清單
 	@DeleteMapping("/request/{requestNumber}")
 	public ResponseEntity<ApiResponse<AdoptionRequestDto>> deleteRequest(@PathVariable Integer requestNumber) {
 		adoptionRequestService.deleteRequestByNumber(requestNumber);
-		return ResponseEntity.ok(ApiResponse.success("刪除成功",null));
+		return ResponseEntity.ok(ApiResponse.success("刪除成功", null));
 	}
 }

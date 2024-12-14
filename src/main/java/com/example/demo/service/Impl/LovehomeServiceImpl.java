@@ -12,10 +12,8 @@ import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.mapper.Mapper;
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.dto.LovehomeDto;
-import com.example.demo.model.dto.ReportListDto;
 import com.example.demo.model.entity.Cat;
 import com.example.demo.model.entity.Lovehome;
-import com.example.demo.model.entity.ReportList;
 import com.example.demo.repository.LovehomeRepository;
 import com.example.demo.service.LovehomeService;
 
@@ -77,14 +75,6 @@ public class LovehomeServiceImpl implements LovehomeService {
 		Lovehome lovehome = lovehomeRepository.findById(lovehomeId).orElseThrow(() -> new UserNotFoundException());
 		List<Cat> cats = lovehome.getCats();
 		return cats.stream().map(cat -> objectMapper.toCatDto(cat)).toList();
-	}
-
-	@Override
-	// 查詢中途之家收到的通報清單
-	public List<ReportListDto> getLovehomeReportList(Integer lovehomeId) {
-		Lovehome lovehome = lovehomeRepository.findById(lovehomeId).orElseThrow(() -> new UserNotFoundException());
-		List<ReportList> reportLists = lovehome.getReportLists();
-		return reportLists.stream().map(report -> objectMapper.toReportListDto(report)).toList();
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package com.example.demo.model.dto;
 
-import com.example.demo.model.entity.Lovehome;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
