@@ -22,5 +22,5 @@ public interface LovehomeService {
 	public List<CatDto> getLovehomecatList(Integer lovehomeId);
 	
 	//更新目前占用率
-	public LovehomeDto updateCurrentOccupancy(Integer lovehomeId);
+	public void updateCurrentOccupancy(Integer lovehomeId);
 }

@@ -78,11 +78,10 @@ public class LovehomeServiceImpl implements LovehomeService {
 	}
 
 	@Override
-	public LovehomeDto updateCurrentOccupancy(Integer lovehomeId) {
+	public void updateCurrentOccupancy(Integer lovehomeId) {
 		Lovehome lovehome = lovehomeRepository.findById(lovehomeId)
 				.orElseThrow(() -> new LovehomeNotFoundException("找不到中途:lovehomeId" + lovehomeId));
 		lovehome.setCurrentOccupancy((lovehome.getCats().size() / lovehome.getCapacity()));
-		LovehomeDto lovehomeDto = objectMapper.toLovehomeDto(lovehome);
-		return lovehomeDto;
+		lovehomeRepository.save(lovehome);
 	}
 }

@@ -75,6 +75,7 @@ public class LovehomeController {
 	public ResponseEntity<ApiResponse<UserDto>> lovehomeSetting(HttpSession session) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		UserDto userDto = userService.getUserById(userCert.getUserId());
+		lovehomeService.updateCurrentOccupancy(userCert.getLovehomeDto().getLovehomeId());
 		return ResponseEntity.ok(ApiResponse.success("單筆查詢成功", userDto));
 	}
 
@@ -93,6 +94,7 @@ public class LovehomeController {
 	public ResponseEntity<ApiResponse<CatDto>> appendCat(@RequestBody CatDto catDto, HttpSession session) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		CatDto addCatDto = adoptionCatService.addCat(catDto, userCert.getLovehomeDto().getLovehomeId());
+		lovehomeService.updateCurrentOccupancy(userCert.getLovehomeDto().getLovehomeId());
 		return ResponseEntity.ok(ApiResponse.success("新增成功", addCatDto));
 	}
 
