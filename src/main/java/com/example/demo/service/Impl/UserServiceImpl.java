@@ -82,6 +82,15 @@ public class UserServiceImpl implements UserService {
 		return mapper.toUserDto(optUser.get());
 	}
 
+	@Override
+	public UserDto getUserByLovehomeId(Integer lovehomeId) {
+		Optional<User> optUser = userRepository.findByLovehomeLovehomeId(lovehomeId);
+		if (optUser.isEmpty()) {
+			throw new UserNotFoundException("無此中途之家編號：" + lovehomeId);
+		}
+		return mapper.toUserDto(optUser.get());
+	}
+
 	@Override // 更新使用者資料
 	public UserDto updateUser(UserDto userDto) {
 		User Updateuser = mapper.toUserEntity(userDto);

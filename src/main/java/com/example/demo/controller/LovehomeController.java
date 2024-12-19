@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.constant.LineMessageTemplate;
 import com.example.demo.model.dto.AdoptionRequestDto;
 import com.example.demo.model.dto.CatDto;
 import com.example.demo.model.dto.LovehomeDto;
@@ -26,6 +27,7 @@ import com.example.demo.service.AdoptionRequestService;
 import com.example.demo.service.LovehomeService;
 import com.example.demo.service.ReportService;
 import com.example.demo.service.UserService;
+import com.example.demo.service.Impl.LineMessageService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -69,6 +71,9 @@ public class LovehomeController {
 
 	@Autowired
 	private AdoptionRequestService adoptionRequestService;
+
+	@Autowired
+	private LineMessageService lineMessageService;
 
 	// 查看愛媽資料與中途資訊
 	@GetMapping
@@ -149,10 +154,20 @@ public class LovehomeController {
 	public ResponseEntity<ApiResponse<ReportListDto>> updateReport(@PathVariable Integer reportNumber,
 			@RequestBody ReportListDto reportDto) {
 		ReportListDto updateReportDto = reportService.updateReport(reportDto);
+		if (reportDto.getUserDto().getLINEId() == null) {
+			return ResponseEntity.ok(ApiResponse.success("修改成功", updateReportDto));
+		}
+
+		LovehomeDto lovehomeDto = lovehomeService.getLovehomeById(reportDto.getLovehomeId());
+		String statusMessage = LineMessageTemplate.getReportStatusMessage(reportDto.getReportStatus());
+		String lineMessage = lineMessageService.getReportUpdateMessgae(reportNumber, statusMessage,
+				lovehomeDto.getLovehomeName(), lovehomeDto.getLovehomeCity(), lovehomeDto.getLovehomeDistrict(),
+				lovehomeDto.getLovehomeAddress());
+		lineMessageService.sendMessage(reportDto.getUserDto().getLINEId(), lineMessage);
 		return ResponseEntity.ok(ApiResponse.success("修改成功", updateReportDto));
 	}
 
-	// 刪除個別領養清單
+	// 刪除個別通報清單
 	@DeleteMapping("/report/{reportNumber}")
 	public ResponseEntity<ApiResponse<AdoptionRequestDto>> deleteReport(@PathVariable Integer reportNumber) {
 		reportService.deleteReport(reportNumber);
@@ -181,6 +196,15 @@ public class LovehomeController {
 	public ResponseEntity<ApiResponse<AdoptionRequestDto>> updateRequest(@PathVariable Integer requestNumber,
 			@RequestBody AdoptionRequestDto adoptionRequestDto) {
 		AdoptionRequestDto upadoptionRequestDto = adoptionRequestService.updateAdoptionRequest(adoptionRequestDto);
+
+		if (adoptionRequestDto.getUserDto().getLINEId() == null) {
+			return ResponseEntity.ok(ApiResponse.success("修改成功", upadoptionRequestDto));
+		}
+		
+		String statusMessage = LineMessageTemplate.getAdoptionStatusMessage(adoptionRequestDto.getRequestStatus());
+		String lineMessage = lineMessageService.getAdoptionUpdateMessage(requestNumber,
+				statusMessage, adoptionRequestDto.getCatDto().getCatName());
+		lineMessageService.sendMessage(adoptionRequestDto.getUserDto().getLINEId(), lineMessage);
 		return ResponseEntity.ok(ApiResponse.success("修改成功", upadoptionRequestDto));
 	}
 

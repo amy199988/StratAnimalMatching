@@ -24,6 +24,7 @@ import com.example.demo.service.AdoptionRequestService;
 import com.example.demo.service.LovehomeService;
 import com.example.demo.service.ReportService;
 import com.example.demo.service.UserService;
+import com.example.demo.service.Impl.LineMessageService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -59,9 +60,12 @@ public class CommonController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private ReportService reportService;
+
+	@Autowired
+	private LineMessageService lineMessageService;
 
 	// 查詢所有可領養貓咪
 	@GetMapping("/adoption")
@@ -86,6 +90,25 @@ public class CommonController {
 		adoptionRequestDto.setUserDto(userDto);
 		adoptionRequestDto.setCatDto(adoptionCatService.getCatById(catId));
 		AdoptionRequestDto addAdoptionRequestDto = adoptionRequestService.addAdoptionRequest(adoptionRequestDto);
+
+		UserDto momUserDto = userService.getUserByLovehomeId(addAdoptionRequestDto.getCatDto().getLovehomeId());
+		// 若 User 皆未綁定LINE帳號 則不傳送lineMessage
+		if (userDto.getLINEId() == null && momUserDto.getLINEId() == null) {
+			return ResponseEntity.ok(ApiResponse.success("申請成功", addAdoptionRequestDto));
+		}
+
+		if (userDto.getLINEId() != null) {
+			String userLineMessage = lineMessageService
+					.getAdoptionSuccessMessage(addAdoptionRequestDto.getCatDto().getCatName());
+			lineMessageService.sendMessage(userDto.getLINEId(), userLineMessage);
+		}
+
+		if (momUserDto != null && momUserDto.getLINEId() != null) {
+			String momLineMessage = lineMessageService
+					.getAdoptionRequestMessage(addAdoptionRequestDto.getCatDto().getCatName(), userDto.getUserName());
+			lineMessageService.sendMessage(momUserDto.getLINEId(), momLineMessage);
+		}
+
 		return ResponseEntity.ok(ApiResponse.success("申請成功", addAdoptionRequestDto));
 	}
 
@@ -96,9 +119,31 @@ public class CommonController {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		UserDto userDto = userService.getUserById(userCert.getUserId());
 		reportListDto.setUserDto(userDto);
+		System.out.println(userDto);
 		reportListDto.setLovehomeId(lovehomeId);
 		ReportListDto addReportListDto = reportService.addReport(reportListDto);
-		return ResponseEntity.ok(ApiResponse.success("通報成功",addReportListDto));
+
+		UserDto momUserDto = userService.getUserByLovehomeId(lovehomeId);
+		// 若 User 皆未綁定LINE帳號 則不傳送lineMessage
+		if (userDto.getLINEId() == null && momUserDto.getLINEId() == null) {
+			return ResponseEntity.ok(ApiResponse.success("申請成功", addReportListDto));
+		}
+
+		if (userDto.getLINEId() != null) {
+			String lineMessage = lineMessageService.getReportSuccessMessage(addReportListDto.getReportCity(),
+					addReportListDto.getReportDistrict(), addReportListDto.getReportAddress(),
+					addReportListDto.getDescription());
+			lineMessageService.sendMessage(userDto.getLINEId(), lineMessage);
+		}
+
+		if (momUserDto != null && momUserDto.getLINEId() != null) {
+			String momLineMessage = lineMessageService.getReportRequestMessage(addReportListDto.getReportCity(),
+					addReportListDto.getReportDistrict(), addReportListDto.getReportAddress(),
+					addReportListDto.getDescription());
+			lineMessageService.sendMessage(momUserDto.getLINEId(), momLineMessage);
+		}
+
+		return ResponseEntity.ok(ApiResponse.success("通報成功", addReportListDto));
 	}
 
 }

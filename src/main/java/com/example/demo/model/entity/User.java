@@ -59,6 +59,9 @@ public class User {
 	@Column(name = "role")
 	private String role; // 帳號權限(普通、愛媽、管理員)
 	
+	@Column(name = "LINE_Id", unique = true)
+	private String LINEId; // 會員關聯的LINEID
+	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<AdoptionRequest> adoptionRequests; // 會員所擁有的申請領養表單
 	

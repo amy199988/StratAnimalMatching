@@ -31,7 +31,13 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-		
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20210307</version>  <!-- 使用最新的穩定版本 -->
+		</dependency>
+
 		<!-- Spring Boot Validation Starter (for @Valid, @NotNull, etc.) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -56,7 +62,7 @@
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
 
- <!--		Spring Boot Starter Security
+		<!--		Spring Boot Starter Security
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -66,7 +72,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
---> 
+-->
 
 		<!-- MySQL Driver -->
 		<dependency>

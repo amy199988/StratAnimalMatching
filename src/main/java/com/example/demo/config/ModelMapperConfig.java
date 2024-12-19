@@ -3,6 +3,9 @@ package com.example.demo.config;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration // Springboot 在啟動完成前，會先行執行此配置
 public class ModelMapperConfig {
@@ -12,6 +15,16 @@ public class ModelMapperConfig {
 	@Bean 
 	ModelMapper modelMapper() {
 		return new ModelMapper();
+	}
+	
+	@Bean
+	RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+	
+	@Bean
+	ObjectMapper objectMapper() {
+		return new ObjectMapper();
 	}
 	
 }

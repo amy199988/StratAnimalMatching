@@ -2,6 +2,8 @@ package com.example.demo.model.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDto {
 	private Integer userId; // 會員編號
 	private String userName; // 會員名稱
@@ -19,8 +22,6 @@ public class UserDto {
 	private String email; // 電子郵件
 	private Boolean active; // 帳號認證
 	private String role; // 帳號權限(普通、愛媽、管理員)
-	//private List<AdoptionRequestDto> adoptionRequestsdDtos; // 會員所擁有的申請領養表單
-	//private List<DonationDto> donationsdDtos; // 會員所擁有的捐贈表單
-	//private List<ReportListDto> reportListsdDtos; // 會員所擁有的通報救援表單
+	private String LINEId; // 會員所關聯LINEID
 	private LovehomeDto lovehomeDto; // 會員所擁有的中途之家(可為null)
 }

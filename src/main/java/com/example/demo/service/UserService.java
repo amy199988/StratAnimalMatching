@@ -26,4 +26,7 @@ public interface UserService {
 	//修改密碼
 	public void updatePassword(Integer userId, String oldPassword ,String newPassword);
 	
+	//根據lovehomeId比對User
+	public UserDto  getUserByLovehomeId(Integer lovehomeId);
+	
 }
