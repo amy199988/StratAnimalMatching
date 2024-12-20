@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.aop.CheckRole;
 import com.example.demo.model.dto.AdoptionRequestDto;
 import com.example.demo.model.dto.ReportListDto;
 import com.example.demo.model.dto.UserCert;
@@ -57,6 +58,7 @@ public class UserController {
 	
 	//查看會員資訊
 	@GetMapping
+	@CheckRole({"role_user", "role_manager"})
 	public ResponseEntity<ApiResponse<UserDto>> userSetting(HttpSession session) {
 		UserCert userCert = (UserCert)session.getAttribute("userCert");
 		UserDto userDto = userService.getUserById(userCert.getUserId());
@@ -65,6 +67,7 @@ public class UserController {
 	
 	//更新會員資料
 	@PutMapping("/update")
+	@CheckRole({"role_user", "role_manager"})
 	public ResponseEntity<ApiResponse<UserDto>> updateUser(@RequestBody UserDto upUserDto, HttpSession session) {
 		UserCert userCert = (UserCert)session.getAttribute("userCert");
 		UserDto userDto = userService.getUserById(userCert.getUserId());
@@ -74,6 +77,7 @@ public class UserController {
 	
 	//查看通報追蹤
 	@GetMapping("/report")
+	@CheckRole({"role_user", "role_manager"})
 	public ResponseEntity<ApiResponse<List<ReportListDto>>> getUserReportList(HttpSession session) {
 		UserCert userCert = (UserCert)session.getAttribute("userCert");
 		List<ReportListDto> reportDtos = reportService.getReportByUserId(userCert.getUserId());
@@ -82,6 +86,7 @@ public class UserController {
 	
 	//查看領養申請追蹤
 	@GetMapping("/request")
+	@CheckRole({"role_user", "role_manager"})
 	public ResponseEntity<ApiResponse<List<AdoptionRequestDto>>> getUserAdoptionList(HttpSession session) {
 		UserCert userCert = (UserCert)session.getAttribute("userCert");
 		List<AdoptionRequestDto> adoptionRequestDtos = adoptionRequestService.getRequestsByuserId(userCert.getUserId());
@@ -90,6 +95,7 @@ public class UserController {
 	
 	//修改密碼
 	@PostMapping("/password")
+	@CheckRole({"role_user", "role_manager"})
 	public ResponseEntity<ApiResponse<String>> updatePassword(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword,
     HttpSession session){
 		UserCert userCert = (UserCert)session.getAttribute("userCert");

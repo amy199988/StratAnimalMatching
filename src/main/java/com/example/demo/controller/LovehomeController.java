@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.aop.CheckRole;
 import com.example.demo.constant.LineMessageTemplate;
 import com.example.demo.model.dto.AdoptionRequestDto;
 import com.example.demo.model.dto.CatDto;
@@ -77,6 +79,7 @@ public class LovehomeController {
 
 	// 查看愛媽資料與中途資訊
 	@GetMapping
+	@CheckRole({ "role_lovemom", "role_manager" })
 	public ResponseEntity<ApiResponse<UserDto>> lovehomeSetting(HttpSession session) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		UserDto userDto = userService.getUserById(userCert.getUserId());
@@ -84,8 +87,20 @@ public class LovehomeController {
 		return ResponseEntity.ok(ApiResponse.success("單筆查詢成功", userDto));
 	}
 
+	// 修改密碼
+	@PostMapping("/password")
+	@CheckRole({ "role_lovemom", "role_manager" })
+	public ResponseEntity<ApiResponse<String>> updatePassword(@RequestParam("oldPassword") String oldPassword,
+			@RequestParam("newPassword") String newPassword, HttpSession session) {
+		UserCert userCert = (UserCert) session.getAttribute("userCert");
+		Integer userId = userCert.getUserId();
+		userService.updatePassword(userId, oldPassword, newPassword);
+		return ResponseEntity.ok(ApiResponse.success("更新成功", null));
+	}
+
 	// 更新中途資料
 	@PutMapping("/update")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<LovehomeDto>> updateLovehome(HttpSession session,
 			@RequestBody LovehomeDto upLovehomeDto) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
@@ -96,6 +111,7 @@ public class LovehomeController {
 
 	// 新增貓咪
 	@PostMapping("/cat_list")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<CatDto>> appendCat(@RequestBody CatDto catDto, HttpSession session) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		CatDto addCatDto = adoptionCatService.addCat(catDto, userCert.getLovehomeDto().getLovehomeId());
@@ -105,6 +121,7 @@ public class LovehomeController {
 
 	// 查看中途所擁有貓咪
 	@GetMapping("/cat_list")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<List<CatDto>>> getLovehomecatList(HttpSession session) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		LovehomeDto lovehomeDto = userCert.getLovehomeDto();
@@ -114,6 +131,7 @@ public class LovehomeController {
 
 	// 查詢個別貓咪
 	@GetMapping("/cat_list/{catId}")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<CatDto>> getCatById(@PathVariable Integer catId) {
 		CatDto catDto = adoptionCatService.getCatById(catId);
 		return ResponseEntity.ok(ApiResponse.success("查詢成功", catDto));
@@ -121,6 +139,7 @@ public class LovehomeController {
 
 	// 更新貓咪
 	@PutMapping("/cat_list/{catId}")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<CatDto>> updateCat(@PathVariable Integer catId, @RequestBody CatDto catDto) {
 		catDto = adoptionCatService.updateCat(catDto);
 		return ResponseEntity.ok(ApiResponse.success("更新成功", catDto));
@@ -128,6 +147,7 @@ public class LovehomeController {
 
 	// 刪除貓咪
 	@DeleteMapping("/cat_list/{catId}")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<Void>> deleteCat(@PathVariable Integer catId) {
 		adoptionCatService.deleteCatById(catId);
 		return ResponseEntity.ok(ApiResponse.success("刪除成功", null));
@@ -135,6 +155,7 @@ public class LovehomeController {
 
 	// 查看收到的通報列表
 	@GetMapping("/report")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<List<ReportListDto>>> getLovehomeReportList(HttpSession session) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		LovehomeDto lovehomeDto = userCert.getLovehomeDto();
@@ -144,6 +165,7 @@ public class LovehomeController {
 
 	// 查看個別通報資料
 	@GetMapping("/report/{reportNumber}")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<ReportListDto>> getReport(@PathVariable Integer reportNumber) {
 		ReportListDto reportDto = reportService.getReportByNumber(reportNumber);
 		return ResponseEntity.ok(ApiResponse.success("單筆查詢成功", reportDto));
@@ -151,6 +173,7 @@ public class LovehomeController {
 
 	// 修改個別通報資料送出
 	@PutMapping("/report/{reportNumber}")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<ReportListDto>> updateReport(@PathVariable Integer reportNumber,
 			@RequestBody ReportListDto reportDto) {
 		ReportListDto updateReportDto = reportService.updateReport(reportDto);
@@ -169,6 +192,7 @@ public class LovehomeController {
 
 	// 刪除個別通報清單
 	@DeleteMapping("/report/{reportNumber}")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<AdoptionRequestDto>> deleteReport(@PathVariable Integer reportNumber) {
 		reportService.deleteReport(reportNumber);
 		return ResponseEntity.ok(ApiResponse.success("刪除成功", null));
@@ -176,6 +200,7 @@ public class LovehomeController {
 
 	// 查看申請領養的表單
 	@GetMapping("/request")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<List<AdoptionRequestDto>>> getAdoptionRequestList(HttpSession session) {
 		UserCert userCert = (UserCert) session.getAttribute("userCert");
 		LovehomeDto lovehomeDto = userCert.getLovehomeDto();
@@ -186,6 +211,7 @@ public class LovehomeController {
 
 	// 查看個別領養清單
 	@GetMapping("/request/{requestNumber}")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<AdoptionRequestDto>> getRequest(@PathVariable Integer requestNumber) {
 		AdoptionRequestDto adoptionRequestDto = adoptionRequestService.getRequestByNumber(requestNumber);
 		return ResponseEntity.ok(ApiResponse.success("單筆查詢成功", adoptionRequestDto));
@@ -193,6 +219,7 @@ public class LovehomeController {
 
 	// 修改個別領養清單送出
 	@PutMapping("/request/{requestNumber}")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<AdoptionRequestDto>> updateRequest(@PathVariable Integer requestNumber,
 			@RequestBody AdoptionRequestDto adoptionRequestDto) {
 		AdoptionRequestDto upadoptionRequestDto = adoptionRequestService.updateAdoptionRequest(adoptionRequestDto);
@@ -200,16 +227,17 @@ public class LovehomeController {
 		if (adoptionRequestDto.getUserDto().getLINEId() == null) {
 			return ResponseEntity.ok(ApiResponse.success("修改成功", upadoptionRequestDto));
 		}
-		
+
 		String statusMessage = LineMessageTemplate.getAdoptionStatusMessage(adoptionRequestDto.getRequestStatus());
-		String lineMessage = lineMessageService.getAdoptionUpdateMessage(requestNumber,
-				statusMessage, adoptionRequestDto.getCatDto().getCatName());
+		String lineMessage = lineMessageService.getAdoptionUpdateMessage(requestNumber, statusMessage,
+				adoptionRequestDto.getCatDto().getCatName());
 		lineMessageService.sendMessage(adoptionRequestDto.getUserDto().getLINEId(), lineMessage);
 		return ResponseEntity.ok(ApiResponse.success("修改成功", upadoptionRequestDto));
 	}
 
 	// 刪除個別領養清單
 	@DeleteMapping("/request/{requestNumber}")
+	@CheckRole({"role_lovemom", "role_manager"})
 	public ResponseEntity<ApiResponse<AdoptionRequestDto>> deleteRequest(@PathVariable Integer requestNumber) {
 		adoptionRequestService.deleteRequestByNumber(requestNumber);
 		return ResponseEntity.ok(ApiResponse.success("刪除成功", null));
