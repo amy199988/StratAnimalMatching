@@ -81,7 +81,7 @@ public class LovehomeServiceImpl implements LovehomeService {
 	public void updateCurrentOccupancy(Integer lovehomeId) {
 		Lovehome lovehome = lovehomeRepository.findById(lovehomeId)
 				.orElseThrow(() -> new LovehomeNotFoundException("找不到中途:lovehomeId" + lovehomeId));
-		lovehome.setCurrentOccupancy((lovehome.getCats().size() / lovehome.getCapacity()));
+		lovehome.setCurrentOccupancy((lovehome.getCats().size() / lovehome.getCapacity())*100);
 		lovehomeRepository.save(lovehome);
 	}
 }

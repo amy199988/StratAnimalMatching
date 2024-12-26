@@ -145,5 +145,6 @@ public class CommonController {
 
 		return ResponseEntity.ok(ApiResponse.success("通報成功", addReportListDto));
 	}
+	
 
 }

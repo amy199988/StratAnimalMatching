@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import com.example.demo.model.dto.AdoptionRequestDto;
 import com.example.demo.model.dto.ReportListDto;
 import com.example.demo.model.dto.UserCert;
 import com.example.demo.model.dto.UserDto;
+import com.example.demo.model.entity.User;
 import com.example.demo.response.ApiResponse;
 import com.example.demo.service.AdoptionRequestService;
 import com.example.demo.service.ReportService;
@@ -103,7 +105,6 @@ public class UserController {
 		userService.updatePassword(userId, oldPassword, newPassword);
 		return ResponseEntity.ok(ApiResponse.success("更新成功",null));
 	} 
-	
-	
+
 }
 	

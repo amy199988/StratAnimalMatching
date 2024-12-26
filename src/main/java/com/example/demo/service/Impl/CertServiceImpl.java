@@ -28,6 +28,9 @@ public class CertServiceImpl implements CertService {
 		if (user == null) {
 			throw new UserNotFoundException("無此使用者account：" + account);
 		}
+		if(!user.getActive()){
+			throw new UserNotFoundException("此帳號未驗證");
+		}
 
 		// 2.比對密碼
 		String passwordHash = Hash.getHash(password, user.getSalt());

@@ -23,5 +23,6 @@ public class UserDto {
 	private Boolean active; // 帳號認證
 	private String role; // 帳號權限(普通、愛媽、管理員)
 	private String LINEId; // 會員所關聯LINEID
+	private String resetToken; // 密碼重設 Token
 	private LovehomeDto lovehomeDto; // 會員所擁有的中途之家(可為null)
 }

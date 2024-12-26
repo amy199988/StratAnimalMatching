@@ -72,7 +72,7 @@ public class ManagerController {
 	private ReportService reportService;
 
 	// 查詢所有使用者
-	@GetMapping
+	@GetMapping("/all_user")
 	@CheckRole({"role_manager"})
 	public ResponseEntity<ApiResponse<List<UserDto>>> findAllUsers() {
 		List<UserDto> userDtos = userService.getAllUsers();
@@ -114,7 +114,7 @@ public class ManagerController {
 	// 更新使用者
 	@PutMapping("/{userId}")
 	@CheckRole({"role_manager"})
-	public ResponseEntity<ApiResponse<UserDto>> updateUser(@RequestBody UserDto userDto) {
+	public ResponseEntity<ApiResponse<UserDto>> updateUser(@PathVariable Integer userId,@RequestBody UserDto userDto) {
 		UserDto updateUserDto = userService.updateUser(userDto);
 		return ResponseEntity.ok(ApiResponse.success("更新成功", updateUserDto));
 	}

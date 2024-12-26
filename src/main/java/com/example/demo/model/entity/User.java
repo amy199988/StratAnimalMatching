@@ -1,6 +1,7 @@
 package com.example.demo.model.entity;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -61,6 +62,9 @@ public class User {
 	
 	@Column(name = "LINE_Id", unique = true)
 	private String LINEId; // 會員關聯的LINEID
+	
+	@Column(name = "reset_token", columnDefinition = "varchar(255)")
+	private String resetToken; // 密碼重設 Token
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<AdoptionRequest> adoptionRequests; // 會員所擁有的申請領養表單

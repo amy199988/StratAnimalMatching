@@ -29,4 +29,16 @@ public interface UserService {
 	//根據lovehomeId比對User
 	public UserDto  getUserByLovehomeId(Integer lovehomeId);
 	
+	//發送忘記密碼信件
+	public void sendResetPasswordEmail(String account, String email);
+	
+	//忘記密碼修改密碼
+	public void resetPassword(String token,String newPassword);
+	
+	// 帳號驗證寄信
+	public void sendVerificationEmail(String account, String email);
+	
+	// 使用者Email開通確認
+	public void passEmail(String account);
+
 }

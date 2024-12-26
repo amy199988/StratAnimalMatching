@@ -1,12 +1,17 @@
 package com.example.demo.service.Impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.exception.EmailConfirmException;
 import com.example.demo.exception.PasswordInvalidException;
 import com.example.demo.exception.UserAlreadyExistsException;
 import com.example.demo.exception.UserNotFoundException;
@@ -28,13 +33,13 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private ObjectMapper objectMapper;
+	private Mapper mapper;
 
 	@Autowired
-	private Mapper mapper;
-	
-	@Autowired
 	private LovehomeService lovehomeService;
+
+	@Autowired
+	private GmailOAuthSender gmailService;
 
 	@Override // 註冊、新增
 	public void addUser(UserDto userDto) {
@@ -42,7 +47,12 @@ public class UserServiceImpl implements UserService {
 		if (account != null) {
 			throw new UserAlreadyExistsException(userDto.getAccount() + "已存在");
 		}
-		User user = objectMapper.convertValue(userDto, User.class);
+	    Optional<User> emailUser = userRepository.findByEmail(userDto.getEmail());
+	    if (emailUser.isPresent()) {
+	        throw new UserAlreadyExistsException("Email " + userDto.getEmail() + "Email已被使用");
+	    }
+	    
+		User user = mapper.toUserEntity(userDto);
 		String salt = Hash.getSalt();
 		String passswordHash = Hash.getHash(userDto.getPassword(), salt);
 
@@ -65,7 +75,7 @@ public class UserServiceImpl implements UserService {
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new UserNotFoundException("無此使用者userId：" + userId));
 		UserDto userDto = mapper.toUserDto(user);
-		if(user.getLovehome() == null) {
+		if (user.getLovehome() == null) {
 			return userDto;
 		}
 		LovehomeDto lovehomeDto = lovehomeService.getLovehomeById(user.getLovehome().getLovehomeId());
@@ -98,8 +108,10 @@ public class UserServiceImpl implements UserService {
 				.orElseThrow(() -> new UserNotFoundException("無此使用者userId：" + userDto.getUserId()));
 		Updateuser.setPasswordHash(user.getPasswordHash());
 		Updateuser.setSalt(user.getSalt());
-		Updateuser.setActive(user.getActive());
-		if(userDto.getLovehomeDto() != null) {
+		Updateuser.setLINEId(user.getLINEId());
+		Updateuser.setResetToken(user.getResetToken());
+		// Updateuser.setActive(user.getActive());
+		if (userDto.getLovehomeDto() != null) {
 			userRepository.save(Updateuser);
 			UserDto updateUserDto = mapper.toUserDto(Updateuser);
 			updateUserDto.setLovehomeDto(userDto.getLovehomeDto());
@@ -135,4 +147,57 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 
 	}
+
+	@Override // 忘記密碼寄信
+	public void sendResetPasswordEmail(String account, String email) {
+		try {
+			User user = userRepository.findByAccount(account).orElseThrow(() -> new RuntimeException("User not found"));
+
+			String token = UUID.randomUUID().toString(); // 生成唯一重設密碼識別碼
+			user.setResetToken(token);
+			userRepository.save(user);
+
+			String resetLink = "http://localhost:5173/auth/reset_password?token=" + token;
+			String message = "請點擊以下連結重設您的密碼：\n" + resetLink;
+
+			gmailService.sendMessage(gmailService.getGmailService(), "me",
+					gmailService.createEmail(email, "浪浪配對網站重設密碼", message));
+		} catch (Exception e) {
+			throw new RuntimeException("忘記密碼信件發送失敗: " + e.getMessage());
+		}
+	}
+
+	@Override // 忘記密碼信件開通
+	public void resetPassword(String token, String newPassword) {
+		User user = userRepository.findByResetToken(token).orElseThrow(() -> new RuntimeException("Invalid token"));
+		// 產生新密碼的Hash
+		String newPasswordHash = Hash.getHash(newPassword, user.getSalt());
+		// 密碼Hash修改
+		user.setPasswordHash(newPasswordHash);
+		user.setResetToken(null); // 清空重設密碼識別碼
+		userRepository.save(user);
+	}
+
+	@Override // 帳號驗證寄信
+	public void sendVerificationEmail(String account, String email) {
+		try {
+			User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("無此使用者"));
+
+			String verificationLink = "http://localhost:5173/auth/verify?account=" + account;
+			String message = "請點擊以下連結驗證您的帳號：\n" + verificationLink;
+
+			gmailService.sendMessage(gmailService.getGmailService(), "me",
+					gmailService.createEmail(email, "浪浪配對網站-帳號驗證", message));
+		} catch (Exception e) {
+			throw new RuntimeException("帳號驗證信件發送失敗: " + e.getMessage());
+		}
+	}
+
+	@Override // 使用者Email開通確認(from email)
+	public void passEmail(String account) {
+		User user = userRepository.findByAccount(account).orElseThrow(() -> new RuntimeException("無此使用者"));
+		user.setActive(true);
+		userRepository.save(user);
+	}
+
 }
