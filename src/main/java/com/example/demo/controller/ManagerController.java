@@ -112,7 +112,7 @@ public class ManagerController {
 	}
 
 	// 更新使用者
-	@PutMapping("/{userId}")
+	@PutMapping("/all_user/{userId}")
 	@CheckRole({"role_manager"})
 	public ResponseEntity<ApiResponse<UserDto>> updateUser(@PathVariable Integer userId,@RequestBody UserDto userDto) {
 		UserDto updateUserDto = userService.updateUser(userDto);
@@ -120,7 +120,7 @@ public class ManagerController {
 	}
 
 	// 刪除使用者
-	@DeleteMapping("/{userId}")
+	@DeleteMapping("/all_user/{userId}")
 	@CheckRole({"role_manager"})
 	public ResponseEntity<ApiResponse<String>> deleteUser(@PathVariable Integer userId) {
 		userService.deleteUser(userId);

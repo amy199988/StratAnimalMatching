@@ -110,6 +110,7 @@ public class UserServiceImpl implements UserService {
 		Updateuser.setSalt(user.getSalt());
 		Updateuser.setLINEId(user.getLINEId());
 		Updateuser.setResetToken(user.getResetToken());
+		Updateuser.setLovehome(user.getLovehome());
 		// Updateuser.setActive(user.getActive());
 		if (userDto.getLovehomeDto() != null) {
 			userRepository.save(Updateuser);

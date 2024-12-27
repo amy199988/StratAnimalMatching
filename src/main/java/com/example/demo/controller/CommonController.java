@@ -93,9 +93,23 @@ public class CommonController {
 
 		UserDto momUserDto = userService.getUserByLovehomeId(addAdoptionRequestDto.getCatDto().getLovehomeId());
 		// 若 User 皆未綁定LINE帳號 則不傳送lineMessage
+		
+		//2者皆空
+		//使用者空，愛媽有綁定
+		//愛媽空，使用者有綁定
+		//2者都有綁定
+		
 		if (userDto.getLINEId() == null && momUserDto.getLINEId() == null) {
 			return ResponseEntity.ok(ApiResponse.success("申請成功", addAdoptionRequestDto));
 		}
+		
+//		if (userDto.getLINEId() == null) {
+//			return ResponseEntity.ok(ApiResponse.success("申請成功", addAdoptionRequestDto));
+//		}
+//		
+//		if (momUserDto.getLINEId() == null) {
+//			return ResponseEntity.ok(ApiResponse.success("申請成功", addAdoptionRequestDto));
+//		}
 
 		if (userDto.getLINEId() != null) {
 			String userLineMessage = lineMessageService
