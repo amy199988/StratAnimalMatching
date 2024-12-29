@@ -33,7 +33,7 @@ public class LineAuthService {
 
 	private static final String CLIENT_ID = "2006672068";
 	private static final String CLIENT_SECRET = "68230eb0f1ec528620217838b07dd670";
-	private static final String REDIRECT_URI = "https://2428-2402-7500-46a-37f0-5bc-c55-263e-79da.ngrok-free.app/callback";
+	private static final String REDIRECT_URI = "https://db38-2402-7500-486-9058-bd8a-28ec-1628-e0ea.ngrok-free.app/callback";
 
 	// 根據 authorization code 交換 access_token
 	public String getAccessToken(String code) {

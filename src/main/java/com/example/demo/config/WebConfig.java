@@ -15,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
 	public void addCorsMappings(CorsRegistry registry) {
 		// 開放所有端點，設置允許來自 ngrok 的請求
 		registry.addMapping("/**") // 配置對所有路徑開放 CORS
-				.allowedOrigins("https://2428-2402-7500-46a-37f0-5bc-c55-263e-79da.ngrok-free.app")  // 設定允許 ngrok 的隨機 URL
+				.allowedOrigins("https://db38-2402-7500-486-9058-bd8a-28ec-1628-e0ea.ngrok-free.app")  // 設定允許 ngrok 的隨機 URL
 				.allowedMethods("GET", "POST", "PUT", "DELETE") // 允許的 HTTP 方法
 				.allowedHeaders("*") // 允許的請求頭
 				.allowCredentials(true); // 允許傳送 cookie
