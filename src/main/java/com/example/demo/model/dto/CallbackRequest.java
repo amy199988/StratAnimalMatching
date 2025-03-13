@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CallbackRequest {
-	private String code;
-	private String state;
-	private Integer userId;
+
+  private String code;
+  private String state;
+  private Integer userId;
 }

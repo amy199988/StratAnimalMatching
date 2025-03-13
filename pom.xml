@@ -1,173 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.5</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>StrayAnimalMatching</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>StrayAnimalMatching</name>
-	<description>Demo project for Spring Boot</description>
-	<url />
-	<licenses>
-		<license />
-	</licenses>
-	<developers>
-		<developer />
-	</developers>
-	<scm>
-		<connection />
-		<developerConnection />
-		<tag />
-		<url />
-	</scm>
-	<properties>
-		<java.version>17</java.version>
-	</properties>
-	<dependencies>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>StrayAnimalMatching</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <groupId>org.springframework.boot</groupId>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
 
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20210307</version>  <!-- 使用最新的穩定版本 -->
-		</dependency>
+    <dependency>
+      <artifactId>json</artifactId>
+      <groupId>org.json</groupId>
+      <version>20210307</version>  <!-- 使用最新的穩定版本 -->
+    </dependency>
 
-		<!-- Spring Boot Validation Starter (for @Valid, @NotNull, etc.) -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
+    <!-- Spring Boot Validation Starter (for @Valid, @NotNull, etc.) -->
+    <dependency>
+      <artifactId>spring-boot-starter-validation</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
 
-		<!-- JavaMail API -->
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-			<version>1.6.2</version>
-		</dependency>
+    <!-- Model Mapper DTO 與 Entity 互轉 -->
+    <dependency>
+      <artifactId>modelmapper</artifactId>
+      <groupId>org.modelmapper</groupId>
+      <version>3.2.1</version>
+    </dependency>
 
-		<!-- Model Mapper DTO 與 Entity 互轉 -->
-		<dependency>
-			<groupId>org.modelmapper</groupId>
-			<artifactId>modelmapper</artifactId>
-			<version>3.2.1</version>
-		</dependency>
+    <!-- JdbcTemplate (JDBC 豪華昇級版)  -->
+    <dependency>
+      <artifactId>spring-boot-starter-data-jdbc</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
 
-		<!-- JdbcTemplate (JDBC 豪華昇級版)  -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jdbc</artifactId>
-		</dependency>
+    <!-- MySQL Driver -->
+    <dependency>
+      <artifactId>mysql-connector-j</artifactId>
+      <groupId>com.mysql</groupId>
+      <scope>runtime</scope>
+    </dependency>
 
-		<!-- MySQL Driver -->
-		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+    <!-- 配置 jsp -->
+    <dependency>
+      <artifactId>tomcat-embed-jasper</artifactId>
+      <groupId>org.apache.tomcat.embed</groupId>
+    </dependency>
 
-		<!-- 配置 jsp -->
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-		</dependency>
+    <!-- 配置 Jakarta Standard Tag Library (JSTL) -->
+    <dependency>
+      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+      <groupId>org.glassfish.web</groupId>
+    </dependency>
 
-		<!-- 配置 Jakarta Standard Tag Library (JSTL) -->
-		<dependency>
-			<groupId>org.glassfish.web</groupId>
-			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
-			<version>3.0.0</version>
-		</dependency>
+    <!-- 配置 Tomcat Web Server -->
+    <dependency>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
 
-		<!-- 配置 Tomcat Web Server -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+    <!-- 配置 Lombok -->
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+      <scope>provided</scope>
+    </dependency>
 
+    <dependency>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <scope>test</scope>
+    </dependency>
 
-		<!-- 配置 Lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
+    <!-- Google OAuth Client Library -->
+    <dependency>
+      <artifactId>google-oauth-client-jetty</artifactId>
+      <groupId>com.google.oauth-client</groupId>
+      <version>1.33.1</version>
+    </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+    <dependency>
+      <artifactId>google-oauth-client</artifactId>
+      <groupId>com.google.oauth-client</groupId>
+      <version>1.33.1</version>
+    </dependency>
 
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-			<version>1.6.2</version>
-		</dependency>
+    <!-- Google API Client Library -->
+    <dependency>
+      <artifactId>google-api-client</artifactId>
+      <groupId>com.google.api-client</groupId>
+      <version>1.33.1</version>
+    </dependency>
 
-		<!-- Google OAuth Client Library -->
-		<dependency>
-			<groupId>com.google.oauth-client</groupId>
-			<artifactId>google-oauth-client-jetty</artifactId>
-			<version>1.33.1</version>
-		</dependency>
+    <!-- Google HTTP Client (supports JSON) -->
+    <dependency>
+      <artifactId>google-http-client-jackson2</artifactId>
+      <groupId>com.google.http-client</groupId>
+      <version>1.39.2</version>
+    </dependency>
 
-		<dependency>
-			<groupId>com.google.oauth-client</groupId>
-			<artifactId>google-oauth-client</artifactId>
-			<version>1.33.1</version>
-		</dependency>
+    <!-- Gmail API Library -->
+    <dependency>
+      <artifactId>google-api-services-gmail</artifactId>
+      <groupId>com.google.apis</groupId>
+      <version>v1-rev20211108-1.32.1</version>
+    </dependency>
 
-		<!-- Google API Client Library -->
-		<dependency>
-			<groupId>com.google.api-client</groupId>
-			<artifactId>google-api-client</artifactId>
-			<version>1.33.1</version>
-		</dependency>
+    <!-- JavaMail API (for creating MIME messages) -->
+    <dependency>
+      <artifactId>javax.mail</artifactId>
+      <groupId>com.sun.mail</groupId>
+      <version>1.6.2</version>
+    </dependency>
 
-		<!-- Google HTTP Client (supports JSON) -->
-		<dependency>
-			<groupId>com.google.http-client</groupId>
-			<artifactId>google-http-client-jackson2</artifactId>
-			<version>1.39.2</version>
-		</dependency>
+    <dependency>
+      <artifactId>h2</artifactId>
+      <groupId>com.h2database</groupId>
+      <scope>runtime</scope>  <!-- 确保它只在运行时包含 -->
+    </dependency>
 
-		<!-- Gmail API Library -->
-		<dependency>
-			<groupId>com.google.apis</groupId>
-			<artifactId>google-api-services-gmail</artifactId>
-			<version>v1-rev20211108-1.32.1</version>
-		</dependency>
-
-
-		<!-- JavaMail API (for creating MIME messages) -->
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-			<version>1.6.2</version>
-		</dependency>
-
-
-	</dependencies>
+  </dependencies>
+  <description>Demo project for Spring Boot</description>
+  <developers>
+    <developer/>
+  </developers>
+  <groupId>com.example</groupId>
+  <licenses>
+    <license/>
+  </licenses>
+  <modelVersion>4.0.0</modelVersion>
+  <name>StrayAnimalMatching</name>
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <relativePath/>
+    <version>3.3.9</version> <!-- lookup parent from repository -->
+  </parent>
+  <properties>
+    <java.version>17</java.version>
+  </properties>
+  <scm>
+    <connection/>
+    <developerConnection/>
+    <tag/>
+    <url/>
+  </scm>
+  <url/>
 
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+  <version>0.0.1-SNAPSHOT</version>
 
 </project>

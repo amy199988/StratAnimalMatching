@@ -8,5 +8,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CheckRole {
-	 String[] value();  // 設定可訪問的角色
+
+  String[] value();  // 設定可訪問的角色
 }

@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <!-- 定義日誌檔案的存放位置 -->
-    <property name="LOG_PATH" value="logs" />
+  <!-- 定義日誌檔案的存放位置 -->
+  <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="FILE">
+    <!-- 設定日誌檔案的路徑和名稱 -->
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy/MM/dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
 
-    <!-- 控制日誌輸出格式 -->
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!-- 設定日誌檔案的路徑和名稱 -->
-        <file>${LOG_PATH}/app.log</file>
+    <!-- 設定滾動策略 -->
+    <file>${LOG_PATH}/app.log</file>
 
-        <!-- 設定滾動策略 -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 每天產生一個新的日誌檔案 -->
-            <fileNamePattern>${LOG_PATH}/app.%d{yyyy/MM/dd}.log</fileNamePattern>
-            
-            <!-- 設定日誌保留天數，以下例子中為保留7天的日誌檔案 -->
-            <!-- <maxHistory>7</maxHistory> -->
-        </rollingPolicy>
+    <!-- 設定日誌的輸出格式 -->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- 每天產生一個新的日誌檔案 -->
+      <fileNamePattern>${LOG_PATH}/app.%d{yyyy/MM/dd}.log</fileNamePattern>
 
-        <!-- 設定日誌的輸出格式 -->
-        <encoder>
-            <pattern>%d{yyyy/MM/dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-    </appender>
+      <!-- 設定日誌保留天數，以下例子中為保留7天的日誌檔案 -->
+      <!-- <maxHistory>7</maxHistory> -->
+    </rollingPolicy>
+  </appender>
 
-    <!-- 設定日誌的根級別 -->
-    <root level="info">
-        <appender-ref ref="FILE" />
-    </root>
+  <!-- 控制日誌輸出格式 -->
+  <property name="LOG_PATH" value="logs"/>
+
+  <!-- 設定日誌的根級別 -->
+  <root level="info">
+    <appender-ref ref="FILE"/>
+  </root>
 
 </configuration>
