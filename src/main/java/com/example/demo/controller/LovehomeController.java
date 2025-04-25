@@ -57,6 +57,7 @@ import jakarta.servlet.http.HttpSession;
 @RestController
 @RequestMapping("/lovehome")
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+//測試git用~~ main
 public class LovehomeController {
 
 	@Autowired
