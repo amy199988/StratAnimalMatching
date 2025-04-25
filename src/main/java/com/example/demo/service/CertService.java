@@ -5,5 +5,5 @@ import com.example.demo.model.dto.UserCert;
 
 public interface CertService {
 
-	public UserCert getCert(String account,String password) throws PasswordInvalidException;
+  public UserCert getCert(String account, String password) throws PasswordInvalidException;
 }

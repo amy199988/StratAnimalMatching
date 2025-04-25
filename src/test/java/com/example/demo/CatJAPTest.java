@@ -1,11 +1,6 @@
 package com.example.demo;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.example.demo.model.entity.Cat;
-import com.example.demo.repository.CatRepository;
 
 @SpringBootTest
 public class CatJAPTest {
@@ -44,5 +39,5 @@ public class CatJAPTest {
 		catRepository.deleteById(catId);
 		System.out.println("測試刪除：" + catId);
 	}*/
-	
+
 }

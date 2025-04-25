@@ -1,11 +1,6 @@
 package com.example.demo;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.example.demo.model.entity.Lovehome;
-import com.example.demo.repository.LovehomeRepository;
 
 @SpringBootTest
 public class LovehomeJAPTest {
@@ -19,5 +14,5 @@ public class LovehomeJAPTest {
 		//lovehome = lovehomeRepository.save(lovehome);
 		//System.out.println("測試新增：" + lovehome );
 	}*/
-	
+
 }
