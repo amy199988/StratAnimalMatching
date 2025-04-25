@@ -54,6 +54,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/lovehome")
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+// coding_style測試用
 public class LovehomeController {
 
   @Autowired
