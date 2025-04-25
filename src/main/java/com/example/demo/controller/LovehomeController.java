@@ -78,6 +78,7 @@ public class LovehomeController {
 	private LineMessageService lineMessageService;
 
 	// 查看愛媽資料與中途資訊
+	// 測試git用~~~~~~~
 	@GetMapping
 	@CheckRole({ "role_lovemom", "role_manager" })
 	public ResponseEntity<ApiResponse<UserDto>> lovehomeSetting(HttpSession session) {
